@@ -192,3 +192,15 @@
     @apply bg-background text-foreground font-sans;
   }
 }
+
+/* Shiki syntax highlighting */
+.shiki,
+.shiki code {
+  background-color: transparent !important;
+}
+.shiki span {
+  background-color: transparent !important;
+}
+.dark .shiki span {
+  color: var(--shiki-dark) !important;
+}
