@@ -9,7 +9,7 @@
       "dependencies": ["clsx", "tailwind-merge"],
       "files": [
         {
-          "path": "registry/new-york/lib/utils.ts",
+          "path": "registry/vitality/lib/utils.ts",
           "type": "registry:lib",
           "target": "lib/utils.ts"
         }
@@ -20,7 +20,7 @@
       "type": "registry:hook",
       "files": [
         {
-          "path": "registry/new-york/hooks/use-mobile.ts",
+          "path": "registry/vitality/hooks/use-mobile.ts",
           "type": "registry:hook",
           "target": "hooks/use-mobile.ts"
         }
@@ -33,7 +33,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/accordion.tsx",
+          "path": "registry/vitality/ui/accordion.tsx",
           "type": "registry:ui"
         }
       ]
@@ -45,7 +45,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/alert.tsx",
+          "path": "registry/vitality/ui/alert.tsx",
           "type": "registry:ui"
         }
       ]
@@ -57,7 +57,7 @@
       "registryDependencies": ["button"],
       "files": [
         {
-          "path": "registry/new-york/ui/alert-dialog.tsx",
+          "path": "registry/vitality/ui/alert-dialog.tsx",
           "type": "registry:ui"
         }
       ]
@@ -69,7 +69,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/aspect-ratio.tsx",
+          "path": "registry/vitality/ui/aspect-ratio.tsx",
           "type": "registry:ui"
         }
       ]
@@ -81,7 +81,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/avatar.tsx",
+          "path": "registry/vitality/ui/avatar.tsx",
           "type": "registry:ui"
         }
       ]
@@ -93,7 +93,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/badge.tsx",
+          "path": "registry/vitality/ui/badge.tsx",
           "type": "registry:ui"
         }
       ]
@@ -105,7 +105,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/breadcrumb.tsx",
+          "path": "registry/vitality/ui/breadcrumb.tsx",
           "type": "registry:ui"
         }
       ]
@@ -117,7 +117,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/button.tsx",
+          "path": "registry/vitality/ui/button.tsx",
           "type": "registry:ui"
         }
       ]
@@ -129,7 +129,7 @@
       "registryDependencies": ["button"],
       "files": [
         {
-          "path": "registry/new-york/ui/calendar.tsx",
+          "path": "registry/vitality/ui/calendar.tsx",
           "type": "registry:ui"
         }
       ]
@@ -140,7 +140,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/card.tsx",
+          "path": "registry/vitality/ui/card.tsx",
           "type": "registry:ui"
         }
       ]
@@ -152,7 +152,7 @@
       "registryDependencies": ["button"],
       "files": [
         {
-          "path": "registry/new-york/ui/carousel.tsx",
+          "path": "registry/vitality/ui/carousel.tsx",
           "type": "registry:ui"
         }
       ]
@@ -164,7 +164,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/chart.tsx",
+          "path": "registry/vitality/ui/chart.tsx",
           "type": "registry:ui"
         }
       ]
@@ -176,7 +176,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/checkbox.tsx",
+          "path": "registry/vitality/ui/checkbox.tsx",
           "type": "registry:ui"
         }
       ]
@@ -188,7 +188,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/collapsible.tsx",
+          "path": "registry/vitality/ui/collapsible.tsx",
           "type": "registry:ui"
         }
       ]
@@ -200,7 +200,7 @@
       "registryDependencies": ["dialog"],
       "files": [
         {
-          "path": "registry/new-york/ui/command.tsx",
+          "path": "registry/vitality/ui/command.tsx",
           "type": "registry:ui"
         }
       ]
@@ -212,7 +212,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/context-menu.tsx",
+          "path": "registry/vitality/ui/context-menu.tsx",
           "type": "registry:ui"
         }
       ]
@@ -224,7 +224,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/dialog.tsx",
+          "path": "registry/vitality/ui/dialog.tsx",
           "type": "registry:ui"
         }
       ]
@@ -236,7 +236,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/drawer.tsx",
+          "path": "registry/vitality/ui/drawer.tsx",
           "type": "registry:ui"
         }
       ]
@@ -248,7 +248,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/dropdown-menu.tsx",
+          "path": "registry/vitality/ui/dropdown-menu.tsx",
           "type": "registry:ui"
         }
       ]
@@ -260,7 +260,7 @@
       "registryDependencies": ["label"],
       "files": [
         {
-          "path": "registry/new-york/ui/form.tsx",
+          "path": "registry/vitality/ui/form.tsx",
           "type": "registry:ui"
         }
       ]
@@ -272,7 +272,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/hover-card.tsx",
+          "path": "registry/vitality/ui/hover-card.tsx",
           "type": "registry:ui"
         }
       ]
@@ -283,7 +283,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/input.tsx",
+          "path": "registry/vitality/ui/input.tsx",
           "type": "registry:ui"
         }
       ]
@@ -295,7 +295,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/input-otp.tsx",
+          "path": "registry/vitality/ui/input-otp.tsx",
           "type": "registry:ui"
         }
       ]
@@ -307,7 +307,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/label.tsx",
+          "path": "registry/vitality/ui/label.tsx",
           "type": "registry:ui"
         }
       ]
@@ -319,7 +319,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/menubar.tsx",
+          "path": "registry/vitality/ui/menubar.tsx",
           "type": "registry:ui"
         }
       ]
@@ -331,7 +331,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/navigation-menu.tsx",
+          "path": "registry/vitality/ui/navigation-menu.tsx",
           "type": "registry:ui"
         }
       ]
@@ -343,7 +343,7 @@
       "registryDependencies": ["button"],
       "files": [
         {
-          "path": "registry/new-york/ui/pagination.tsx",
+          "path": "registry/vitality/ui/pagination.tsx",
           "type": "registry:ui"
         }
       ]
@@ -355,7 +355,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/popover.tsx",
+          "path": "registry/vitality/ui/popover.tsx",
           "type": "registry:ui"
         }
       ]
@@ -367,7 +367,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/progress.tsx",
+          "path": "registry/vitality/ui/progress.tsx",
           "type": "registry:ui"
         }
       ]
@@ -379,7 +379,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/radio-group.tsx",
+          "path": "registry/vitality/ui/radio-group.tsx",
           "type": "registry:ui"
         }
       ]
@@ -391,7 +391,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/resizable.tsx",
+          "path": "registry/vitality/ui/resizable.tsx",
           "type": "registry:ui"
         }
       ]
@@ -403,7 +403,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/scroll-area.tsx",
+          "path": "registry/vitality/ui/scroll-area.tsx",
           "type": "registry:ui"
         }
       ]
@@ -415,7 +415,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/select.tsx",
+          "path": "registry/vitality/ui/select.tsx",
           "type": "registry:ui"
         }
       ]
@@ -427,7 +427,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/separator.tsx",
+          "path": "registry/vitality/ui/separator.tsx",
           "type": "registry:ui"
         }
       ]
@@ -439,7 +439,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/sheet.tsx",
+          "path": "registry/vitality/ui/sheet.tsx",
           "type": "registry:ui"
         }
       ]
@@ -451,7 +451,7 @@
       "registryDependencies": ["button", "input", "separator", "sheet", "skeleton", "tooltip", "use-mobile"],
       "files": [
         {
-          "path": "registry/new-york/ui/sidebar.tsx",
+          "path": "registry/vitality/ui/sidebar.tsx",
           "type": "registry:ui"
         }
       ]
@@ -462,7 +462,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/skeleton.tsx",
+          "path": "registry/vitality/ui/skeleton.tsx",
           "type": "registry:ui"
         }
       ]
@@ -474,7 +474,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/slider.tsx",
+          "path": "registry/vitality/ui/slider.tsx",
           "type": "registry:ui"
         }
       ]
@@ -486,7 +486,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/sonner.tsx",
+          "path": "registry/vitality/ui/sonner.tsx",
           "type": "registry:ui"
         }
       ]
@@ -498,7 +498,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/switch.tsx",
+          "path": "registry/vitality/ui/switch.tsx",
           "type": "registry:ui"
         }
       ]
@@ -509,7 +509,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/table.tsx",
+          "path": "registry/vitality/ui/table.tsx",
           "type": "registry:ui"
         }
       ]
@@ -521,7 +521,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/tabs.tsx",
+          "path": "registry/vitality/ui/tabs.tsx",
           "type": "registry:ui"
         }
       ]
@@ -532,7 +532,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/textarea.tsx",
+          "path": "registry/vitality/ui/textarea.tsx",
           "type": "registry:ui"
         }
       ]
@@ -544,7 +544,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/toggle.tsx",
+          "path": "registry/vitality/ui/toggle.tsx",
           "type": "registry:ui"
         }
       ]
@@ -556,7 +556,7 @@
       "registryDependencies": ["toggle"],
       "files": [
         {
-          "path": "registry/new-york/ui/toggle-group.tsx",
+          "path": "registry/vitality/ui/toggle-group.tsx",
           "type": "registry:ui"
         }
       ]
@@ -568,7 +568,7 @@
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/new-york/ui/tooltip.tsx",
+          "path": "registry/vitality/ui/tooltip.tsx",
           "type": "registry:ui"
         }
       ]
