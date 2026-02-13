@@ -2,7 +2,9 @@ import type { Metadata } from "next"
 import "./globals.css"
 import { Providers } from "./providers"
 import { AppSidebar } from "./_components/app-sidebar"
+import { MobileHeader } from "./_components/mobile-header"
 import { CommandBar } from "./_components/command-bar"
+import { SidebarProvider, SidebarInset } from "@/registry/vitality/ui/sidebar"
 
 export const metadata: Metadata = {
   title: "Vitality — shadcn/ui Component Registry",
@@ -18,14 +20,15 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
         <Providers>
-          <div className="flex min-h-svh">
+          <SidebarProvider>
             <AppSidebar />
-            <main className="flex-1 overflow-y-auto">
+            <SidebarInset>
+              <MobileHeader />
               <div className="mx-auto max-w-2xl px-6 py-10">
                 {children}
               </div>
-            </main>
-          </div>
+            </SidebarInset>
+          </SidebarProvider>
           <CommandBar />
         </Providers>
       </body>

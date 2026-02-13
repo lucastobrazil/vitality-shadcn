@@ -13,12 +13,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/registry/vitality/ui/select"
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarHeader,
+  useSidebar,
+} from "@/registry/vitality/ui/sidebar"
 
 type Filter = "all" | "custom" | "standard"
 
 export function AppSidebar() {
   const pathname = usePathname()
   const [filter, setFilter] = useState<Filter>("all")
+  const { isMobile, setOpenMobile } = useSidebar()
 
   const filtered = components.filter((c) => {
     if (filter === "custom") return c.isCustom
@@ -27,14 +34,14 @@ export function AppSidebar() {
   })
 
   return (
-    <aside className="hidden md:flex w-56 shrink-0 flex-col border-r bg-background">
-      <div className="flex items-center justify-between p-4 pb-2">
-        <Link href="/" className="text-sm font-semibold tracking-tight">
-          Vitality
-        </Link>
-        <ThemeToggle />
-      </div>
-      <div className="px-4 pb-3">
+    <Sidebar>
+      <SidebarHeader className="p-4 pb-2">
+        <div className="flex items-center justify-between">
+          <Link href="/" className="text-sm font-semibold tracking-tight">
+            Vitality
+          </Link>
+          <ThemeToggle />
+        </div>
         <Select value={filter} onValueChange={(v: Filter) => setFilter(v)}>
           <SelectTrigger className="h-7 text-xs">
             <SelectValue />
@@ -45,30 +52,33 @@ export function AppSidebar() {
             <SelectItem value="standard">Standard Only</SelectItem>
           </SelectContent>
         </Select>
-      </div>
-      <ScrollArea className="flex-1">
-        <nav className="flex flex-col gap-0.5 px-2 pb-4">
-          {filtered.map((c) => {
-            const isActive = pathname === `/components/${c.slug}`
-            return (
-              <Link
-                key={c.slug}
-                href={`/components/${c.slug}`}
-                className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors ${
-                  isActive
-                    ? "bg-accent text-accent-foreground font-medium"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                }`}
-              >
-                {c.name}
-                {c.isCustom && (
-                  <span className="size-1.5 rounded-full bg-secondary shrink-0" />
-                )}
-              </Link>
-            )
-          })}
-        </nav>
-      </ScrollArea>
-    </aside>
+      </SidebarHeader>
+      <SidebarContent>
+        <ScrollArea className="flex-1">
+          <nav className="flex flex-col gap-0.5 px-2 pb-4">
+            {filtered.map((c) => {
+              const isActive = pathname === `/components/${c.slug}`
+              return (
+                <Link
+                  key={c.slug}
+                  href={`/components/${c.slug}`}
+                  onClick={() => isMobile && setOpenMobile(false)}
+                  className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors ${
+                    isActive
+                      ? "bg-accent text-accent-foreground font-medium"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  }`}
+                >
+                  {c.name}
+                  {c.isCustom && (
+                    <span className="size-1.5 rounded-full bg-secondary shrink-0" />
+                  )}
+                </Link>
+              )
+            })}
+          </nav>
+        </ScrollArea>
+      </SidebarContent>
+    </Sidebar>
   )
 }
