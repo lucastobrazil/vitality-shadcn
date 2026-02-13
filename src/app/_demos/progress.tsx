@@ -12,8 +12,25 @@ export default function ProgressDemo() {
   }, [])
 
   return (
-    <div className="max-w-md">
-      <Progress value={progress} />
+    <div className="space-y-6 max-w-md">
+      <div>
+        <p className="mb-2 text-sm font-medium">Basic</p>
+        <Progress value={progress} />
+      </div>
+      <div>
+        <p className="mb-2 text-sm font-medium">With label</p>
+        <div className="space-y-1">
+          <div className="flex justify-between text-sm">
+            <span>Uploading...</span>
+            <span className="text-muted-foreground">{progress}%</span>
+          </div>
+          <Progress value={progress} />
+        </div>
+      </div>
+      <div>
+        <p className="mb-2 text-sm font-medium">Complete</p>
+        <Progress value={100} />
+      </div>
     </div>
   )
 }
