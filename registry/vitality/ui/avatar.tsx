@@ -1,25 +1,45 @@
 "use client"
 
 import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
 import { Avatar as AvatarPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
 
+const avatarVariants = cva(
+  "group/avatar relative flex shrink-0 overflow-hidden rounded-full select-none",
+  {
+    variants: {
+      size: {
+        default: "size-8",
+        sm: "size-6",
+        lg: "size-10",
+      },
+      variant: {
+        neutral: "bg-muted text-foreground",
+        primary: "bg-primary text-primary-foreground",
+      },
+    },
+    defaultVariants: {
+      size: "default",
+      variant: "neutral",
+    },
+  }
+)
+
 function Avatar({
   className,
   size = "default",
+  variant = "neutral",
   ...props
-}: React.ComponentProps<typeof AvatarPrimitive.Root> & {
-  size?: "default" | "sm" | "lg"
-}) {
+}: React.ComponentProps<typeof AvatarPrimitive.Root> &
+  VariantProps<typeof avatarVariants>) {
   return (
     <AvatarPrimitive.Root
       data-slot="avatar"
       data-size={size}
-      className={cn(
-        "group/avatar relative flex size-8 shrink-0 overflow-hidden rounded-full select-none data-[size=lg]:size-10 data-[size=sm]:size-6",
-        className
-      )}
+      data-variant={variant}
+      className={cn(avatarVariants({ size, variant }), className)}
       {...props}
     />
   )
@@ -38,17 +58,31 @@ function AvatarImage({
   )
 }
 
+const avatarFallbackVariants = cva(
+  "flex size-full items-center justify-center rounded-full text-sm group-data-[size=sm]/avatar:text-xs",
+  {
+    variants: {
+      variant: {
+        neutral: "bg-muted text-foreground",
+        primary: "bg-primary text-primary-foreground",
+      },
+    },
+    defaultVariants: {
+      variant: "neutral",
+    },
+  }
+)
+
 function AvatarFallback({
   className,
+  variant,
   ...props
-}: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
+}: React.ComponentProps<typeof AvatarPrimitive.Fallback> &
+  VariantProps<typeof avatarFallbackVariants>) {
   return (
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
-      className={cn(
-        "bg-muted text-muted-foreground flex size-full items-center justify-center rounded-full text-sm group-data-[size=sm]/avatar:text-xs",
-        className
-      )}
+      className={cn(avatarFallbackVariants({ variant }), className)}
       {...props}
     />
   )
@@ -106,4 +140,6 @@ export {
   AvatarBadge,
   AvatarGroup,
   AvatarGroupCount,
+  avatarVariants,
+  avatarFallbackVariants,
 }
