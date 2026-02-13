@@ -60,10 +60,10 @@ export function AppSidebar() {
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 }`}
               >
+                {c.name}
                 {c.isCustom && (
-                  <span className="size-1.5 rounded-full bg-primary shrink-0" />
+                  <span className="size-1.5 rounded-full bg-secondary shrink-0" />
                 )}
-                <span className={c.isCustom ? "" : "pl-3.5"}>{c.name}</span>
               </Link>
             )
           })}
