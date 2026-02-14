@@ -37,6 +37,9 @@ jobs:
       - name: Build registry
         run: npm run registry:build
 
+      - name: Build Angular registry
+        run: npm run registry:build:ng
+
       - name: Build Next.js
         run: npm run build
         env:

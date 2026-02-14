@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "registry:build": "shadcn build"
+    "registry:build": "shadcn build",
+    "registry:build:ng": "npx shadcn-ng@latest build --cwd=registry-ng --output=../public/r/ng",
+    "registry:build:all": "npm run registry:build && npm run registry:build:ng"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
