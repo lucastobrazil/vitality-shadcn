@@ -8,6 +8,11 @@ const preview: Preview = {
       defaultTheme: "light",
     }),
   ],
+  parameters: {
+    docs: {
+      extractArgTypes: () => null,
+    },
+  },
 };
 
 export default preview;
