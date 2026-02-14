@@ -1,0 +1,21 @@
+[16:33:19.056] [INFO] storybook v10.2.8
+[16:33:19.936] [DEBUG] Getting package.json info for /Users/lucas.arundell/Documents/Development/shaddo-dayoff/package.json...
+[16:33:20.923] [INFO] Starting...
+[16:33:20.934] [WARN] unable to find package.json for radix-ui
+[16:33:21.086] [DEBUG] Starting preview..
+[16:33:21.091] [INFO] Using implicit CSS loaders
+[16:33:21.092] [ERROR] Failed to build the preview
+[16:33:21.098] [ERROR] [38;2;241;97;97mSB_FRAMEWORK_ANGULAR_0001 (AngularLegacyBuildOptionsError): Your Storybook startup script uses a solution that is not supported anymore.
+You must use Angular builder to have an explicit configuration on the project used in angular.json.
+
+Please run 'npx storybook automigrate' to automatically fix your config.
+
+More info: 
+	- https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#angular-drop-support-for-calling-storybook-directly
+	- https://github.com/storybookjs/storybook/tree/next/code/frameworks/angular#how-do-i-migrate-to-an-angular-storybook-builder
+[39m
+    at checkForLegacyBuildOptions (file://./node_modules/@storybook/angular/dist/server/framework-preset-angular-cli.js:310:11)
+    at Object.webpackFinal (file://./node_modules/@storybook/angular/dist/server/framework-preset-angular-cli.js:244:3)
+    at file://./node_modules/storybook/dist/_node-chunks/chunk-WF46L34H.js:10114:36
+[16:33:21.101] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.

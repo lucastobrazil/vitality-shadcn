@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "dom"],
+    "strict": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "baseUrl": "..",
+    "paths": {
+      "@/lib/*": ["vitality/lib/*"],
+      "@/ui/*": ["vitality/ui/*"]
+    }
+  },
+  "include": [
+    "./preview.ts",
+    "../vitality/ui/**/*.stories.ts",
+    "../vitality/ui/accordion/**/*.ts",
+    "../vitality/ui/badge/**/*.ts",
+    "../vitality/ui/button/**/*.ts",
+    "../vitality/ui/icon/**/*.ts",
+    "../vitality/lib/utils.ts"
+  ]
+}
