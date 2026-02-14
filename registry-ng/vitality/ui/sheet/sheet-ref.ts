@@ -1,6 +1,6 @@
 import type { OverlayRef } from '@angular/cdk/overlay';
 import { isPlatformBrowser } from '@angular/common';
-import { EventEmitter, Inject, PLATFORM_ID } from '@angular/core';
+import { EventEmitter, PLATFORM_ID } from '@angular/core';
 
 import { filter, fromEvent, Subject, takeUntil } from 'rxjs';
 
@@ -21,7 +21,7 @@ export class ZardSheetRef<T = any, R = any, U = any> {
     private overlayRef: OverlayRef,
     private config: ZardSheetOptions<T, U>,
     private containerInstance: ZardSheetComponent<T, U>,
-    @Inject(PLATFORM_ID) private platformId: object,
+    private platformId: object,
   ) {
     this.containerInstance.cancelTriggered.subscribe(() => this.trigger(eTriggerAction.CANCEL));
     this.containerInstance.okTriggered.subscribe(() => this.trigger(eTriggerAction.OK));

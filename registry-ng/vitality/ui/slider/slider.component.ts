@@ -33,7 +33,7 @@ import {
 } from './slider.variants';
 
 import { cn } from '@/lib/utils';
-import { clamp, convertValueToPercentage, roundToStep } from '@/lib/utils/number';
+import { clamp, convertValueToPercentage, roundToStep } from '@/lib/number';
 
 type OnTouchedType = () => void;
 type OnChangeType = (value: number) => void;

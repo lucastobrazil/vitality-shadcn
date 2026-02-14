@@ -1,12 +1,11 @@
 import type { BooleanInput } from '@angular/cdk/coercion';
 import { CdkMenuTrigger } from '@angular/cdk/menu';
 import type { ConnectedPosition } from '@angular/cdk/overlay';
-import { isPlatformBrowser } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import {
   booleanAttribute,
   computed,
   Directive,
-  DOCUMENT,
   effect,
   ElementRef,
   inject,

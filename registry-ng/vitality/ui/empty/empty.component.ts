@@ -10,7 +10,7 @@ import {
 
 import type { ClassValue } from 'clsx';
 
-import { ZardStringTemplateOutletDirective } from '@/lib/core/directives/string-template-outlet/string-template-outlet.directive';
+import { ZardStringTemplateOutletDirective } from '@/lib/string-template-outlet.directive';
 import { cn } from '@/lib/utils';
 
 import {

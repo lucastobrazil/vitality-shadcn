@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 
 import { iconVariants, type ZardIconSizeVariants } from './icon.variants';
 import { ZARD_ICONS, type ZardIcon } from './icons';
+export type { ZardIcon };
 
 @Component({
   selector: 'z-icon, [z-icon]',

@@ -16,11 +16,6 @@
   },
   "include": [
     "./preview.ts",
-    "../vitality/ui/**/*.stories.ts",
-    "../vitality/ui/accordion/**/*.ts",
-    "../vitality/ui/badge/**/*.ts",
-    "../vitality/ui/button/**/*.ts",
-    "../vitality/ui/icon/**/*.ts",
-    "../vitality/lib/utils.ts"
+    "../vitality/**/*.ts"
   ]
 }

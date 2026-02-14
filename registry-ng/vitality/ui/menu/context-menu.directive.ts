@@ -1,5 +1,6 @@
 import { CdkContextMenuTrigger } from '@angular/cdk/menu';
-import { DestroyRef, Directive, DOCUMENT, ElementRef, inject, input, TemplateRef } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { DestroyRef, Directive, ElementRef, inject, input, TemplateRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { noopFn } from '@/lib/utils';

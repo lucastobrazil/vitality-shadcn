@@ -22,6 +22,7 @@ import {
   type ZardButtonSizeVariants,
   type ZardButtonTypeVariants,
 } from './button.variants';
+export type { ZardButtonShapeVariants, ZardButtonSizeVariants, ZardButtonTypeVariants };
 import { ZardIconComponent } from '@/ui/icon/icon.component';
 
 @Component({
