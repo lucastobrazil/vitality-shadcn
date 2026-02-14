@@ -46,6 +46,12 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
           NEXT_PUBLIC_REGISTRY_URL: ${{ steps.pages.outputs.origin }}${{ steps.pages.outputs.base_path }}
 
+      - name: Build Storybook
+        run: npm run storybook:build
+
+      - name: Copy Storybook to output
+        run: cp -r storybook-static out/storybook
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
