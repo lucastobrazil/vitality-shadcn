@@ -29,9 +29,9 @@ export const Default: Story = {
   render: () => ({
     template: `
       <z-button-group>
-        <button z-button zType="outline">Left</button>
-        <button z-button zType="outline">Center</button>
-        <button z-button zType="outline">Right</button>
+        <button z-button zVariant="outline">Left</button>
+        <button z-button zVariant="outline">Center</button>
+        <button z-button zVariant="outline">Right</button>
       </z-button-group>
     `,
   }),
@@ -41,9 +41,9 @@ export const Vertical: Story = {
   render: () => ({
     template: `
       <z-button-group zOrientation="vertical">
-        <button z-button zType="outline">Top</button>
-        <button z-button zType="outline">Middle</button>
-        <button z-button zType="outline">Bottom</button>
+        <button z-button zVariant="outline">Top</button>
+        <button z-button zVariant="outline">Middle</button>
+        <button z-button zVariant="outline">Bottom</button>
       </z-button-group>
     `,
   }),
@@ -53,11 +53,11 @@ export const WithDivider: Story = {
   render: () => ({
     template: `
       <z-button-group>
-        <button z-button zType="outline">Left</button>
+        <button z-button zVariant="outline">Left</button>
         <z-button-group-divider />
-        <button z-button zType="outline">Center</button>
+        <button z-button zVariant="outline">Center</button>
         <z-button-group-divider />
-        <button z-button zType="outline">Right</button>
+        <button z-button zVariant="outline">Right</button>
       </z-button-group>
     `,
   }),

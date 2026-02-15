@@ -11,9 +11,9 @@ const meta: Meta<ZardButtonComponent> = {
     }),
   ],
   argTypes: {
-    zType: {
+    zVariant: {
       control: "select",
-      options: ["default", "destructive", "outline", "secondary", "ghost", "link"],
+      options: ["default", "primary", "destructive", "outline", "ghost", "link"],
     },
     zSize: {
       control: "select",
@@ -32,10 +32,10 @@ type Story = StoryObj<ZardButtonComponent>;
 export const Default: Story = {
   render: (args) => ({
     props: args,
-    template: `<button z-button [zType]="zType" [zSize]="zSize" [zShape]="zShape">Button</button>`,
+    template: `<button z-button [zVariant]="zVariant" [zSize]="zSize" [zShape]="zShape">Button</button>`,
   }),
   args: {
-    zType: "default",
+    zVariant: "default",
     zSize: "default",
     zShape: "default",
   },
@@ -45,12 +45,12 @@ export const Variants: Story = {
   render: () => ({
     template: `
       <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-        <button z-button zType="default">Default</button>
-        <button z-button zType="destructive">Destructive</button>
-        <button z-button zType="outline">Outline</button>
-        <button z-button zType="secondary">Secondary</button>
-        <button z-button zType="ghost">Ghost</button>
-        <button z-button zType="link">Link</button>
+        <button z-button zVariant="primary">Default</button>
+        <button z-button zVariant="destructive">Destructive</button>
+        <button z-button zVariant="outline">Outline</button>
+        <button z-button zVariant="default">Secondary</button>
+        <button z-button zVariant="ghost">Ghost</button>
+        <button z-button zVariant="link">Link</button>
       </div>
     `,
   }),
@@ -74,8 +74,8 @@ export const Loading: Story = {
     template: `
       <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
         <button z-button [zLoading]="true">Loading</button>
-        <button z-button zType="outline" [zLoading]="true">Loading</button>
-        <button z-button zType="secondary" [zLoading]="true">Loading</button>
+        <button z-button zVariant="outline" [zLoading]="true">Loading</button>
+        <button z-button zVariant="default" [zLoading]="true">Loading</button>
       </div>
     `,
   }),
@@ -86,9 +86,9 @@ export const Disabled: Story = {
     template: `
       <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
         <button z-button [zDisabled]="true">Disabled</button>
-        <button z-button zType="outline" [zDisabled]="true">Disabled</button>
-        <button z-button zType="secondary" [zDisabled]="true">Disabled</button>
-        <button z-button zType="destructive" [zDisabled]="true">Disabled</button>
+        <button z-button zVariant="outline" [zDisabled]="true">Disabled</button>
+        <button z-button zVariant="default" [zDisabled]="true">Disabled</button>
+        <button z-button zVariant="destructive" [zDisabled]="true">Disabled</button>
       </div>
     `,
   }),

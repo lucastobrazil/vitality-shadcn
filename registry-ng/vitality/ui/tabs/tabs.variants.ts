@@ -53,22 +53,22 @@ export const tabButtonVariants = cva('hover:bg-transparent rounded-none flex-shr
     {
       zActivePosition: 'top',
       isActive: true,
-      class: 'border-t-2 border-t-primary',
+      class: 'border-t-2 border-t-primary text-primary',
     },
     {
       zActivePosition: 'bottom',
       isActive: true,
-      class: 'border-b-2 border-b-primary',
+      class: 'border-b-2 border-b-primary text-primary',
     },
     {
       zActivePosition: 'left',
       isActive: true,
-      class: 'border-l-2 border-l-primary',
+      class: 'border-l-2 border-l-primary text-primary',
     },
     {
       zActivePosition: 'right',
       isActive: true,
-      class: 'border-r-2 border-r-primary',
+      class: 'border-r-2 border-r-primary text-primary',
     },
   ],
   defaultVariants: {

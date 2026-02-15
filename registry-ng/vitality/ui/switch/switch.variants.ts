@@ -1,25 +1,9 @@
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 
-export const switchVariants = cva(
-  'peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=unchecked]:bg-input',
-  {
-    variants: {
-      zType: {
-        default: 'data-[state=checked]:bg-primary',
-        destructive: 'data-[state=checked]:bg-destructive',
-      },
-      zSize: {
-        default: 'h-6 w-11',
-        sm: 'h-5 w-9',
-        lg: 'h-7 w-13',
-      },
-    },
-    defaultVariants: {
-      zType: 'default',
-      zSize: 'default',
-    },
-  },
+export const switchRootVariants = cva(
+  "peer inline-flex h-[1.25rem] w-9 relative px-0.5 shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-foreground/50 dark:data-[state=unchecked]:bg-foreground/30 data-[state=checked]:justify-start data-[state=unchecked]:justify-end [&_svg:not([class*='size-'])]:size-3 [&_svg:not([class*='text-'])]:text-primary-foreground",
 );
 
-export type ZardSwitchSizeVariants = NonNullable<VariantProps<typeof switchVariants>['zSize']>;
-export type ZardSwitchTypeVariants = NonNullable<VariantProps<typeof switchVariants>['zType']>;
+export const switchThumbVariants = cva(
+  'bg-background pointer-events-none block size-4 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[calc(100%+1px)] data-[state=unchecked]:translate-x-0 absolute left-[1px]',
+);

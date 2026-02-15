@@ -15,15 +15,16 @@ import type { ClassValue } from 'clsx';
 
 import { ZardIdDirective } from '@/lib/core';
 import { cn, noopFn } from '@/lib/utils';
+import { ZardIconComponent } from '@/ui/icon/icon.component';
 
-import { switchVariants, type ZardSwitchSizeVariants, type ZardSwitchTypeVariants } from './switch.variants';
+import { switchRootVariants, switchThumbVariants } from './switch.variants';
 
 type OnTouchedType = () => void;
 type OnChangeType = (value: boolean) => void;
 
 @Component({
   selector: 'z-switch',
-  imports: [ZardIdDirective],
+  imports: [ZardIdDirective, ZardIconComponent],
   template: `
     <span class="flex items-center space-x-2" zardId="switch" #z="zardId">
       <button
@@ -36,11 +37,12 @@ type OnChangeType = (value: boolean) => void;
         [disabled]="zDisabled() || formDisabled()"
         (click)="onSwitchChange()"
       >
+        <z-icon zType="x" class="data-[state=checked]:hidden" [attr.data-state]="status()" />
         <span
-          [attr.data-size]="zSize()"
           [attr.data-state]="status()"
-          class="bg-background pointer-events-none block h-5 w-5 rounded-full shadow-lg ring-0 transition-transform data-[size=lg]:h-6 data-[size=lg]:w-6 data-[size=sm]:h-4 data-[size=sm]:w-4 data-[state=checked]:translate-x-5 data-[size=lg]:data-[state=checked]:translate-x-6 data-[size=sm]:data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0 data-[size=lg]:data-[state=unchecked]:translate-x-0 data-[size=sm]:data-[state=unchecked]:translate-x-0"
+          [class]="thumbClasses()"
         ></span>
+        <z-icon zType="check" class="data-[state=unchecked]:hidden" [attr.data-state]="status()" />
       </button>
 
       <label
@@ -66,17 +68,14 @@ export class ZardSwitchComponent implements ControlValueAccessor {
   readonly class = input<ClassValue>('');
   readonly zChecked = model<boolean>(true);
   readonly zId = input<string>('');
-  readonly zSize = input<ZardSwitchSizeVariants>('default');
-  readonly zType = input<ZardSwitchTypeVariants>('default');
   readonly zDisabled = input(false, { transform: booleanAttribute });
 
   private onChange: OnChangeType = noopFn;
   private onTouched: OnTouchedType = noopFn;
 
   protected readonly status = computed(() => (this.zChecked() ? 'checked' : 'unchecked'));
-  protected readonly classes = computed(() =>
-    cn(switchVariants({ zType: this.zType(), zSize: this.zSize() }), this.class()),
-  );
+  protected readonly classes = computed(() => cn(switchRootVariants(), this.class()));
+  protected readonly thumbClasses = computed(() => switchThumbVariants());
 
   protected readonly formDisabled = signal(false);
 

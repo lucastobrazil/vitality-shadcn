@@ -29,10 +29,10 @@ class StoryToastDefaultComponent {
     <z-toaster [richColors]="true" />
     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
       <button z-button (click)="showDefault()">Default</button>
-      <button z-button zType="secondary" (click)="showSuccess()">Success</button>
-      <button z-button zType="destructive" (click)="showError()">Error</button>
-      <button z-button zType="outline" (click)="showInfo()">Info</button>
-      <button z-button zType="ghost" (click)="showWarning()">Warning</button>
+      <button z-button zVariant="default" (click)="showSuccess()">Success</button>
+      <button z-button zVariant="destructive" (click)="showError()">Error</button>
+      <button z-button zVariant="outline" (click)="showInfo()">Info</button>
+      <button z-button zVariant="ghost" (click)="showWarning()">Warning</button>
     </div>
   `,
 })
@@ -61,12 +61,12 @@ class StoryToastTypesComponent {
   template: `
     <z-toaster [position]="position" />
     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-      <button z-button zType="outline" (click)="setPosition('top-left')">Top Left</button>
-      <button z-button zType="outline" (click)="setPosition('top-center')">Top Center</button>
-      <button z-button zType="outline" (click)="setPosition('top-right')">Top Right</button>
-      <button z-button zType="outline" (click)="setPosition('bottom-left')">Bottom Left</button>
-      <button z-button zType="outline" (click)="setPosition('bottom-center')">Bottom Center</button>
-      <button z-button zType="outline" (click)="setPosition('bottom-right')">Bottom Right</button>
+      <button z-button zVariant="outline" (click)="setPosition('top-left')">Top Left</button>
+      <button z-button zVariant="outline" (click)="setPosition('top-center')">Top Center</button>
+      <button z-button zVariant="outline" (click)="setPosition('top-right')">Top Right</button>
+      <button z-button zVariant="outline" (click)="setPosition('bottom-left')">Bottom Left</button>
+      <button z-button zVariant="outline" (click)="setPosition('bottom-center')">Bottom Center</button>
+      <button z-button zVariant="outline" (click)="setPosition('bottom-right')">Bottom Right</button>
     </div>
   `,
 })

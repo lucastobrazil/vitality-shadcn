@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
-export const dividerVariants = cva('bg-border block', {
+export const dividerVariants = cva('bg-border block shrink-0', {
   variants: {
     zOrientation: {
       horizontal: 'h-px w-full',

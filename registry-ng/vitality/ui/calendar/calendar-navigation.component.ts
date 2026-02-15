@@ -17,7 +17,7 @@ import { ZardSelectComponent } from '@/ui/select/select.component';
       <button
         type="button"
         z-button
-        zType="ghost"
+        zVariant="ghost"
         zSize="sm"
         (click)="onPreviousClick()"
         [disabled]="isPreviousDisabled()"
@@ -47,7 +47,7 @@ import { ZardSelectComponent } from '@/ui/select/select.component';
       <button
         type="button"
         z-button
-        zType="ghost"
+        zVariant="ghost"
         zSize="sm"
         (click)="onNextClick()"
         [disabled]="isNextDisabled()"

@@ -113,7 +113,7 @@ export class ZardTabComponent {
             <button
               type="button"
               z-button
-              zType="ghost"
+              zVariant="ghost"
               role="tab"
               [attr.id]="'tab-' + index"
               [attr.aria-selected]="activeTabIndex() === index"

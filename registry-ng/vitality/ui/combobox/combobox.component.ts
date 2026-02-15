@@ -20,7 +20,7 @@ import { type ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angu
 
 import type { ClassValue } from 'clsx';
 
-import { ZardButtonComponent, type ZardButtonTypeVariants } from '@/ui/button';
+import { ZardButtonComponent, type ZardButtonVariantVariants } from '@/ui/button';
 import { comboboxVariants, type ZardComboboxWidthVariants } from '@/ui/combobox/combobox.variants';
 import {
   ZardCommandComponent,
@@ -72,7 +72,7 @@ export interface ZardComboboxGroup {
       zPopover
       role="combobox"
       [zContent]="popoverContent"
-      [zType]="buttonVariant()"
+      [zVariant]="buttonVariant()"
       [class]="buttonClasses()"
       [zDisabled]="disabled()"
       [attr.aria-expanded]="open()"
@@ -187,7 +187,7 @@ export class ZardComboboxComponent implements ControlValueAccessor {
   private readonly injector = inject(Injector);
 
   readonly class = input<ClassValue>('');
-  readonly buttonVariant = input<ZardButtonTypeVariants>('outline');
+  readonly buttonVariant = input<ZardButtonVariantVariants>('outline');
   readonly zWidth = input<ZardComboboxWidthVariants>('default');
   readonly placeholder = input<string>('Select...');
   readonly searchPlaceholder = input<string>('Search...');

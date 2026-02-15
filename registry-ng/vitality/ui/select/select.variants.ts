@@ -4,15 +4,15 @@ import { cn } from '@/lib/utils';
 
 export const selectVariants = cva(
   cn(
-    'relative inline-block w-full rounded-md group data-active:border data-active:border-ring data-active:ring-ring/50 data-active:ring-[3px]',
-    '[&_button]:focus-visible:border [&_button]:focus-visible:border-ring [&_button]:focus-visible:ring-ring/50 [&_button]:focus-visible:ring-[3px]',
+    'relative inline-block w-full rounded-md group data-active:border data-active:border-ring data-active:ring-ring data-active:ring-1',
+    '[&_button]:focus-visible:border [&_button]:focus-visible:border-ring [&_button]:focus-visible:ring-ring [&_button]:focus-visible:ring-1',
   ),
 );
 
 export const selectTriggerVariants = cva(
   cn(
-    'flex w-full items-center justify-between gap-2 rounded-md border border-input bg-transparent',
-    'shadow-xs transition-[color,box-shadow] outline-none cursor-pointer disabled:cursor-not-allowed',
+    'flex w-full items-center justify-between gap-2 rounded-md border border-input bg-transparent hover:bg-muted/50',
+    'transition-[color,box-shadow] outline-none cursor-pointer disabled:cursor-not-allowed',
     'disabled:opacity-50 data-placeholder:text-muted-foreground [&_svg:not([class*="text-"])]:text-muted-foreground',
     'dark:bg-input/30 dark:hover:bg-input/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40',
     'aria-invalid:border-destructive [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*="size-"])]:size-4',
@@ -20,9 +20,9 @@ export const selectTriggerVariants = cva(
   {
     variants: {
       zSize: {
-        sm: 'min-h-8 py-1 text-xs px-2',
-        default: 'min-h-9 py-1.5 px-3 text-sm',
-        lg: 'min-h-10 py-2 text-base px-4',
+        sm: 'h-7 py-1 text-xs px-2',
+        default: 'h-8 py-1.5 px-3 text-sm',
+        lg: 'h-10 py-2 text-base px-4',
       },
     },
     defaultVariants: {

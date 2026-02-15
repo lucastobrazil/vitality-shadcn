@@ -15,7 +15,7 @@ const meta: Meta<ZardDatePickerComponent> = {
       control: "select",
       options: ["xs", "sm", "default", "lg"],
     },
-    zType: {
+    zVariant: {
       control: "select",
       options: ["default", "outline", "ghost"],
     },

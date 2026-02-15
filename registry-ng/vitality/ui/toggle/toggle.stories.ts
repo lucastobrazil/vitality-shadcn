@@ -11,13 +11,13 @@ const meta: Meta<ZardToggleComponent> = {
     }),
   ],
   argTypes: {
-    zType: {
+    zVariant: {
       control: "select",
       options: ["default", "outline"],
     },
     zSize: {
       control: "select",
-      options: ["sm", "md", "lg"],
+      options: ["sm", "default", "lg"],
     },
   },
 };
@@ -28,11 +28,11 @@ type Story = StoryObj<ZardToggleComponent>;
 export const Default: Story = {
   render: (args) => ({
     props: args,
-    template: `<z-toggle [zType]="zType" [zSize]="zSize">Bold</z-toggle>`,
+    template: `<z-toggle [zVariant]="zVariant" [zSize]="zSize">Bold</z-toggle>`,
   }),
   args: {
-    zType: "default",
-    zSize: "md",
+    zVariant: "default",
+    zSize: "default",
   },
 };
 
@@ -40,8 +40,8 @@ export const Types: Story = {
   render: () => ({
     template: `
       <div style="display: flex; gap: 8px; align-items: center;">
-        <z-toggle zType="default">Default</z-toggle>
-        <z-toggle zType="outline">Outline</z-toggle>
+        <z-toggle zVariant="default">Default</z-toggle>
+        <z-toggle zVariant="outline">Outline</z-toggle>
       </div>
     `,
   }),
@@ -52,7 +52,7 @@ export const Disabled: Story = {
     template: `
       <div style="display: flex; gap: 8px; align-items: center;">
         <z-toggle [disabled]="true">Disabled</z-toggle>
-        <z-toggle zType="outline" [disabled]="true">Disabled Outline</z-toggle>
+        <z-toggle zVariant="outline" [disabled]="true">Disabled Outline</z-toggle>
       </div>
     `,
   }),

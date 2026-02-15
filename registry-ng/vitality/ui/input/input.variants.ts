@@ -6,7 +6,7 @@ export const inputVariants = cva('w-full', {
   variants: {
     zType: {
       default:
-        'flex rounded-md border px-4 font-normal border-input bg-transparent file:border-0 file:text-foreground file:bg-transparent file:font-medium placeholder:text-muted-foreground outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
+        'flex rounded-md border px-4 font-normal border-input bg-background file:border-0 file:text-foreground file:bg-transparent file:font-medium placeholder:text-muted-foreground outline-none focus-visible:border-ring focus-visible:ring-ring focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 hover:bg-muted/50 selection:bg-primary selection:text-primary-foreground',
       textarea:
         'flex pb-2 min-h-20 h-auto rounded-md border border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
     },
@@ -29,8 +29,8 @@ export const inputVariants = cva('w-full', {
     zSize: 'default',
   },
   compoundVariants: [
-    { zType: 'default', zSize: 'default', class: 'h-9 py-2 file:max-md:py-0' },
-    { zType: 'default', zSize: 'sm', class: 'h-8 file:md:py-2 file:max-md:py-1.5' },
+    { zType: 'default', zSize: 'default', class: 'h-8 py-2 file:max-md:py-0' },
+    { zType: 'default', zSize: 'sm', class: 'h-7 file:md:py-2 file:max-md:py-1.5' },
     { zType: 'default', zSize: 'lg', class: 'h-10 py-1 file:md:py-3 file:max-md:py-2.5' },
   ],
 });

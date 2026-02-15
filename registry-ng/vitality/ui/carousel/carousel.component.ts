@@ -50,7 +50,7 @@ import { cn } from '@/lib/utils';
           <button
             type="button"
             z-button
-            zType="outline"
+            zVariant="outline"
             [class]="prevBtnClasses()"
             [disabled]="!canScrollPrev()"
             (click)="slidePrevious()"
@@ -61,7 +61,7 @@ import { cn } from '@/lib/utils';
           <button
             type="button"
             z-button
-            zType="outline"
+            zVariant="outline"
             [class]="nextBtnClasses()"
             [disabled]="!canScrollNext()"
             (click)="slideNext()"

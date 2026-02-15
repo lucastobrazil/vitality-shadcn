@@ -13,7 +13,11 @@ const meta: Meta<ZardLoaderComponent> = {
   argTypes: {
     zSize: {
       control: "select",
-      options: ["sm", "default", "lg"],
+      options: ["sm", "default", "lg", "xl"],
+    },
+    zColor: {
+      control: "select",
+      options: ["default", "primary", "secondary"],
     },
   },
 };
@@ -24,10 +28,11 @@ type Story = StoryObj<ZardLoaderComponent>;
 export const Default: Story = {
   render: (args) => ({
     props: args,
-    template: `<z-loader [zSize]="zSize" />`,
+    template: `<z-loader [zSize]="zSize" [zColor]="zColor" />`,
   }),
   args: {
     zSize: "default",
+    zColor: "default",
   },
 };
 
@@ -38,6 +43,19 @@ export const Sizes: Story = {
         <z-loader zSize="sm" />
         <z-loader zSize="default" />
         <z-loader zSize="lg" />
+        <z-loader zSize="xl" />
+      </div>
+    `,
+  }),
+};
+
+export const Colors: Story = {
+  render: () => ({
+    template: `
+      <div style="display: flex; gap: 24px; align-items: center;">
+        <z-loader zColor="default" />
+        <z-loader zColor="primary" />
+        <z-loader zColor="secondary" />
       </div>
     `,
   }),

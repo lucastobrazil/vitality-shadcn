@@ -65,7 +65,7 @@ export class ZardDialogOptions<T, U> {
         type="button"
         data-testid="z-close-header-button"
         z-button
-        zType="ghost"
+        zVariant="ghost"
         zSize="sm"
         class="absolute top-1 right-1"
         (click)="onCloseClick()"
@@ -97,7 +97,7 @@ export class ZardDialogOptions<T, U> {
     @if (!config.zHideFooter) {
       <footer class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-0 sm:space-x-2">
         @if (config.zCancelText !== null) {
-          <button type="button" data-testid="z-cancel-button" z-button zType="outline" (click)="onCloseClick()">
+          <button type="button" data-testid="z-cancel-button" z-button zVariant="outline" (click)="onCloseClick()">
             @if (config.zCancelIcon) {
               <z-icon [zType]="config.zCancelIcon" />
             }
@@ -111,7 +111,7 @@ export class ZardDialogOptions<T, U> {
             type="button"
             data-testid="z-ok-button"
             z-button
-            [zType]="config.zOkDestructive ? 'destructive' : 'default'"
+            [zVariant]="config.zOkDestructive ? 'destructive' : 'primary'"
             [disabled]="config.zOkDisabled"
             (click)="onOkClick()"
           >

@@ -7,10 +7,10 @@ import { cn } from '@/lib/utils';
 
 import {
   alertDescriptionVariants,
-  alertIconVariants,
   alertTitleVariants,
   alertVariants,
-  type ZardAlertTypeVariants,
+  type ZardAlertSeverityVariants,
+  type ZardAlertSizeVariants,
 } from './alert.variants';
 import { ZardIconComponent } from '@/ui/icon/icon.component';
 import type { ZardIcon } from '@/ui/icon/icons';
@@ -21,26 +21,22 @@ import type { ZardIcon } from '@/ui/icon/icons';
   standalone: true,
   template: `
     @if (zIcon() || iconName()) {
-      <span [class]="iconClasses()" data-slot="alert-icon">
-        <ng-container *zStringTemplateOutlet="zIcon()">
-          <z-icon [zType]="iconName()!" />
-        </ng-container>
-      </span>
+      <ng-container *zStringTemplateOutlet="zIcon()">
+        <z-icon [zType]="iconName()!" />
+      </ng-container>
     }
 
-    <div class="flex-1">
-      @if (zTitle()) {
-        <div [class]="titleClasses()" data-slot="alert-title">
-          <ng-container *zStringTemplateOutlet="zTitle()">{{ zTitle() }}</ng-container>
-        </div>
-      }
+    @if (zTitle()) {
+      <div [class]="titleClasses()" data-slot="alert-title">
+        <ng-container *zStringTemplateOutlet="zTitle()">{{ zTitle() }}</ng-container>
+      </div>
+    }
 
-      @if (zDescription()) {
-        <div [class]="descriptionClasses()" data-slot="alert-description">
-          <ng-container *zStringTemplateOutlet="zDescription()">{{ zDescription() }}</ng-container>
-        </div>
-      }
-    </div>
+    @if (zDescription()) {
+      <div [class]="descriptionClasses()" data-slot="alert-description">
+        <ng-container *zStringTemplateOutlet="zDescription()">{{ zDescription() }}</ng-container>
+      </div>
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -48,6 +44,8 @@ import type { ZardIcon } from '@/ui/icon/icons';
     role: 'alert',
     '[class]': 'classes()',
     '[attr.data-slot]': '"alert"',
+    '[attr.data-severity]': 'zSeverity()',
+    '[attr.data-size]': 'zSize()',
   },
   exportAs: 'zAlert',
 })
@@ -56,15 +54,16 @@ export class ZardAlertComponent {
   readonly zTitle = input<string | TemplateRef<void>>('');
   readonly zDescription = input<string | TemplateRef<void>>('');
   readonly zIcon = input<ZardIcon | TemplateRef<void>>();
-  readonly zType = input<ZardAlertTypeVariants>('default');
+  readonly zSeverity = input<ZardAlertSeverityVariants>('muted');
+  readonly zSize = input<ZardAlertSizeVariants>('default');
 
-  protected readonly classes = computed(() => cn(alertVariants({ zType: this.zType() }), this.class()));
-
-  protected readonly iconClasses = computed(() => alertIconVariants());
+  protected readonly classes = computed(() =>
+    cn(alertVariants({ zSeverity: this.zSeverity(), zSize: this.zSize() }), this.class()),
+  );
 
   protected readonly titleClasses = computed(() => alertTitleVariants());
 
-  protected readonly descriptionClasses = computed(() => alertDescriptionVariants({ zType: this.zType() }));
+  protected readonly descriptionClasses = computed(() => alertDescriptionVariants());
 
   protected readonly iconName = computed((): ZardIcon | null => {
     const customIcon = this.zIcon();
@@ -72,10 +71,17 @@ export class ZardAlertComponent {
       return customIcon;
     }
 
-    if (this.zType() === 'destructive') {
-      return 'circle-alert';
+    switch (this.zSeverity()) {
+      case 'destructive':
+        return 'circle-alert';
+      case 'warning':
+        return 'triangle-alert';
+      case 'success':
+        return 'circle-check';
+      case 'info':
+        return 'info';
+      default:
+        return null;
     }
-
-    return null;
   });
 }

@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
-export const loaderVariants = cva('animate-spin', {
+export const spinnerVariants = cva('animate-spin', {
   variants: {
     zSize: {
       sm: 'size-4',
@@ -19,4 +19,5 @@ export const loaderVariants = cva('animate-spin', {
     zColor: 'default',
   },
 });
-export type ZardLoaderVariants = VariantProps<typeof loaderVariants>;
+
+export type ZardSpinnerVariants = VariantProps<typeof spinnerVariants>;

@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils';
     <div class="relative top-1/2 left-1/2 h-[inherit] w-[inherit]">
       @for (_ of bars; track $index) {
         <div
-          class="animate-spinner absolute -top-[3.9%] -left-[10%] h-[8%] w-[24%] rounded-md bg-black dark:bg-white"
+          class="animate-spinner absolute -top-[3.9%] -left-[10%] h-[8%] w-[24%] rounded-md bg-current"
           [style]="{
             animationDelay: animationDelay($index),
             transform: transform($index),
@@ -48,10 +48,13 @@ import { cn } from '@/lib/utils';
 export class ZardLoaderComponent {
   readonly class = input<ClassValue>('');
   readonly zSize = input<ZardLoaderVariants['zSize']>('default');
+  readonly zColor = input<ZardLoaderVariants['zColor']>('default');
 
   protected readonly bars = Array.from({ length: 12 });
   protected readonly animationDelay = (index: number) => `-${1.3 - index * 0.1}s`;
   protected readonly transform = (index: number) => `rotate(${30 * index}deg) translate(146%)`;
 
-  protected readonly classes = computed(() => cn(loaderVariants({ zSize: this.zSize() }), this.class()));
+  protected readonly classes = computed(() =>
+    cn(loaderVariants({ zSize: this.zSize(), zColor: this.zColor() }), this.class()),
+  );
 }

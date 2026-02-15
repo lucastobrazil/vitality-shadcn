@@ -4,26 +4,24 @@ import type { ClassValue } from 'clsx';
 
 import { cn } from '@/lib/utils';
 
-import { badgeVariants, type ZardBadgeVariantVariants } from './badge.variants';
-
 @Component({
-  selector: 'z-badge',
-  template: `
-    <ng-content />
-  `,
+  selector: 'z-label, label[z-label]',
+  standalone: true,
+  template: '<ng-content />',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
     '[class]': 'classes()',
   },
-  exportAs: 'zBadge',
+  exportAs: 'zLabel',
 })
-export class ZardBadgeComponent {
-  readonly zVariant = input<ZardBadgeVariantVariants>('default');
-
+export class ZardLabelComponent {
   readonly class = input<ClassValue>('');
 
   protected readonly classes = computed(() =>
-    cn(badgeVariants({ zVariant: this.zVariant() }), this.class()),
+    cn(
+      'flex items-center gap-2 text-sm leading-none font-normal select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50',
+      this.class(),
+    ),
   );
 }

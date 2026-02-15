@@ -23,7 +23,7 @@
 
   <footer class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
     @if (config.zCancelText !== null) {
-      <button type="button" data-testid="z-alert-cancel-button" z-button zType="outline" (click)="onCancelClick()">
+      <button type="button" data-testid="z-alert-cancel-button" z-button zVariant="outline" (click)="onCancelClick()">
         {{ config.zCancelText || 'Cancel' }}
       </button>
     }
@@ -33,7 +33,7 @@
         type="button"
         data-testid="z-alert-ok-button"
         z-button
-        [zType]="config.zOkDestructive ? 'destructive' : 'default'"
+        [zVariant]="config.zOkDestructive ? 'destructive' : 'primary'"
         [zDisabled]="config.zOkDisabled"
         (click)="onOkClick()"
       >

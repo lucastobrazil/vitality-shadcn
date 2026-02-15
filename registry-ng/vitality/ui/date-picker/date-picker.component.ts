@@ -16,7 +16,7 @@ import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';
 
 import type { ClassValue } from 'clsx';
 
-import { ZardButtonComponent, type ZardButtonTypeVariants } from '@/ui/button';
+import { ZardButtonComponent, type ZardButtonVariantVariants } from '@/ui/button';
 import { ZardCalendarComponent } from '@/ui/calendar';
 import type { ZardDatePickerSizeVariants } from '@/ui/date-picker/date-picker.variants';
 import { ZardIconComponent } from '@/ui/icon';
@@ -49,7 +49,7 @@ const HEIGHT_BY_SIZE: Record<ZardDatePickerSizeVariants, string> = {
     <button
       z-button
       type="button"
-      [zType]="zType()"
+      [zVariant]="zVariant()"
       [zSize]="zSize()"
       [disabled]="disabled()"
       [class]="buttonClasses()"
@@ -105,7 +105,7 @@ export class ZardDatePickerComponent implements ControlValueAccessor {
   readonly calendar = viewChild.required<ZardCalendarComponent>('calendar');
 
   readonly class = input<ClassValue>('');
-  readonly zType = input<ZardButtonTypeVariants>('outline');
+  readonly zVariant = input<ZardButtonVariantVariants>('outline');
   readonly zSize = input<ZardDatePickerSizeVariants>('default');
   readonly value = model<Date | null>(null);
   readonly placeholder = input<string>('Pick a date');

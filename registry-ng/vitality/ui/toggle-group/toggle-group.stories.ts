@@ -15,13 +15,13 @@ const meta: Meta<ZardToggleGroupComponent> = {
       control: "select",
       options: ["single", "multiple"],
     },
-    zType: {
+    zVariant: {
       control: "select",
       options: ["default", "outline"],
     },
     zSize: {
       control: "select",
-      options: ["sm", "md", "lg"],
+      options: ["sm", "default", "lg"],
     },
   },
 };
@@ -39,12 +39,12 @@ export const Default: Story = {
         { value: "underline", label: "Underline" },
       ],
     },
-    template: `<z-toggle-group [zMode]="zMode" [zType]="zType" [zSize]="zSize" [items]="items"></z-toggle-group>`,
+    template: `<z-toggle-group [zMode]="zMode" [zVariant]="zVariant" [zSize]="zSize" [items]="items"></z-toggle-group>`,
   }),
   args: {
     zMode: "multiple",
-    zType: "default",
-    zSize: "md",
+    zVariant: "default",
+    zSize: "default",
   },
 };
 
@@ -70,6 +70,6 @@ export const Outline: Story = {
         { value: "underline", label: "Underline" },
       ],
     },
-    template: `<z-toggle-group zType="outline" [items]="items"></z-toggle-group>`,
+    template: `<z-toggle-group zVariant="outline" [items]="items"></z-toggle-group>`,
   }),
 };

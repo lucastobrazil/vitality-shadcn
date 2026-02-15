@@ -16,7 +16,7 @@ import type { ClassValue } from 'clsx';
 import {
   ZardButtonComponent,
   type ZardButtonSizeVariants,
-  type ZardButtonTypeVariants,
+  type ZardButtonVariantVariants,
 } from '@/ui/button/button.component';
 import { ZardIconComponent } from '@/ui/icon/icon.component';
 import {
@@ -71,7 +71,7 @@ export class ZardPaginationItemComponent {}
       [class]="class()"
       [zDisabled]="zDisabled()"
       [zSize]="zSize()"
-      [zType]="zType()"
+      [zVariant]="zVariant()"
     >
       <ng-content />
     </z-button>
@@ -89,7 +89,7 @@ export class ZardPaginationButtonComponent {
   readonly zDisabled = input(false, { transform: booleanAttribute });
   readonly zSize = input<ZardButtonSizeVariants>('default');
 
-  protected readonly zType = computed<ZardButtonTypeVariants>(() => (this.zActive() ? 'outline' : 'ghost'));
+  protected readonly zVariant = computed<ZardButtonVariantVariants>(() => (this.zActive() ? 'outline' : 'ghost'));
 }
 
 @Component({

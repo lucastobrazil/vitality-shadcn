@@ -67,7 +67,7 @@ const COMPACT_MODE_WIDTH_THRESHOLD = 100;
       <span class="flex min-w-0 flex-1 flex-wrap items-center gap-2">
         @for (label of selectedLabels(); track label) {
           @if (zMultiple()) {
-            <z-badge zType="secondary">
+            <z-badge zVariant="default">
               <span class="truncate">{{ label }}</span>
             </z-badge>
           } @else {

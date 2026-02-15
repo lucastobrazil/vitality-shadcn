@@ -70,8 +70,8 @@ type OnChangeType = (value: string | string[]) => void;
 })
 export class ZardToggleGroupComponent implements ControlValueAccessor {
   readonly zMode = input<'single' | 'multiple'>('multiple');
-  readonly zType = input<'default' | 'outline'>('default');
-  readonly zSize = input<'sm' | 'md' | 'lg'>('md');
+  readonly zVariant = input<'default' | 'outline'>('default');
+  readonly zSize = input<'sm' | 'default' | 'lg'>('default');
   readonly value = input<string | string[]>();
   readonly defaultValue = input<string | string[]>();
   readonly disabled = input<boolean>(false);
@@ -85,7 +85,7 @@ export class ZardToggleGroupComponent implements ControlValueAccessor {
   protected readonly classes = computed(() =>
     cn(
       toggleGroupVariants({
-        zType: this.zType(),
+        zVariant: this.zVariant(),
         zSize: this.zSize(),
       }),
       this.class(),
@@ -106,7 +106,7 @@ export class ZardToggleGroupComponent implements ControlValueAccessor {
 
   protected getItemClasses(index: number, total: number): string {
     const baseClasses = toggleGroupItemVariants({
-      zType: this.zType(),
+      zVariant: this.zVariant(),
       zSize: this.zSize(),
     });
 
@@ -121,7 +121,7 @@ export class ZardToggleGroupComponent implements ControlValueAccessor {
     }
 
     // Handle borders for outline variant
-    if (this.zType() === 'outline') {
+    if (this.zVariant() === 'outline') {
       if (index === 0) {
         // First item gets full border
         positionClasses.push('border-l');

@@ -13,7 +13,13 @@ import type { SafeUrl } from '@angular/platform-browser';
 
 import { cn } from '@/lib/utils';
 
-import { avatarVariants, imageVariants, type ZardAvatarVariants, type ZardImageVariants } from './avatar.variants';
+import {
+  avatarFallbackVariants,
+  avatarVariants,
+  imageVariants,
+  type ZardAvatarVariants,
+  type ZardAvatarVariantVariants,
+} from './avatar.variants';
 
 export type ZardAvatarStatus = 'online' | 'offline' | 'doNotDisturb' | 'away';
 
@@ -22,7 +28,7 @@ export type ZardAvatarStatus = 'online' | 'offline' | 'doNotDisturb' | 'away';
   imports: [NgOptimizedImage],
   template: `
     @if (zFallback() && (!zSrc() || !imageLoaded())) {
-      <span class="absolute z-0 m-auto text-base">{{ zFallback() }}</span>
+      <span [class]="fallbackClasses()">{{ zFallback() }}</span>
     }
 
     @if (zSrc() && !imageError()) {
@@ -115,6 +121,7 @@ export type ZardAvatarStatus = 'online' | 'offline' | 'doNotDisturb' | 'away';
     '[style.width]': 'customSize()',
     '[style.height]': 'customSize()',
     '[attr.data-slot]': '"avatar"',
+    '[attr.data-size]': 'sizeAttr()',
     '[attr.data-status]': 'zStatus() ?? null',
   },
   exportAs: 'zAvatar',
@@ -124,7 +131,7 @@ export class ZardAvatarComponent {
   readonly zAlt = input<string>('');
   readonly zFallback = input<string>('');
   readonly zPriority = input(false, { transform: booleanAttribute });
-  readonly zShape = input<ZardImageVariants['zShape']>('circle');
+  readonly zVariant = input<ZardAvatarVariantVariants>('neutral');
   readonly zSize = input<ZardAvatarVariants['zSize'] | number>('default');
   readonly zSrc = input<string | SafeUrl>('');
   readonly zStatus = input<ZardAvatarStatus>();
@@ -141,11 +148,16 @@ export class ZardAvatarComponent {
     });
   }
 
+  protected readonly sizeAttr = computed(() => {
+    const size = this.zSize();
+    return typeof size === 'number' ? undefined : size;
+  });
+
   protected readonly containerClasses = computed(() => {
     const size = this.zSize();
     const zSize = typeof size === 'number' ? undefined : (size as ZardAvatarVariants['zSize']);
 
-    return cn(avatarVariants({ zShape: this.zShape(), zSize }), this.class());
+    return cn(avatarVariants({ zSize, zVariant: this.zVariant() }), this.class());
   });
 
   protected readonly customSize = computed(() => {
@@ -153,7 +165,11 @@ export class ZardAvatarComponent {
     return typeof size === 'number' ? `${size}px` : null;
   });
 
-  protected readonly imgClasses = computed(() => cn(imageVariants({ zShape: this.zShape() })));
+  protected readonly imgClasses = computed(() => cn(imageVariants()));
+
+  protected readonly fallbackClasses = computed(() =>
+    cn(avatarFallbackVariants({ zVariant: this.zVariant() })),
+  );
 
   protected onImageLoad(): void {
     this.imageLoaded.set(true);

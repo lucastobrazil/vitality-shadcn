@@ -20,9 +20,9 @@ import {
   buttonVariants,
   type ZardButtonShapeVariants,
   type ZardButtonSizeVariants,
-  type ZardButtonTypeVariants,
+  type ZardButtonVariantVariants,
 } from './button.variants';
-export type { ZardButtonShapeVariants, ZardButtonSizeVariants, ZardButtonTypeVariants };
+export type { ZardButtonShapeVariants, ZardButtonSizeVariants, ZardButtonVariantVariants };
 import { ZardIconComponent } from '@/ui/icon/icon.component';
 
 @Component({
@@ -50,7 +50,7 @@ import { ZardIconComponent } from '@/ui/icon/icon.component';
 export class ZardButtonComponent implements OnDestroy {
   private readonly elementRef = inject(ElementRef<HTMLElement>);
 
-  readonly zType = input<ZardButtonTypeVariants>('default');
+  readonly zVariant = input<ZardButtonVariantVariants>('default');
   readonly zSize = input<ZardButtonSizeVariants>('default');
   readonly zShape = input<ZardButtonShapeVariants>('default');
   readonly class = input<ClassValue>('');
@@ -110,7 +110,7 @@ export class ZardButtonComponent implements OnDestroy {
   protected readonly classes = computed(() =>
     cn(
       buttonVariants({
-        zType: this.zType(),
+        zVariant: this.zVariant(),
         zSize: this.zSize(),
         zShape: this.zShape(),
         zFull: this.zFull(),

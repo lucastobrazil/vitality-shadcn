@@ -54,8 +54,8 @@ export class ZardToggleComponent implements ControlValueAccessor {
   readonly zValue = input<boolean | undefined>();
   readonly zDefault = input<boolean>(false);
   readonly zDisabled = input(false, { alias: 'disabled', transform: booleanAttribute });
-  readonly zType = input<ZardToggleVariants['zType']>('default');
-  readonly zSize = input<ZardToggleVariants['zSize']>('md');
+  readonly zVariant = input<ZardToggleVariants['zVariant']>('default');
+  readonly zSize = input<ZardToggleVariants['zSize']>('default');
   readonly zAriaLabel = input<string>('', { alias: 'aria-label' });
   readonly class = input<ClassValue>('');
 
@@ -70,7 +70,7 @@ export class ZardToggleComponent implements ControlValueAccessor {
   protected readonly disabled = linkedSignal(() => this.zDisabled());
 
   protected readonly classes = computed(() =>
-    cn(toggleVariants({ zSize: this.zSize(), zType: this.zType() }), this.class()),
+    cn(toggleVariants({ zSize: this.zSize(), zVariant: this.zVariant() }), this.class()),
   );
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function

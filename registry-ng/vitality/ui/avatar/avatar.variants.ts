@@ -1,41 +1,42 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
 export const avatarVariants = cva(
-  'relative flex flex-row items-center justify-center box-content cursor-default bg-muted',
+  'group/avatar relative flex shrink-0 overflow-hidden rounded-full select-none',
   {
     variants: {
       zSize: {
-        sm: 'size-8',
-        default: 'size-10',
-        md: 'size-12',
-        lg: 'size-14',
-        xl: 'size-16',
+        sm: 'size-6',
+        default: 'size-8',
+        lg: 'size-10',
       },
-      zShape: {
-        circle: 'rounded-full',
-        rounded: 'rounded-md',
-        square: 'rounded-none',
+      zVariant: {
+        neutral: 'bg-muted text-foreground',
+        primary: 'bg-primary text-primary-foreground',
       },
     },
     defaultVariants: {
       zSize: 'default',
-      zShape: 'circle',
+      zVariant: 'neutral',
     },
   },
 );
 
-export const imageVariants = cva('relative object-cover object-center w-full h-full z-10', {
-  variants: {
-    zShape: {
-      circle: 'rounded-full',
-      rounded: 'rounded-md',
-      square: 'rounded-none',
+export const imageVariants = cva('relative object-cover object-center w-full h-full z-10 rounded-full');
+
+export const avatarFallbackVariants = cva(
+  'flex size-full items-center justify-center rounded-full text-sm group-data-[size=sm]/avatar:text-xs',
+  {
+    variants: {
+      zVariant: {
+        neutral: 'bg-muted text-foreground',
+        primary: 'bg-primary text-primary-foreground',
+      },
+    },
+    defaultVariants: {
+      zVariant: 'neutral',
     },
   },
-  defaultVariants: {
-    zShape: 'circle',
-  },
-});
+);
 
 export const avatarGroupVariants = cva('flex items-center [&_img]:ring-2 [&_img]:ring-background', {
   variants: {
@@ -50,5 +51,5 @@ export const avatarGroupVariants = cva('flex items-center [&_img]:ring-2 [&_img]
 });
 
 export type ZardAvatarVariants = VariantProps<typeof avatarVariants>;
-export type ZardImageVariants = VariantProps<typeof imageVariants>;
 export type ZardAvatarGroupVariants = VariantProps<typeof avatarGroupVariants>;
+export type ZardAvatarVariantVariants = NonNullable<VariantProps<typeof avatarVariants>['zVariant']>;

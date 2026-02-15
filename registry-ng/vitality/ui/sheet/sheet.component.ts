@@ -65,7 +65,7 @@ export class ZardSheetOptions<T, U> {
         type="button"
         data-testid="z-close-header-button"
         z-button
-        zType="ghost"
+        zVariant="ghost"
         zSize="sm"
         class="absolute top-1 right-1 cursor-pointer"
         (click)="onCloseClick()"
@@ -106,7 +106,7 @@ export class ZardSheetOptions<T, U> {
             data-testid="z-ok-button"
             class="cursor-pointer"
             z-button
-            [zType]="config.zOkDestructive ? 'destructive' : 'default'"
+            [zVariant]="config.zOkDestructive ? 'destructive' : 'primary'"
             [disabled]="config.zOkDisabled"
             (click)="onOkClick()"
           >
@@ -124,7 +124,7 @@ export class ZardSheetOptions<T, U> {
             data-testid="z-cancel-button"
             class="cursor-pointer"
             z-button
-            zType="outline"
+            zVariant="outline"
             (click)="onCloseClick()"
           >
             @if (config.zCancelIcon) {

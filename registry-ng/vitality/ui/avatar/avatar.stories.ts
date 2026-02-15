@@ -12,13 +12,13 @@ const meta: Meta<ZardAvatarComponent> = {
     }),
   ],
   argTypes: {
-    zShape: {
+    zVariant: {
       control: "select",
-      options: ["circle", "rounded", "square"],
+      options: ["neutral", "primary"],
     },
     zSize: {
       control: "select",
-      options: ["sm", "default", "md", "lg", "xl"],
+      options: ["sm", "default", "lg"],
     },
   },
 };
@@ -29,10 +29,10 @@ type Story = StoryObj<ZardAvatarComponent>;
 export const Default: Story = {
   render: (args) => ({
     props: args,
-    template: `<z-avatar [zShape]="zShape" [zSize]="zSize" zSrc="https://i.pravatar.cc/150?img=1" zAlt="User avatar" zFallback="JD" />`,
+    template: `<z-avatar [zVariant]="zVariant" [zSize]="zSize" zSrc="https://i.pravatar.cc/150?img=1" zAlt="User avatar" zFallback="JD" />`,
   }),
   args: {
-    zShape: "circle",
+    zVariant: "neutral",
     zSize: "default",
   },
 };
@@ -41,9 +41,8 @@ export const Fallback: Story = {
   render: () => ({
     template: `
       <div style="display: flex; gap: 12px; align-items: center;">
-        <z-avatar zFallback="JD" zShape="circle" />
-        <z-avatar zFallback="AB" zShape="rounded" />
-        <z-avatar zFallback="XY" zShape="square" />
+        <z-avatar zFallback="JD" zVariant="neutral" />
+        <z-avatar zFallback="AB" zVariant="primary" />
       </div>
     `,
   }),

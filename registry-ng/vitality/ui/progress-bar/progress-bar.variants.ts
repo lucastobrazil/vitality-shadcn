@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 export const containerProgressBarVariants = cva('w-full transition-all', {
   variants: {
     zType: {
-      default: 'bg-primary/20',
+      default: 'bg-foreground/10',
       destructive: 'bg-destructive/20',
       accent: 'bg-chart-1/20',
     },
