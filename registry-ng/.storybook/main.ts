@@ -9,6 +9,7 @@ const __dirname = path.dirname(__filename);
 const config: StorybookConfig = {
   framework: "@storybook/angular",
   stories: ["../vitality/ui/**/*.stories.ts"],
+  staticDirs: ["./public"],
   addons: [
     "@storybook/addon-themes",
     {
