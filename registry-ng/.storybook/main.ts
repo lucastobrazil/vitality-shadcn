@@ -9,7 +9,31 @@ const __dirname = path.dirname(__filename);
 const config: StorybookConfig = {
   framework: "@storybook/angular",
   stories: ["../vitality/ui/**/*.stories.ts"],
-  addons: ["@storybook/addon-themes"],
+  addons: [
+    "@storybook/addon-themes",
+    {
+      name: "@storybook/addon-styling-webpack",
+      options: {
+        rules: [
+          {
+            test: /\.css$/,
+            use: [
+              "style-loader",
+              { loader: "css-loader", options: { importLoaders: 1 } },
+              {
+                loader: "postcss-loader",
+                options: {
+                  postcssOptions: {
+                    plugins: { "@tailwindcss/postcss": {} },
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
   webpackFinal: async (config) => {
     config.resolve ??= {};
     config.resolve.plugins ??= [];
