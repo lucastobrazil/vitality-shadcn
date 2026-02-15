@@ -35,7 +35,7 @@ export default function Home() {
           <AlertDescription>
             <div>
               Access it{" "}
-              <a className="inline text-primary" href="/storybook">
+              <a className="inline text-primary" href="./storybook">
                 here
               </a>
               .
