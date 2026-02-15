@@ -42,6 +42,26 @@ const config: StorybookConfig = {
         configFile: path.resolve(__dirname, "tsconfig.json"),
       })
     );
+
+    // addon-styling-webpack strips Angular's CSS rules (?ngResource / ?ngGlobalStyle)
+    // and replaces them with a flat /\.css$/ rule. This breaks Angular component styles.
+    // Fix: exclude component styles from the addon's rule and re-add a handler for them.
+    const rules = config.module?.rules ?? [];
+    for (const rule of rules) {
+      if (rule && typeof rule === "object" && "test" in rule) {
+        if (rule.test?.toString() === "/\\.css$/") {
+          rule.resourceQuery = { not: [/ngResource/] };
+        }
+      }
+    }
+
+    // Handle Angular component styles (?ngResource) as raw CSS strings
+    rules.push({
+      test: /\.css$/,
+      resourceQuery: /\?ngResource/,
+      type: "asset/source",
+    });
+
     return config;
   },
 };
