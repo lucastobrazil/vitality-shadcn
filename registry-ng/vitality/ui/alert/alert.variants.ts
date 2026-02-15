@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 
 export const alertVariants = cva(
-  "relative w-full rounded-lg grid has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] grid-cols-[0_1fr] has-[>svg]:gap-x-3 gap-y-0.5 items-start [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
+  "relative w-full rounded-lg grid has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] has-[>z-icon]:grid-cols-[calc(var(--spacing)*4)_1fr] grid-cols-[0_1fr] has-[>svg]:gap-x-3 has-[>z-icon]:gap-x-3 gap-y-0.5 items-start [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current [&>z-icon]:size-4 [&>z-icon]:translate-y-0.5 [&>z-icon]:text-current",
   {
     variants: {
       zSeverity: {
@@ -15,7 +15,7 @@ export const alertVariants = cva(
       zSize: {
         default: 'px-4 py-3 text-sm',
         compact:
-          'px-0 py-0 bg-transparent! border-transparent! text-xs flex items-center gap-1 [&>svg]:translate-y-0 [&>svg]:shrink-0',
+          'px-0 py-0 bg-transparent! border-transparent! text-xs flex items-center gap-1 [&>svg]:translate-y-0 [&>svg]:shrink-0 [&>z-icon]:translate-y-0 [&>z-icon]:shrink-0',
         blockCompact: 'px-3 py-2 text-sm flex! gap-x-1!',
       },
     },
