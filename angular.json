@@ -16,9 +16,7 @@
             "main": "registry-ng/.storybook/main.entry.ts",
             "tsConfig": "registry-ng/.storybook/tsconfig.json",
             "polyfills": [],
-            "styles": [
-              "registry-ng/.storybook/styles.css"
-            ]
+            "styles": ["./src/app/globals.css"]
           }
         },
         "storybook": {
