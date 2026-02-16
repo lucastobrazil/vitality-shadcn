@@ -1,0 +1,58 @@
+import { createElement } from "react";
+import {
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  useOf,
+} from "@storybook/addon-docs/blocks";
+
+const REGISTRY_URL = "https://shaddo-dayoff.vercel.app";
+
+function InstallSnippet() {
+  const resolvedOf = useOf("meta");
+  const title =
+    "csfFile" in resolvedOf ? (resolvedOf as any).csfFile?.meta?.title : "";
+  const componentName = (title || "")
+    .split("/")
+    .pop()
+    ?.toLowerCase()
+    .replace(/\s+/g, "-");
+
+  if (!componentName) return null;
+
+  const command = `npx shadcn@latest add ${REGISTRY_URL}/r/${componentName}.json`;
+
+  return createElement(
+    "pre",
+    {
+      style: {
+        background: "var(--sb-barBg, #f6f6f6)",
+        border: "1px solid var(--sb-appBorderColor, #e0e0e0)",
+        borderRadius: 6,
+        padding: "10px 14px",
+        fontSize: 13,
+        fontFamily: "var(--sb-fontCode, monospace)",
+        overflowX: "auto" as const,
+        marginBottom: 20,
+      },
+    },
+    createElement("code", null, command)
+  );
+}
+
+export function DocsPage() {
+  return createElement(
+    "div",
+    null,
+    createElement(Title, null),
+    createElement(Subtitle, null),
+    createElement(Description, null),
+    createElement(InstallSnippet, null),
+    createElement(Primary, null),
+    createElement(Controls, null),
+    createElement(Stories, null)
+  );
+}

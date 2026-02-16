@@ -11,6 +11,7 @@ const config: StorybookConfig = {
   stories: ["../vitality/ui/**/*.stories.ts"],
   staticDirs: ["./public"],
   addons: [
+    "@storybook/addon-docs",
     "@storybook/addon-themes",
     {
       name: "@storybook/addon-styling-webpack",
