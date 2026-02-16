@@ -26,7 +26,6 @@ import {
 import { cn, noopFn } from '@/lib/utils';
 
 import type { ZardDialogRef } from './dialog-ref';
-import { ZardDialogService } from './dialog.service';
 import { dialogVariants } from './dialog.variants';
 import { ZardButtonComponent } from '@/ui/button/button.component';
 import { ZardIconComponent } from '@/ui/icon/icon.component';
@@ -206,6 +205,5 @@ export class ZardDialogComponent<T, U> extends BasePortalOutlet {
 
 @NgModule({
   imports: [ZardButtonComponent, ZardDialogComponent, OverlayModule, PortalModule],
-  providers: [ZardDialogService],
 })
 export class ZardDialogModule {}

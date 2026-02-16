@@ -11,6 +11,7 @@ const preview: Preview = {
   parameters: {
     docs: {
       extractArgTypes: () => null,
+      codePanel: true
     },
   },
 };
