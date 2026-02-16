@@ -24,7 +24,7 @@ function InstallSnippet() {
 
   if (!componentName) return null;
 
-  const command = `npx shadcn@latest add ${REGISTRY_URL}/r/${componentName}.json`;
+  const command = `npx shadcn@latest add ${REGISTRY_URL}/r/ng/${componentName}.json`;
 
   return createElement(
     "pre",
