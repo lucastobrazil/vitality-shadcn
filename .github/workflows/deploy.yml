@@ -48,6 +48,8 @@ jobs:
 
       - name: Build Storybook
         run: npm run storybook:build
+        env:
+          NEXT_PUBLIC_REGISTRY_URL: ${{ steps.pages.outputs.origin }}${{ steps.pages.outputs.base_path }}
 
       - name: Copy Storybook to output
         run: cp -r storybook-static out/storybook
