@@ -40,7 +40,7 @@ export function AppSidebar() {
         <div className="flex items-center justify-between">
           <Link href="/">
             <Image
-              src="/logo.svg"
+              src="./logo.svg"
               alt="Vitality"
               width={138}
               height={47}
