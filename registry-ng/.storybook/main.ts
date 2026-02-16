@@ -1,5 +1,6 @@
 import type { StorybookConfig } from "@storybook/angular";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
+import webpack from "webpack";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -63,6 +64,16 @@ const config: StorybookConfig = {
       resourceQuery: /\?ngResource/,
       type: "asset/source",
     });
+
+    // Expose NEXT_PUBLIC_REGISTRY_URL to the preview bundle
+    config.plugins ??= [];
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        "process.env.NEXT_PUBLIC_REGISTRY_URL": JSON.stringify(
+          process.env.NEXT_PUBLIC_REGISTRY_URL || ""
+        ),
+      })
+    );
 
     return config;
   },

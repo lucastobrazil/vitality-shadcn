@@ -22,7 +22,7 @@ import type { ZardIcon } from '@/ui/icon/icons';
   template: `
     @if (zIcon() || iconName()) {
       <ng-container *zStringTemplateOutlet="zIcon()">
-        <z-icon [zSize]="sm" [zType]="iconName()!" />
+        <z-icon [zType]="iconName()!" />
       </ng-container>
     }
 

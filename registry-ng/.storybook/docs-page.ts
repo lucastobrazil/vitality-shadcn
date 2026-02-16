@@ -9,7 +9,8 @@ import {
   useOf,
 } from "@storybook/addon-docs/blocks";
 
-const REGISTRY_URL = "https://shaddo-dayoff.vercel.app";
+const REGISTRY_URL =
+  process.env.NEXT_PUBLIC_REGISTRY_URL || "https://shaddo-dayoff.vercel.app";
 
 function InstallSnippet() {
   const resolvedOf = useOf("meta");
