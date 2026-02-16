@@ -1,4 +1,4 @@
-import { createElement } from "react";
+import { createElement, Component as ReactComponent, type ReactNode } from "react";
 import {
   Title,
   Subtitle,
@@ -8,6 +8,17 @@ import {
   Stories,
   useOf,
 } from "@storybook/addon-docs/blocks";
+
+class SafeDescription extends ReactComponent<Record<string, never>, { hasError: boolean }> {
+  state = { hasError: false };
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  render(): ReactNode {
+    if (this.state.hasError) return null;
+    return createElement(Description, null);
+  }
+}
 
 const REGISTRY_URL =
   process.env.NEXT_PUBLIC_REGISTRY_URL || "https://shaddo-dayoff.vercel.app";
@@ -50,7 +61,7 @@ export function DocsPage() {
     null,
     createElement(Title, null),
     createElement(Subtitle, null),
-    createElement(Description, null),
+    createElement(SafeDescription, null),
     createElement(InstallSnippet, null),
     createElement(Primary, null),
     createElement(Controls, null),
