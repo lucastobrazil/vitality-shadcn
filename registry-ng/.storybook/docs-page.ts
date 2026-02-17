@@ -21,7 +21,7 @@ class SafeDescription extends ReactComponent<Record<string, never>, { hasError: 
 }
 
 const REGISTRY_URL =
-  process.env.NEXT_PUBLIC_REGISTRY_URL || "https://shaddo-dayoff.vercel.app";
+  process.env.NEXT_PUBLIC_REGISTRY_URL || "https://vitality-shad.vercel.app";
 
 function InstallSnippet() {
   const resolvedOf = useOf("meta");

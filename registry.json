@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "shaddo-dayoff",
-  "homepage": "https://shaddo-dayoff.vercel.app",
+  "name": "vitality-shad",
+  "homepage": "https://vitality-shad.vercel.app",
   "items": [
     {
       "name": "utils",
@@ -448,7 +448,15 @@
       "name": "sidebar",
       "type": "registry:ui",
       "dependencies": ["class-variance-authority", "lucide-react", "radix-ui"],
-      "registryDependencies": ["button", "input", "separator", "sheet", "skeleton", "tooltip", "use-mobile"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "separator",
+        "sheet",
+        "skeleton",
+        "tooltip",
+        "use-mobile"
+      ],
       "files": [
         {
           "path": "registry/vitality/ui/sidebar.tsx",

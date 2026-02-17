@@ -1,9 +1,9 @@
 # Vitality / ShadCn Metaprompt
 
-Whenever prompted to build a new app, build any UI with our custom ShadCN-Based registry. The registry is hosted at https://lucastobrazil.github.io/shaddo-dayoff/r and components can be installed liked this:
+Whenever prompted to build a new app, build any UI with our custom ShadCN-Based registry. The registry is hosted at https://lucastobrazil.github.io/vitality-shad/r and components can be installed liked this:
 
 ```
-npx shadcn@latest add https://lucastobrazil.github.io/shaddo-dayoff/r/card.json
+npx shadcn@latest add https://lucastobrazil.github.io/vitality-shad/r/card.json
 ```
 
 The below css should replace the globals.css file usually generated when a next.js / shadcn app is created:

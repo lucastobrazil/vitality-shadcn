@@ -1,35 +1,51 @@
 {
   "$schema": "https://ui.adrianub.dev/schema/registry.json",
-  "name": "shaddo-dayoff-ng",
-  "homepage": "https://shaddo-dayoff.vercel.app",
+  "name": "vitality-shad-ng",
+  "homepage": "https://vitality-shad.vercel.app",
   "items": [
     {
       "name": "utils",
       "type": "registry:lib",
       "dependencies": ["clsx", "tailwind-merge"],
       "files": [
-        { "path": "vitality/lib/utils.ts", "type": "registry:lib", "target": "lib/utils.ts" }
+        {
+          "path": "vitality/lib/utils.ts",
+          "type": "registry:lib",
+          "target": "lib/utils.ts"
+        }
       ]
     },
     {
       "name": "number",
       "type": "registry:lib",
       "files": [
-        { "path": "vitality/lib/number.ts", "type": "registry:lib", "target": "lib/number.ts" }
+        {
+          "path": "vitality/lib/number.ts",
+          "type": "registry:lib",
+          "target": "lib/number.ts"
+        }
       ]
     },
     {
       "name": "string-template-outlet",
       "type": "registry:lib",
       "files": [
-        { "path": "vitality/lib/string-template-outlet.directive.ts", "type": "registry:lib", "target": "lib/string-template-outlet.directive.ts" }
+        {
+          "path": "vitality/lib/string-template-outlet.directive.ts",
+          "type": "registry:lib",
+          "target": "lib/string-template-outlet.directive.ts"
+        }
       ]
     },
     {
       "name": "id-directive",
       "type": "registry:lib",
       "files": [
-        { "path": "vitality/lib/id.directive.ts", "type": "registry:lib", "target": "lib/id.directive.ts" }
+        {
+          "path": "vitality/lib/id.directive.ts",
+          "type": "registry:lib",
+          "target": "lib/id.directive.ts"
+        }
       ]
     },
     {
@@ -40,9 +56,18 @@
       "dependencies": ["class-variance-authority", "clsx"],
       "registryDependencies": ["utils", "icon"],
       "files": [
-        { "path": "vitality/ui/accordion/accordion.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/accordion/accordion-item.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/accordion/accordion.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/accordion/accordion.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/accordion/accordion-item.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/accordion/accordion.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -53,7 +78,10 @@
       "dependencies": ["class-variance-authority", "clsx"],
       "registryDependencies": ["utils", "icon", "string-template-outlet"],
       "files": [
-        { "path": "vitality/ui/alert/alert.component.ts", "type": "registry:ui" },
+        {
+          "path": "vitality/ui/alert/alert.component.ts",
+          "type": "registry:ui"
+        },
         { "path": "vitality/ui/alert/alert.variants.ts", "type": "registry:ui" }
       ]
     },
@@ -62,14 +90,34 @@
       "type": "registry:ui",
       "title": "Alert Dialog",
       "description": "A modal dialog that interrupts the user with important content and expects a response.",
-      "dependencies": ["class-variance-authority", "clsx", "@angular/cdk", "rxjs"],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "@angular/cdk",
+        "rxjs"
+      ],
       "registryDependencies": ["utils", "button", "id-directive"],
       "files": [
-        { "path": "vitality/ui/alert-dialog/alert-dialog.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/alert-dialog/alert-dialog.component.html", "type": "registry:ui" },
-        { "path": "vitality/ui/alert-dialog/alert-dialog.service.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/alert-dialog/alert-dialog-ref.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/alert-dialog/alert-dialog.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/alert-dialog/alert-dialog.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/alert-dialog/alert-dialog.component.html",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/alert-dialog/alert-dialog.service.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/alert-dialog/alert-dialog-ref.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/alert-dialog/alert-dialog.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -80,9 +128,18 @@
       "dependencies": ["class-variance-authority", "clsx"],
       "registryDependencies": ["utils"],
       "files": [
-        { "path": "vitality/ui/avatar/avatar.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/avatar/avatar-group.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/avatar/avatar.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/avatar/avatar.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/avatar/avatar-group.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/avatar/avatar.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -93,7 +150,10 @@
       "dependencies": ["class-variance-authority", "clsx"],
       "registryDependencies": ["utils"],
       "files": [
-        { "path": "vitality/ui/badge/badge.component.ts", "type": "registry:ui" },
+        {
+          "path": "vitality/ui/badge/badge.component.ts",
+          "type": "registry:ui"
+        },
         { "path": "vitality/ui/badge/badge.variants.ts", "type": "registry:ui" }
       ]
     },
@@ -105,8 +165,14 @@
       "dependencies": ["class-variance-authority", "clsx", "@angular/router"],
       "registryDependencies": ["utils", "icon", "string-template-outlet"],
       "files": [
-        { "path": "vitality/ui/breadcrumb/breadcrumb.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/breadcrumb/breadcrumb.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/breadcrumb/breadcrumb.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/breadcrumb/breadcrumb.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -117,8 +183,14 @@
       "dependencies": ["class-variance-authority", "clsx"],
       "registryDependencies": ["utils", "icon"],
       "files": [
-        { "path": "vitality/ui/button/button.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/button/button.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/button/button.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/button/button.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -129,8 +201,14 @@
       "dependencies": ["class-variance-authority", "clsx"],
       "registryDependencies": ["utils", "divider"],
       "files": [
-        { "path": "vitality/ui/button-group/button-group.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/button-group/button-group.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/button-group/button-group.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/button-group/button-group.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -138,15 +216,38 @@
       "type": "registry:ui",
       "title": "Calendar",
       "description": "A date selection component with month navigation and grid display.",
-      "dependencies": ["class-variance-authority", "clsx", "@angular/forms", "rxjs"],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "@angular/forms",
+        "rxjs"
+      ],
       "registryDependencies": ["utils", "button", "icon", "select"],
       "files": [
-        { "path": "vitality/ui/calendar/calendar.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/calendar/calendar-grid.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/calendar/calendar-navigation.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/calendar/calendar.types.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/calendar/calendar.utils.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/calendar/calendar.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/calendar/calendar.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/calendar/calendar-grid.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/calendar/calendar-navigation.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/calendar/calendar.types.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/calendar/calendar.utils.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/calendar/calendar.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -155,7 +256,12 @@
       "title": "Card",
       "description": "A container for grouping related content and actions.",
       "dependencies": ["class-variance-authority", "clsx"],
-      "registryDependencies": ["utils", "button", "id-directive", "string-template-outlet"],
+      "registryDependencies": [
+        "utils",
+        "button",
+        "id-directive",
+        "string-template-outlet"
+      ],
       "files": [
         { "path": "vitality/ui/card/card.component.ts", "type": "registry:ui" },
         { "path": "vitality/ui/card/card.variants.ts", "type": "registry:ui" }
@@ -166,14 +272,34 @@
       "type": "registry:ui",
       "title": "Carousel",
       "description": "A slideshow component for cycling through content items.",
-      "dependencies": ["class-variance-authority", "clsx", "embla-carousel", "embla-carousel-angular"],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "embla-carousel",
+        "embla-carousel-angular"
+      ],
       "registryDependencies": ["utils", "button", "icon"],
       "files": [
-        { "path": "vitality/ui/carousel/carousel.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/carousel/carousel-content.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/carousel/carousel-item.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/carousel/carousel-plugins.service.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/carousel/carousel.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/carousel/carousel.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/carousel/carousel-content.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/carousel/carousel-item.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/carousel/carousel-plugins.service.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/carousel/carousel.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -184,8 +310,14 @@
       "dependencies": ["class-variance-authority", "clsx", "@angular/forms"],
       "registryDependencies": ["utils", "icon", "id-directive"],
       "files": [
-        { "path": "vitality/ui/checkbox/checkbox.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/checkbox/checkbox.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/checkbox/checkbox.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/checkbox/checkbox.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -194,10 +326,23 @@
       "title": "Combobox",
       "description": "An autocomplete input with a filterable dropdown list of options.",
       "dependencies": ["class-variance-authority", "clsx", "@angular/forms"],
-      "registryDependencies": ["utils", "button", "command", "empty", "icon", "popover"],
+      "registryDependencies": [
+        "utils",
+        "button",
+        "command",
+        "empty",
+        "icon",
+        "popover"
+      ],
       "files": [
-        { "path": "vitality/ui/combobox/combobox.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/combobox/combobox.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/combobox/combobox.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/combobox/combobox.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -208,14 +353,38 @@
       "dependencies": ["class-variance-authority", "clsx", "@angular/forms"],
       "registryDependencies": ["utils", "icon"],
       "files": [
-        { "path": "vitality/ui/command/command.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/command/command-divider.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/command/command-empty.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/command/command-input.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/command/command-list.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/command/command-option-group.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/command/command-option.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/command/command.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/command/command.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/command/command-divider.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/command/command-empty.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/command/command-input.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/command/command-list.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/command/command-option-group.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/command/command-option.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/command/command.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -224,10 +393,22 @@
       "title": "Date Picker",
       "description": "A date input with a calendar dropdown for selecting dates.",
       "dependencies": ["class-variance-authority", "clsx", "@angular/forms"],
-      "registryDependencies": ["utils", "button", "calendar", "icon", "popover"],
+      "registryDependencies": [
+        "utils",
+        "button",
+        "calendar",
+        "icon",
+        "popover"
+      ],
       "files": [
-        { "path": "vitality/ui/date-picker/date-picker.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/date-picker/date-picker.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/date-picker/date-picker.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/date-picker/date-picker.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -238,10 +419,19 @@
       "dependencies": ["class-variance-authority", "@angular/cdk", "rxjs"],
       "registryDependencies": ["utils", "button", "icon"],
       "files": [
-        { "path": "vitality/ui/dialog/dialog.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/dialog/dialog.service.ts", "type": "registry:ui" },
+        {
+          "path": "vitality/ui/dialog/dialog.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/dialog/dialog.service.ts",
+          "type": "registry:ui"
+        },
         { "path": "vitality/ui/dialog/dialog-ref.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/dialog/dialog.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/dialog/dialog.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -252,8 +442,14 @@
       "dependencies": ["class-variance-authority", "clsx"],
       "registryDependencies": ["utils"],
       "files": [
-        { "path": "vitality/ui/divider/divider.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/divider/divider.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/divider/divider.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/divider/divider.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -261,15 +457,38 @@
       "type": "registry:ui",
       "title": "Dropdown",
       "description": "A toggleable overlay menu for displaying a list of actions or options.",
-      "dependencies": ["class-variance-authority", "clsx", "@angular/cdk", "rxjs"],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "@angular/cdk",
+        "rxjs"
+      ],
       "registryDependencies": ["utils"],
       "files": [
-        { "path": "vitality/ui/dropdown/dropdown.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/dropdown/dropdown-item.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/dropdown/dropdown-menu-content.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/dropdown/dropdown-trigger.directive.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/dropdown/dropdown.service.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/dropdown/dropdown.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/dropdown/dropdown.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/dropdown/dropdown-item.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/dropdown/dropdown-menu-content.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/dropdown/dropdown-trigger.directive.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/dropdown/dropdown.service.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/dropdown/dropdown.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -280,7 +499,10 @@
       "dependencies": ["class-variance-authority", "clsx"],
       "registryDependencies": ["utils", "icon", "string-template-outlet"],
       "files": [
-        { "path": "vitality/ui/empty/empty.component.ts", "type": "registry:ui" },
+        {
+          "path": "vitality/ui/empty/empty.component.ts",
+          "type": "registry:ui"
+        },
         { "path": "vitality/ui/empty/empty.variants.ts", "type": "registry:ui" }
       ]
     },
@@ -317,7 +539,10 @@
       "dependencies": ["class-variance-authority", "clsx", "@angular/forms"],
       "registryDependencies": ["utils"],
       "files": [
-        { "path": "vitality/ui/input/input.directive.ts", "type": "registry:ui" },
+        {
+          "path": "vitality/ui/input/input.directive.ts",
+          "type": "registry:ui"
+        },
         { "path": "vitality/ui/input/input.variants.ts", "type": "registry:ui" }
       ]
     },
@@ -327,10 +552,22 @@
       "title": "Input Group",
       "description": "Wraps an input with addons like icons, labels, or loading indicators.",
       "dependencies": ["class-variance-authority", "clsx"],
-      "registryDependencies": ["utils", "input", "loader", "id-directive", "string-template-outlet"],
+      "registryDependencies": [
+        "utils",
+        "input",
+        "loader",
+        "id-directive",
+        "string-template-outlet"
+      ],
       "files": [
-        { "path": "vitality/ui/input-group/input-group.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/input-group/input-group.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/input-group/input-group.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/input-group/input-group.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -342,7 +579,10 @@
       "registryDependencies": ["utils"],
       "files": [
         { "path": "vitality/ui/kbd/kbd.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/kbd/kbd-group.component.ts", "type": "registry:ui" },
+        {
+          "path": "vitality/ui/kbd/kbd-group.component.ts",
+          "type": "registry:ui"
+        },
         { "path": "vitality/ui/kbd/kbd.variants.ts", "type": "registry:ui" }
       ]
     },
@@ -354,12 +594,30 @@
       "dependencies": ["class-variance-authority", "clsx"],
       "registryDependencies": ["utils", "icon", "string-template-outlet"],
       "files": [
-        { "path": "vitality/ui/layout/layout.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/layout/header.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/layout/sidebar.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/layout/content.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/layout/footer.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/layout/layout.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/layout/layout.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/layout/header.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/layout/sidebar.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/layout/content.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/layout/footer.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/layout/layout.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -370,8 +628,14 @@
       "dependencies": ["class-variance-authority", "clsx"],
       "registryDependencies": ["utils"],
       "files": [
-        { "path": "vitality/ui/loader/loader.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/loader/loader.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/loader/loader.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/loader/loader.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -383,13 +647,31 @@
       "registryDependencies": ["utils"],
       "files": [
         { "path": "vitality/ui/menu/menu.directive.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/menu/menu-content.directive.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/menu/menu-item.directive.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/menu/menu-label.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/menu/menu-manager.service.ts", "type": "registry:ui" },
+        {
+          "path": "vitality/ui/menu/menu-content.directive.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/menu/menu-item.directive.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/menu/menu-label.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/menu/menu-manager.service.ts",
+          "type": "registry:ui"
+        },
         { "path": "vitality/ui/menu/menu-positions.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/menu/menu-shortcut.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/menu/context-menu.directive.ts", "type": "registry:ui" },
+        {
+          "path": "vitality/ui/menu/menu-shortcut.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/menu/context-menu.directive.ts",
+          "type": "registry:ui"
+        },
         { "path": "vitality/ui/menu/menu.variants.ts", "type": "registry:ui" }
       ]
     },
@@ -401,8 +683,14 @@
       "dependencies": ["class-variance-authority", "clsx"],
       "registryDependencies": ["utils", "button", "icon"],
       "files": [
-        { "path": "vitality/ui/pagination/pagination.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/pagination/pagination.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/pagination/pagination.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/pagination/pagination.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -413,8 +701,14 @@
       "dependencies": ["class-variance-authority", "@angular/cdk", "rxjs"],
       "registryDependencies": ["utils"],
       "files": [
-        { "path": "vitality/ui/popover/popover.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/popover/popover.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/popover/popover.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/popover/popover.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -425,8 +719,14 @@
       "dependencies": ["class-variance-authority", "clsx"],
       "registryDependencies": ["utils"],
       "files": [
-        { "path": "vitality/ui/progress-bar/progress-bar.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/progress-bar/progress-bar.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/progress-bar/progress-bar.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/progress-bar/progress-bar.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -437,7 +737,10 @@
       "dependencies": ["class-variance-authority", "clsx", "@angular/forms"],
       "registryDependencies": ["utils", "id-directive"],
       "files": [
-        { "path": "vitality/ui/radio/radio.component.ts", "type": "registry:ui" },
+        {
+          "path": "vitality/ui/radio/radio.component.ts",
+          "type": "registry:ui"
+        },
         { "path": "vitality/ui/radio/radio.variants.ts", "type": "registry:ui" }
       ]
     },
@@ -449,10 +752,22 @@
       "dependencies": ["class-variance-authority", "clsx"],
       "registryDependencies": ["utils"],
       "files": [
-        { "path": "vitality/ui/resizable/resizable.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/resizable/resizable-panel.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/resizable/resizable-handle.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/resizable/resizable.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/resizable/resizable.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/resizable/resizable-panel.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/resizable/resizable-handle.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/resizable/resizable.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -463,8 +778,14 @@
       "dependencies": ["class-variance-authority", "clsx", "@angular/forms"],
       "registryDependencies": ["utils"],
       "files": [
-        { "path": "vitality/ui/segmented/segmented.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/segmented/segmented.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/segmented/segmented.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/segmented/segmented.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -472,12 +793,27 @@
       "type": "registry:ui",
       "title": "Select",
       "description": "A dropdown selection input for choosing from a list of options.",
-      "dependencies": ["class-variance-authority", "clsx", "@angular/cdk", "@angular/forms", "rxjs"],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "@angular/cdk",
+        "@angular/forms",
+        "rxjs"
+      ],
       "registryDependencies": ["utils", "badge", "icon"],
       "files": [
-        { "path": "vitality/ui/select/select.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/select/select-item.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/select/select.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/select/select.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/select/select-item.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/select/select.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -488,7 +824,10 @@
       "dependencies": ["class-variance-authority", "@angular/cdk", "rxjs"],
       "registryDependencies": ["utils", "button", "icon"],
       "files": [
-        { "path": "vitality/ui/sheet/sheet.component.ts", "type": "registry:ui" },
+        {
+          "path": "vitality/ui/sheet/sheet.component.ts",
+          "type": "registry:ui"
+        },
         { "path": "vitality/ui/sheet/sheet.service.ts", "type": "registry:ui" },
         { "path": "vitality/ui/sheet/sheet-ref.ts", "type": "registry:ui" },
         { "path": "vitality/ui/sheet/sheet.variants.ts", "type": "registry:ui" }
@@ -502,8 +841,14 @@
       "dependencies": ["class-variance-authority", "clsx"],
       "registryDependencies": ["utils"],
       "files": [
-        { "path": "vitality/ui/skeleton/skeleton.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/skeleton/skeleton.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/skeleton/skeleton.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/skeleton/skeleton.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -511,11 +856,22 @@
       "type": "registry:ui",
       "title": "Slider",
       "description": "A draggable control for selecting a numeric value within a range.",
-      "dependencies": ["class-variance-authority", "clsx", "@angular/forms", "rxjs"],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "@angular/forms",
+        "rxjs"
+      ],
       "registryDependencies": ["utils", "number"],
       "files": [
-        { "path": "vitality/ui/slider/slider.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/slider/slider.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/slider/slider.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/slider/slider.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -526,8 +882,14 @@
       "dependencies": ["class-variance-authority", "clsx", "@angular/forms"],
       "registryDependencies": ["utils", "id-directive"],
       "files": [
-        { "path": "vitality/ui/switch/switch.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/switch/switch.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/switch/switch.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/switch/switch.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -538,7 +900,10 @@
       "dependencies": ["class-variance-authority", "clsx"],
       "registryDependencies": ["utils"],
       "files": [
-        { "path": "vitality/ui/table/table.component.ts", "type": "registry:ui" },
+        {
+          "path": "vitality/ui/table/table.component.ts",
+          "type": "registry:ui"
+        },
         { "path": "vitality/ui/table/table.variants.ts", "type": "registry:ui" }
       ]
     },
@@ -547,7 +912,12 @@
       "type": "registry:ui",
       "title": "Tabs",
       "description": "A tabbed interface for switching between content panels.",
-      "dependencies": ["class-variance-authority", "clsx", "tailwind-merge", "rxjs"],
+      "dependencies": [
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge",
+        "rxjs"
+      ],
       "registryDependencies": ["button", "icon"],
       "files": [
         { "path": "vitality/ui/tabs/tabs.component.ts", "type": "registry:ui" },
@@ -562,7 +932,10 @@
       "dependencies": ["class-variance-authority", "clsx", "ngx-sonner"],
       "registryDependencies": ["utils"],
       "files": [
-        { "path": "vitality/ui/toast/toast.component.ts", "type": "registry:ui" },
+        {
+          "path": "vitality/ui/toast/toast.component.ts",
+          "type": "registry:ui"
+        },
         { "path": "vitality/ui/toast/toast.variants.ts", "type": "registry:ui" }
       ]
     },
@@ -574,8 +947,14 @@
       "dependencies": ["class-variance-authority", "clsx", "@angular/forms"],
       "registryDependencies": ["utils"],
       "files": [
-        { "path": "vitality/ui/toggle/toggle.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/toggle/toggle.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/toggle/toggle.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/toggle/toggle.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -586,8 +965,14 @@
       "dependencies": ["class-variance-authority", "clsx", "@angular/forms"],
       "registryDependencies": ["utils", "icon"],
       "files": [
-        { "path": "vitality/ui/toggle-group/toggle-group.component.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/toggle-group/toggle-group.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/toggle-group/toggle-group.component.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/toggle-group/toggle-group.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -596,11 +981,21 @@
       "title": "Tooltip",
       "description": "A small informational popup that appears on hover or focus.",
       "dependencies": ["class-variance-authority", "@angular/cdk", "rxjs"],
-      "registryDependencies": ["utils", "id-directive", "string-template-outlet"],
+      "registryDependencies": [
+        "utils",
+        "id-directive",
+        "string-template-outlet"
+      ],
       "files": [
         { "path": "vitality/ui/tooltip/tooltip.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/tooltip/tooltip-positions.ts", "type": "registry:ui" },
-        { "path": "vitality/ui/tooltip/tooltip.variants.ts", "type": "registry:ui" }
+        {
+          "path": "vitality/ui/tooltip/tooltip-positions.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "vitality/ui/tooltip/tooltip.variants.ts",
+          "type": "registry:ui"
+        }
       ]
     }
   ]
