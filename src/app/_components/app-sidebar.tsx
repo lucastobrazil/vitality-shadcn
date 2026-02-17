@@ -64,7 +64,18 @@ export function AppSidebar() {
       <SidebarContent>
         <ScrollArea className="flex-1">
           <nav className="flex flex-col gap-0.5 px-2 pb-4">
-            <p className="px-2 pt-2 pb-1 text-xs font-semibold text-muted-foreground tracking-wider uppercase">
+            <Link
+              href="/"
+              onClick={() => isMobile && setOpenMobile(false)}
+              className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors mt-2 ${
+                pathname === "/"
+                  ? "bg-accent text-accent-foreground font-medium"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              }`}
+            >
+              Getting Started
+            </Link>
+            <p className="px-2 pt-4 pb-1 text-xs font-semibold text-muted-foreground tracking-wider uppercase">
               Blocks
             </p>
             {blocks.map((b) => {

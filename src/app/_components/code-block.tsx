@@ -1,18 +1,23 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { CopyIcon, CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react"
-import { Button } from "@/registry/vitality/ui/button"
+import { useState } from "react";
+import {
+  CopyIcon,
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+} from "lucide-react";
+import { Button } from "@/registry/vitality/ui/button";
 
 export function CodeBlock({ html, code }: { html: string; code: string }) {
-  const [expanded, setExpanded] = useState(false)
-  const [copied, setCopied] = useState(false)
+  const [expanded, setExpanded] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const copy = async () => {
-    await navigator.clipboard.writeText(code)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
+    await navigator.clipboard.writeText(code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <div className="relative rounded-lg border bg-muted/30">
@@ -20,10 +25,22 @@ export function CodeBlock({ html, code }: { html: string; code: string }) {
         <span className="text-xs font-medium text-muted-foreground">Code</span>
         <div className="flex items-center gap-1">
           <Button variant="ghost" size="icon-xs" onClick={copy}>
-            {copied ? <CheckIcon className="size-3" /> : <CopyIcon className="size-3" />}
+            {copied ? (
+              <CheckIcon className="size-3" />
+            ) : (
+              <CopyIcon className="size-3" />
+            )}
           </Button>
-          <Button variant="ghost" size="icon-xs" onClick={() => setExpanded(!expanded)}>
-            {expanded ? <ChevronUpIcon className="size-3" /> : <ChevronDownIcon className="size-3" />}
+          <Button
+            variant="ghost"
+            size="icon-xs"
+            onClick={() => setExpanded(!expanded)}
+          >
+            {expanded ? (
+              <ChevronUpIcon className="size-3" />
+            ) : (
+              <ChevronDownIcon className="size-3" />
+            )}
           </Button>
         </div>
       </div>
@@ -37,5 +54,5 @@ export function CodeBlock({ html, code }: { html: string; code: string }) {
         )}
       </div>
     </div>
-  )
+  );
 }
