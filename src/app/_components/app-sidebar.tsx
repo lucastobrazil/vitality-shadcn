@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { components } from "../registry";
+import { components, blocks } from "../registry";
 import { ThemeToggle } from "./theme-toggle";
 import { ScrollArea } from "@/registry/vitality/ui/scroll-area";
 import {
@@ -40,7 +40,7 @@ export function AppSidebar() {
         <div className="flex items-center justify-between">
           <Link href="/">
             <Image
-              src="./logo.svg"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/logo.svg`}
               alt="Vitality"
               width={138}
               height={47}
@@ -64,6 +64,29 @@ export function AppSidebar() {
       <SidebarContent>
         <ScrollArea className="flex-1">
           <nav className="flex flex-col gap-0.5 px-2 pb-4">
+            <p className="px-2 pt-2 pb-1 text-xs font-semibold text-muted-foreground tracking-wider uppercase">
+              Blocks
+            </p>
+            {blocks.map((b) => {
+              const isActive = pathname === `/blocks/${b.slug}`;
+              return (
+                <Link
+                  key={b.slug}
+                  href={`/blocks/${b.slug}`}
+                  onClick={() => isMobile && setOpenMobile(false)}
+                  className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors ${
+                    isActive
+                      ? "bg-accent text-accent-foreground font-medium"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  }`}
+                >
+                  {b.name}
+                </Link>
+              );
+            })}
+            <p className="px-2 pt-4 pb-1 text-xs font-semibold text-muted-foreground tracking-wider uppercase">
+              Components
+            </p>
             {filtered.map((c) => {
               const isActive = pathname === `/components/${c.slug}`;
               return (
