@@ -40,11 +40,6 @@ jobs:
       - name: Build Angular registry
         run: npm run registry:build:ng
 
-      - name: Build CLI registry
-        run: npm run registry:build:cli
-        env:
-          REGISTRY_BASE_URL: ${{ steps.pages.outputs.origin }}${{ steps.pages.outputs.base_path }}/r/cli
-
       - name: Build Next.js
         run: npm run build
         env:
