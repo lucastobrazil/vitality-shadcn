@@ -75,6 +75,13 @@ export function AppSidebar() {
             >
               Getting Started
             </Link>
+            <a
+              href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/storybook`}
+              onClick={() => isMobile && setOpenMobile(false)}
+              className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors text-muted-foreground hover:bg-muted hover:text-foreground"
+            >
+              Angular Storybook
+            </a>
             <p className="px-2 pt-4 pb-1 text-xs font-semibold text-muted-foreground tracking-wider uppercase">
               Blocks
             </p>
