@@ -607,6 +607,30 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "header",
+      "type": "registry:block",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["input", "avatar", "dropdown-menu", "button"],
+      "files": [
+        {
+          "path": "registry/vitality/blocks/header.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "side-nav",
+      "type": "registry:block",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["button", "tooltip"],
+      "files": [
+        {
+          "path": "registry/vitality/blocks/side-nav.tsx",
+          "type": "registry:block"
+        }
+      ]
     }
   ]
 }

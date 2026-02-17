@@ -58,3 +58,8 @@ export const components: DemoMeta[] = [
   { slug: "toggle-group", name: "Toggle Group", description: "A set of two-state buttons that can be toggled on or off.", registryName: "toggle-group", isCustom: false, hasDemo: true },
   { slug: "tooltip", name: "Tooltip", description: "A popup that displays information related to an element.", registryName: "tooltip", isCustom: false, hasDemo: true },
 ]
+
+export const blocks: DemoMeta[] = [
+  { slug: "header", name: "Header", description: "App header with logo, search bar, user info, notifications, and avatar dropdown menu.", registryName: "header", isCustom: true, hasDemo: true },
+  { slug: "side-nav", name: "Side Nav", description: "Collapsible side navigation with icon-only collapsed state and tooltip labels.", registryName: "side-nav", isCustom: true, hasDemo: true },
+]

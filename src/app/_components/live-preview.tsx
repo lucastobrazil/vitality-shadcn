@@ -51,6 +51,8 @@ const demos: Record<string, React.ComponentType> = {
   toggle: dynamic(() => import("../_demos/toggle")),
   "toggle-group": dynamic(() => import("../_demos/toggle-group")),
   tooltip: dynamic(() => import("../_demos/tooltip")),
+  header: dynamic(() => import("../_demos/header")),
+  "side-nav": dynamic(() => import("../_demos/side-nav")),
 }
 
 export function LivePreview({ slug }: { slug: string }) {

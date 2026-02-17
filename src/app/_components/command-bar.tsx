@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
-import { components } from "../registry"
+import { components, blocks } from "../registry"
 import {
   CommandDialog,
   CommandEmpty,
@@ -51,6 +51,19 @@ export function CommandBar() {
                 <span className="size-1.5 rounded-full bg-primary shrink-0" />
               )}
               {c.name}
+            </CommandItem>
+          ))}
+        </CommandGroup>
+        <CommandGroup heading="Blocks">
+          {blocks.map((b) => (
+            <CommandItem
+              key={b.slug}
+              onSelect={() => {
+                router.push(`/blocks/${b.slug}`)
+                setOpen(false)
+              }}
+            >
+              {b.name}
             </CommandItem>
           ))}
         </CommandGroup>
