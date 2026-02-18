@@ -8,12 +8,12 @@ Vitality is a custom component registry built on top of [shadcn/ui](https://ui.s
 
 ## Installation
 
-### 1. Set up shadcn (Zard for Angular) in your Angular project
+### 1. Set up `shadcn-ng` for Angular in your Angular project
 
 Ensure [Tailwind CSS v4](https://tailwindcss.com/docs/installation/framework-guides/angular) is configured and working in your Angular app. Then initialize the registry:
 
 ```bash
-npx @ngzard/ui@latest init
+npx shadcn-ng@latest init
 ```
 
 This CLI has interactive prompts that are difficult to automate non-interactively. The init process:
@@ -24,7 +24,7 @@ This CLI has interactive prompts that are difficult to automate non-interactivel
 4. Asks for component alias (selected: `@/shared/components`)
 5. Creates `components.json` at the project root
 
-**Gotcha:** The init CLI did NOT write the CSS theme to `styles.css` despite completing successfully. The theme was manually copied from the zardUI package's theme-definitions file at `node_modules/@ngzard/ui/dist/core/themes/theme-definitions.js`.
+**Gotcha:** The init CLI did NOT write the CSS theme to `styles.css` despite completing successfully. The theme was manually copied from the `shadcn-ng` package's theme-definitions file at `node_modules/shadcn-ng/dist/core/themes/theme-definitions.js`.
 
 ### 2. Create src/styles.css Tailwind theme
 
