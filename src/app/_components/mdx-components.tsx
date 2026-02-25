@@ -37,25 +37,40 @@ function MdxInstallCommand({ name }: { name: string }) {
 
 // --- HTML element overrides ---
 
-function H2({ children, ...props }: React.ComponentProps<"h2">) {
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .trim()
+}
+
+function getHeadingId(children: React.ReactNode): string | undefined {
+  if (typeof children === "string") return slugify(children)
+  if (Array.isArray(children)) return slugify(children.map(String).join(""))
+  return undefined
+}
+
+function H2({ children, id, ...props }: React.ComponentProps<"h2">) {
   return (
-    <h2 className="mt-10 scroll-mt-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" {...props}>
+    <h2 id={id ?? getHeadingId(children)} className="mt-10 scroll-mt-28 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" {...props}>
       {children}
     </h2>
   )
 }
 
-function H3({ children, ...props }: React.ComponentProps<"h3">) {
+function H3({ children, id, ...props }: React.ComponentProps<"h3">) {
   return (
-    <h3 className="mt-8 scroll-mt-20 text-xl font-semibold tracking-tight" {...props}>
+    <h3 id={id ?? getHeadingId(children)} className="mt-8 scroll-mt-28 text-xl font-semibold tracking-tight" {...props}>
       {children}
     </h3>
   )
 }
 
-function H4({ children, ...props }: React.ComponentProps<"h4">) {
+function H4({ children, id, ...props }: React.ComponentProps<"h4">) {
   return (
-    <h4 className="mt-6 scroll-mt-20 text-lg font-semibold tracking-tight" {...props}>
+    <h4 id={id ?? getHeadingId(children)} className="mt-6 scroll-mt-28 text-lg font-semibold tracking-tight" {...props}>
       {children}
     </h4>
   )
