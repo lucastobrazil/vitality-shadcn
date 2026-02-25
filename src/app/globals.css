@@ -192,3 +192,48 @@
     @apply bg-background text-foreground font-sans;
   }
 }
+
+/* MDX content wrapper */
+.mdx-content > :first-child {
+  margin-top: 0;
+}
+
+/* rehype-pretty-code (shiki) code blocks in MDX */
+[data-rehype-pretty-code-figure] {
+  @apply my-4;
+}
+
+[data-rehype-pretty-code-figure] pre {
+  @apply overflow-x-auto rounded-lg border p-4;
+}
+
+[data-rehype-pretty-code-figure] code {
+  @apply text-sm leading-relaxed;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+[data-rehype-pretty-code-figure] [data-line] {
+  @apply px-4 -mx-4;
+}
+
+[data-rehype-pretty-code-figure] [data-highlighted-line] {
+  @apply bg-muted/50;
+}
+
+/* Dual theme toggling — light/dark */
+[data-rehype-pretty-code-figure] pre [data-theme="github-dark"],
+[data-rehype-pretty-code-figure] code [data-theme="github-dark"] {
+  display: none;
+}
+
+.dark [data-rehype-pretty-code-figure] pre [data-theme="github-light"],
+.dark [data-rehype-pretty-code-figure] code [data-theme="github-light"] {
+  display: none;
+}
+
+.dark [data-rehype-pretty-code-figure] pre [data-theme="github-dark"],
+.dark [data-rehype-pretty-code-figure] code [data-theme="github-dark"] {
+  display: initial;
+}

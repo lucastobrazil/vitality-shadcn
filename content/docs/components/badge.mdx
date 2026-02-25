@@ -1,0 +1,32 @@
+---
+title: Badge
+description: Displays a badge or a component that looks like a badge.
+isCustom: true
+registryName: badge
+---
+
+## Preview
+
+<ComponentPreview name="badge" />
+
+## Installation
+
+<InstallCommand name="badge" />
+
+## Usage
+
+```tsx
+import { Badge } from "@/registry/vitality/ui/badge"
+```
+
+```tsx
+<Badge>Default</Badge>
+<Badge variant="neutral">Neutral</Badge>
+```
+
+## API Reference
+
+| Prop      | Type                              | Default     | Description                        |
+| --------- | --------------------------------- | ----------- | ---------------------------------- |
+| `variant` | `"default" \| "neutral"`          | `"default"` | The visual style of the badge.     |
+| `asChild`  | `boolean`                         | `false`     | Render as a child component.       |
