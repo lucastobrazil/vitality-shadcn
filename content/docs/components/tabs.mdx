@@ -1,9 +1,11 @@
 ---
 title: Tabs
-description: A set of layered sections of content, known as tab panels.
+description: A set of layered sections of content -- known as tab panels -- that are displayed one at a time.
 isCustom: true
 registryName: tabs
 ---
+
+<ComponentPreview name="tabs/demo" />
 
 ## Installation
 
@@ -12,14 +14,42 @@ registryName: tabs
 ## Usage
 
 ```tsx
-import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-} from "@/registry/vitality/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/vitality/ui/tabs"
 ```
 
-## Preview
+```tsx
+<Tabs defaultValue="account" className="w-[400px]">
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">Make changes to your account here.</TabsContent>
+  <TabsContent value="password">Change your password here.</TabsContent>
+</Tabs>
+```
 
-<ComponentPreview name="tabs" />
+## Examples
+
+### Line
+
+Use the `variant="line"` prop on `TabsList` for a line style.
+
+<ComponentPreview name="tabs/line" />
+
+### Vertical
+
+Use `orientation="vertical"` for vertical tabs.
+
+<ComponentPreview name="tabs/vertical" />
+
+### Disabled
+
+<ComponentPreview name="tabs/disabled" />
+
+### Icons
+
+<ComponentPreview name="tabs/icons" />
+
+## API Reference
+
+See the [Radix Tabs](https://www.radix-ui.com/docs/primitives/components/tabs#api-reference) documentation.

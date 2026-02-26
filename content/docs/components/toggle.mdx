@@ -4,6 +4,8 @@ description: A two-state button that can be either on or off.
 registryName: toggle
 ---
 
+<ComponentPreview name="toggle/demo" />
+
 ## Installation
 
 <InstallCommand name="toggle" />
@@ -14,6 +16,32 @@ registryName: toggle
 import { Toggle } from "@/registry/vitality/ui/toggle"
 ```
 
-## Preview
+```tsx
+<Toggle>Toggle</Toggle>
+```
 
-<ComponentPreview name="toggle" />
+## Examples
+
+### Outline
+
+Use `variant="outline"` for an outline style.
+
+<ComponentPreview name="toggle/outline" />
+
+### With Text
+
+<ComponentPreview name="toggle/text" />
+
+### Size
+
+Use the `size` prop to change the size of the toggle.
+
+<ComponentPreview name="toggle/sizes" />
+
+### Disabled
+
+<ComponentPreview name="toggle/disabled" />
+
+## API Reference
+
+See the [Radix Toggle](https://www.radix-ui.com/docs/primitives/components/toggle#api-reference) documentation.

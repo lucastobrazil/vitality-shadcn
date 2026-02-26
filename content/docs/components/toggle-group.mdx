@@ -4,6 +4,8 @@ description: A set of two-state buttons that can be toggled on or off.
 registryName: toggle-group
 ---
 
+<ComponentPreview name="toggle-group/demo" />
+
 ## Installation
 
 <InstallCommand name="toggle-group" />
@@ -14,6 +16,50 @@ registryName: toggle-group
 import { ToggleGroup, ToggleGroupItem } from "@/registry/vitality/ui/toggle-group"
 ```
 
-## Preview
+```tsx
+<ToggleGroup type="single">
+  <ToggleGroupItem value="a">A</ToggleGroupItem>
+  <ToggleGroupItem value="b">B</ToggleGroupItem>
+  <ToggleGroupItem value="c">C</ToggleGroupItem>
+</ToggleGroup>
+```
 
-<ComponentPreview name="toggle-group" />
+## Examples
+
+### Outline
+
+Use `variant="outline"` for an outline style.
+
+<ComponentPreview name="toggle-group/outline" />
+
+### Size
+
+Use the `size` prop to change the size of the toggle group.
+
+<ComponentPreview name="toggle-group/sizes" />
+
+### Spacing
+
+Use `spacing` to add spacing between toggle group items.
+
+<ComponentPreview name="toggle-group/spacing" />
+
+### Vertical
+
+Use `orientation="vertical"` for vertical toggle groups.
+
+<ComponentPreview name="toggle-group/vertical" />
+
+### Disabled
+
+<ComponentPreview name="toggle-group/disabled" />
+
+### Custom
+
+A custom toggle group example.
+
+<ComponentPreview name="toggle-group/font-weight-selector" />
+
+## API Reference
+
+See the [Radix Toggle Group](https://www.radix-ui.com/docs/primitives/components/toggle-group#api-reference) documentation.

@@ -1,9 +1,11 @@
 ---
 title: Textarea
-description: Displays a form textarea.
+description: Displays a form textarea or a component that looks like a textarea.
 isCustom: true
 registryName: textarea
 ---
+
+<ComponentPreview name="textarea/demo" />
 
 ## Installation
 
@@ -15,6 +17,32 @@ registryName: textarea
 import { Textarea } from "@/registry/vitality/ui/textarea"
 ```
 
-## Preview
+```tsx
+<Textarea />
+```
 
-<ComponentPreview name="textarea" />
+## Examples
+
+### Field
+
+Use `Field`, `FieldLabel`, and `FieldDescription` to create a textarea with a label and description.
+
+<ComponentPreview name="textarea/field" />
+
+### Disabled
+
+Use the `disabled` prop to disable the textarea. To style the disabled state, add the `data-disabled` attribute to the `Field` component.
+
+<ComponentPreview name="textarea/disabled" />
+
+### Invalid
+
+Use the `aria-invalid` prop to mark the textarea as invalid. To style the invalid state, add the `data-invalid` attribute to the `Field` component.
+
+<ComponentPreview name="textarea/invalid" />
+
+### Button
+
+Pair with `Button` to create a textarea with a submit button.
+
+<ComponentPreview name="textarea/button" />
