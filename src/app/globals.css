@@ -237,3 +237,35 @@
 .dark [data-rehype-pretty-code-figure] code [data-theme="github-dark"] {
   display: initial;
 }
+
+/* Steps counter for manual installation guides */
+.steps > .step {
+  counter-increment: step;
+}
+
+.steps > .step::before {
+  content: counter(step);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+@media (min-width: 768px) {
+  .steps > .step::before {
+    position: absolute;
+    margin-left: -50px;
+    margin-top: -4px;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 4px solid var(--background);
+  }
+}

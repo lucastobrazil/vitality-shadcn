@@ -44,7 +44,9 @@ function readMetas(type: "components" | "blocks"): DemoMeta[] {
         description: fm.description || "",
         registryName: fm.registryName || slug,
         isCustom: fm.isCustom === "true",
-        hasDemo: fs.existsSync(path.join(DEMOS_DIR, `${slug}.tsx`)),
+        hasDemo:
+          fs.existsSync(path.join(DEMOS_DIR, `${slug}.tsx`)) ||
+          fs.existsSync(path.join(DEMOS_DIR, slug, "demo.tsx")),
       }
     })
     .sort((a, b) => a.name.localeCompare(b.name))

@@ -4,12 +4,41 @@ import { highlight } from "./shiki";
 import { CodeBlock } from "./code-block";
 import { InstallCommand as InstallCommandBase } from "./install-command";
 import { LivePreview } from "./live-preview";
+import { Steps, Step } from "./steps";
+import { CodeTabs, CodeTabsList, CodeTabsTrigger, CodeTabsContent } from "./code-tabs";
+import { ComponentSource } from "./component-source";
+import { MdxCallout } from "./mdx-callout";
+import {
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@/registry/vitality/ui/tabs";
 
 // --- Custom MDX components ---
 
+function resolveDemoPath(name: string): { filePath: string; slug: string } | null {
+  const demosBase = path.join(process.cwd(), "src/app/_demos");
+
+  // Direct file: _demos/button.tsx or _demos/button/size.tsx
+  const directPath = path.join(demosBase, `${name}.tsx`);
+  if (fs.existsSync(directPath)) {
+    return { filePath: directPath, slug: name };
+  }
+
+  // Folder fallback: _demos/button/demo.tsx when name="button"
+  if (!name.includes("/")) {
+    const folderPath = path.join(demosBase, name, "demo.tsx");
+    if (fs.existsSync(folderPath)) {
+      return { filePath: folderPath, slug: `${name}/demo` };
+    }
+  }
+
+  return null;
+}
+
 async function ComponentPreview({ name }: { name: string }) {
-  const demoPath = path.join(process.cwd(), "src/app/_demos", `${name}.tsx`);
-  if (!fs.existsSync(demoPath)) {
+  const resolved = resolveDemoPath(name);
+  if (!resolved) {
     return (
       <div className="rounded-lg border bg-muted/30 p-8 text-center text-sm text-muted-foreground">
         No preview available for &ldquo;{name}&rdquo;.
@@ -17,14 +46,14 @@ async function ComponentPreview({ name }: { name: string }) {
     );
   }
 
-  const raw = fs.readFileSync(demoPath, "utf-8");
+  const raw = fs.readFileSync(resolved.filePath, "utf-8");
   const code = raw.replace(/^"use client"\n?\n?/, "");
   const html = await highlight(code);
 
   return (
     <div className="space-y-4">
       <div className="rounded-lg border p-6">
-        <LivePreview slug={name} />
+        <LivePreview slug={resolved.slug} />
       </div>
       <CodeBlock html={html} code={code} />
     </div>
@@ -174,6 +203,14 @@ function InlineCode({ children, ...props }: React.ComponentProps<"code">) {
 export const mdxComponents: Record<string, React.ComponentType<any>> = {
   ComponentPreview,
   InstallCommand: MdxInstallCommand,
+  ComponentSource,
+  CodeTabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  Steps,
+  Step,
+  Callout: MdxCallout,
   h2: H2,
   h3: H3,
   h4: H4,
