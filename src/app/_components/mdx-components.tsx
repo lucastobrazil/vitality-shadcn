@@ -1,18 +1,14 @@
+import { Children, isValidElement } from "react";
 import fs from "fs";
 import path from "path";
-import { highlight } from "./shiki";
 import { CodeBlock } from "./code-block";
 import { CopyButton } from "./copy-button";
 import { InstallCommand as InstallCommandBase } from "./install-command";
 import { LivePreview } from "./live-preview";
 import { Steps, Step } from "./steps";
-import {
-  CodeTabs,
-  CodeTabsList,
-  CodeTabsTrigger,
-  CodeTabsContent,
-} from "./code-tabs";
+import { CodeTabs } from "./code-tabs";
 import { ComponentSource } from "./component-source";
+import { ComponentPreviewTabs } from "./component-preview-tabs";
 import { MdxCallout } from "./mdx-callout";
 import {
   TabsList,
@@ -45,7 +41,15 @@ function resolveDemoPath(
   return null;
 }
 
-async function ComponentPreview({ name }: { name: string }) {
+async function ComponentPreview({
+  name,
+  align,
+  hideCode,
+}: {
+  name: string;
+  align?: "center" | "start" | "end";
+  hideCode?: boolean;
+}) {
   const resolved = resolveDemoPath(name);
   if (!resolved) {
     return (
@@ -55,27 +59,69 @@ async function ComponentPreview({ name }: { name: string }) {
     );
   }
 
-  const raw = fs.readFileSync(resolved.filePath, "utf-8");
-  const code = raw.replace(/^"use client"\n?\n?/, "");
-  const html = await highlight(code);
+  const relativeSrc = `src/app/_demos/${resolved.slug}.tsx`;
 
   return (
-    <div className="space-y-4">
-      <div className="rounded-lg border p-6">
-        <LivePreview slug={resolved.slug} />
-      </div>
-      <CodeBlock>
-        <figure data-rehype-pretty-code-figure="" className="[&>pre]:max-h-96">
-          <CopyButton value={code} />
-          <div dangerouslySetInnerHTML={{ __html: html }} />
-        </figure>
-      </CodeBlock>
-    </div>
+    <ComponentPreviewTabs
+      align={align}
+      hideCode={hideCode}
+      component={<LivePreview slug={resolved.slug} />}
+      source={<ComponentSource src={relativeSrc} collapsible={false} />}
+      sourcePreview={
+        <ComponentSource src={relativeSrc} collapsible={false} maxLines={3} />
+      }
+    />
   );
 }
 
 function MdxInstallCommand({ name }: { name: string }) {
   return <InstallCommandBase name={name} />;
+}
+
+// --- Code figure override ---
+
+function extractRawCode(children: React.ReactNode): string {
+  let raw = "";
+  Children.forEach(children, (child) => {
+    if (!isValidElement(child)) return;
+    if ((child.props as Record<string, unknown>)?.__raw__) {
+      raw = (child.props as Record<string, unknown>).__raw__ as string;
+      return;
+    }
+    if ((child.props as Record<string, unknown>)?.children) {
+      const found = extractRawCode(
+        (child.props as Record<string, unknown>).children as React.ReactNode,
+      );
+      if (found) raw = found;
+    }
+  });
+  return raw;
+}
+
+const CODE_BLOCK_LINE_THRESHOLD = 14;
+
+function MdxFigure(
+  props: React.ComponentProps<"figure"> & Record<string, unknown>,
+) {
+  if (!("data-rehype-pretty-code-figure" in props)) {
+    return <figure {...props} />;
+  }
+
+  const raw = extractRawCode(props.children);
+  const lineCount = raw ? raw.split("\n").length : 0;
+
+  const figure = (
+    <figure {...props} className="p-4">
+      {raw && <CopyButton value={raw} />}
+      {props.children}
+    </figure>
+  );
+
+  if (lineCount > CODE_BLOCK_LINE_THRESHOLD) {
+    return <CodeBlock>{figure}</CodeBlock>;
+  }
+
+  return figure;
 }
 
 // --- HTML element overrides ---
@@ -201,7 +247,10 @@ function Td({ children, ...props }: React.ComponentProps<"td">) {
   );
 }
 
-function InlineCode({ children, ...props }: React.ComponentProps<"code"> & Record<string, unknown>) {
+function InlineCode({
+  children,
+  ...props
+}: React.ComponentProps<"code"> & Record<string, unknown>) {
   // Block code rendered by rehype-pretty-code — pass through without inline styles
   if ("data-line-numbers" in props || "data-language" in props) {
     return <code {...props}>{children}</code>;
@@ -241,5 +290,6 @@ export const mdxComponents: Record<string, React.ComponentType<any>> = {
   th: Th,
   td: Td,
   code: InlineCode,
+  figure: MdxFigure,
   Kbd,
 };

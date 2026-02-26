@@ -6,28 +6,50 @@ import { CopyButton } from "./copy-button"
 
 export async function ComponentSource({
   name,
+  src,
   title,
   collapsible = true,
+  maxLines,
 }: {
-  name: string
+  name?: string
+  src?: string
   title?: string
   collapsible?: boolean
+  maxLines?: number
 }) {
-  const filePath = path.join(
-    process.cwd(),
-    "registry/vitality/ui",
-    `${name}.tsx`
-  )
+  let filePath: string
 
-  if (!fs.existsSync(filePath)) {
+  if (src) {
+    filePath = path.join(process.cwd(), src)
+  } else if (name) {
+    filePath = path.join(process.cwd(), "registry/vitality/ui", `${name}.tsx`)
+  } else {
     return (
       <div className="rounded-lg border bg-muted/30 p-8 text-center text-sm text-muted-foreground">
-        Source not available for &ldquo;{name}&rdquo;.
+        No source specified.
       </div>
     )
   }
 
-  const code = fs.readFileSync(filePath, "utf-8")
+  if (!fs.existsSync(filePath)) {
+    return (
+      <div className="rounded-lg border bg-muted/30 p-8 text-center text-sm text-muted-foreground">
+        Source not available for &ldquo;{name ?? src}&rdquo;.
+      </div>
+    )
+  }
+
+  let code = fs.readFileSync(filePath, "utf-8")
+
+  // Strip "use client" directive from demo source files
+  if (src) {
+    code = code.replace(/^"use client";?\n?\n?/, "")
+  }
+
+  if (maxLines) {
+    code = code.split("\n").slice(0, maxLines).join("\n")
+  }
+
   const html = await highlight(code)
 
   const figure = (

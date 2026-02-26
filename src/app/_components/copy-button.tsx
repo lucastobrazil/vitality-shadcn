@@ -25,10 +25,10 @@ export function CopyButton({
     <Button
       data-slot="copy-button"
       data-copied={hasCopied}
-      size="icon-xs"
+      size="icon"
       variant="ghost"
       className={cn(
-        "absolute top-3 right-2 z-10 bg-[var(--code)] hover:opacity-100 focus-visible:opacity-100",
+        "absolute top-3 right-2 z-10 size-7 bg-[var(--code)] hover:opacity-100 focus-visible:opacity-100",
         className
       )}
       onClick={() => {
