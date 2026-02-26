@@ -2,18 +2,12 @@
 
 import * as React from "react";
 import {
-  Sun,
-  Calendar,
-  Users,
-  Mail,
-  BookUser,
-  BarChart3,
+  GalleryVertical,
   Settings,
-  Store,
   ChevronLeft,
   ChevronRight,
   LucideIcon,
-  CalendarIcon,
+  Calendar1,
   IdCard,
   Inbox,
   BookMarked,
@@ -49,13 +43,13 @@ interface SideNavProps extends React.HTMLAttributes<HTMLElement> {
 const defaultNavItems: SideNavItem[] = [
   {
     label: "My Day",
-    icon: Sun,
+    icon: GalleryVertical,
     href: "/my-day",
     isActive: true,
   },
   {
     label: "Appointments",
-    icon: CalendarIcon,
+    icon: Calendar1,
     href: "/appointments",
   },
   { label: "Patients", icon: IdCard, href: "/patients" },
