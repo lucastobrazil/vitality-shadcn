@@ -9,6 +9,7 @@ const demos: Record<string, React.ComponentType> = {
   "aspect-ratio": dynamic(() => import("../_demos/aspect-ratio")),
   avatar: dynamic(() => import("../_demos/avatar")),
   badge: dynamic(() => import("../_demos/badge")),
+  "badge-with-icons": dynamic(() => import("../_demos/badge-with-icons")),
   breadcrumb: dynamic(() => import("../_demos/breadcrumb")),
   button: dynamic(() => import("../_demos/button")),
   calendar: dynamic(() => import("../_demos/calendar")),
