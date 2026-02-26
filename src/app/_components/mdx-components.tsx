@@ -217,18 +217,37 @@ function A({ children, ...props }: React.ComponentProps<"a">) {
 
 function Table({ children, ...props }: React.ComponentProps<"table">) {
   return (
-    <div className="my-6 w-full overflow-auto">
-      <table className="w-full" {...props}>
+    <div className="my-6 w-full overflow-auto rounded-lg border">
+      <table className="w-full border-collapse text-sm" {...props}>
         {children}
       </table>
     </div>
   );
 }
 
+function Thead({ children, ...props }: React.ComponentProps<"thead">) {
+  return (
+    <thead className="bg-muted/50" {...props}>
+      {children}
+    </thead>
+  );
+}
+
+function Tr({ children, ...props }: React.ComponentProps<"tr">) {
+  return (
+    <tr
+      className="border-b last:border-b-0"
+      {...props}
+    >
+      {children}
+    </tr>
+  );
+}
+
 function Th({ children, ...props }: React.ComponentProps<"th">) {
   return (
     <th
-      className="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right"
+      className="px-4 py-2 text-left font-medium text-muted-foreground [&[align=center]]:text-center [&[align=right]]:text-right"
       {...props}
     >
       {children}
@@ -239,7 +258,7 @@ function Th({ children, ...props }: React.ComponentProps<"th">) {
 function Td({ children, ...props }: React.ComponentProps<"td">) {
   return (
     <td
-      className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
+      className="px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right"
       {...props}
     >
       {children}
@@ -287,6 +306,8 @@ export const mdxComponents: Record<string, React.ComponentType<any>> = {
   ol: Ol,
   a: A,
   table: Table,
+  thead: Thead,
+  tr: Tr,
   th: Th,
   td: Td,
   code: InlineCode,

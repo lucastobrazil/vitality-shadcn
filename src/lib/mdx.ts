@@ -2,6 +2,7 @@ import fs from "fs"
 import path from "path"
 import { compileMDX } from "next-mdx-remote/rsc"
 import rehypePrettyCode from "rehype-pretty-code"
+import remarkGfm from "remark-gfm"
 import type { ReactElement } from "react"
 import { transformers } from "@/app/_components/shiki"
 
@@ -68,6 +69,7 @@ export async function compileMdxPage(
     options: {
       parseFrontmatter: true,
       mdxOptions: {
+        remarkPlugins: [remarkGfm],
         rehypePlugins: [
           [
             rehypePrettyCode as any,
