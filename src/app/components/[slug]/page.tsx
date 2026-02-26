@@ -1,16 +1,13 @@
 import { notFound } from "next/navigation"
-import { components } from "../../registry"
+import { getComponents } from "@/lib/registry"
 import { DemoPreview } from "../../_components/demo-preview"
 import { StatusBadge } from "@/registry/vitality/ui/status-badge"
-import { mdxFileExists, getMdxSlugs, compileMdxPage } from "@/lib/mdx"
+import { mdxFileExists, compileMdxPage } from "@/lib/mdx"
 import { mdxComponents } from "../../_components/mdx-components"
 import { DocsTableOfContents } from "../../_components/docs-toc"
 
 export function generateStaticParams() {
-  const registrySlugs = components.map((c) => c.slug)
-  const mdxSlugs = getMdxSlugs("components")
-  const allSlugs = [...new Set([...registrySlugs, ...mdxSlugs])]
-  return allSlugs.map((slug) => ({ slug }))
+  return getComponents().map((c) => ({ slug: c.slug }))
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -24,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
   }
 
-  const meta = components.find((c) => c.slug === slug)
+  const meta = getComponents().find((c) => c.slug === slug)
   if (!meta) return {}
   return {
     title: `${meta.name} — Vitality`,
@@ -41,7 +38,7 @@ export default async function ComponentPage({
 
   if (mdxFileExists("components", slug)) {
     const { content, frontmatter, toc } = await compileMdxPage("components", slug, mdxComponents)
-    const meta = components.find((c) => c.slug === slug)
+    const meta = getComponents().find((c) => c.slug === slug)
 
     return (
       <div className="flex items-start gap-10">
@@ -68,7 +65,7 @@ export default async function ComponentPage({
     )
   }
 
-  const meta = components.find((c) => c.slug === slug)
+  const meta = getComponents().find((c) => c.slug === slug)
   if (!meta) notFound()
 
   return (

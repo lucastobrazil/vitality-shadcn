@@ -4,7 +4,7 @@ import { highlight } from "./shiki"
 import { CodeBlock } from "./code-block"
 import { InstallCommand } from "./install-command"
 import { LivePreview } from "./live-preview"
-import type { DemoMeta } from "../registry"
+import type { DemoMeta } from "@/lib/registry"
 
 export async function DemoPreview({ meta }: { meta: DemoMeta }) {
   if (!meta.hasDemo) {

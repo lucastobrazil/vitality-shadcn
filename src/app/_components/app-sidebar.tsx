@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { components, blocks } from "../registry";
+import type { DemoMeta } from "@/lib/registry";
 import { ThemeToggle } from "./theme-toggle";
 import { ScrollArea } from "@/registry/vitality/ui/scroll-area";
 import {
@@ -23,7 +23,7 @@ import {
 
 type Filter = "all" | "custom" | "standard";
 
-export function AppSidebar() {
+export function AppSidebar({ components, blocks }: { components: DemoMeta[]; blocks: DemoMeta[] }) {
   const pathname = usePathname();
   const [filter, setFilter] = useState<Filter>("all");
   const { isMobile, setOpenMobile } = useSidebar();

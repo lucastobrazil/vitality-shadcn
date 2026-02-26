@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
-import { components, blocks } from "../registry"
+import type { DemoMeta } from "@/lib/registry"
 import {
   CommandDialog,
   CommandEmpty,
@@ -13,7 +13,7 @@ import {
   CommandList,
 } from "@/registry/vitality/ui/command"
 
-export function CommandBar() {
+export function CommandBar({ components, blocks }: { components: DemoMeta[]; blocks: DemoMeta[] }) {
   const [open, setOpen] = useState(false)
   const router = useRouter()
   const { setTheme, resolvedTheme } = useTheme()

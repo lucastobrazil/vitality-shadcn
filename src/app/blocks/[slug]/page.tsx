@@ -1,16 +1,13 @@
 import { notFound } from "next/navigation";
-import { blocks } from "../../registry";
+import { getBlocks } from "@/lib/registry";
 import { DemoPreview } from "../../_components/demo-preview";
 import { StatusBadge } from "@/registry/vitality/ui/status-badge";
-import { mdxFileExists, getMdxSlugs, compileMdxPage } from "@/lib/mdx";
+import { mdxFileExists, compileMdxPage } from "@/lib/mdx";
 import { mdxComponents } from "../../_components/mdx-components";
 import { DocsTableOfContents } from "../../_components/docs-toc";
 
 export function generateStaticParams() {
-  const registrySlugs = blocks.map((b) => b.slug);
-  const mdxSlugs = getMdxSlugs("blocks");
-  const allSlugs = [...new Set([...registrySlugs, ...mdxSlugs])];
-  return allSlugs.map((slug) => ({ slug }));
+  return getBlocks().map((b) => ({ slug: b.slug }));
 }
 
 export async function generateMetadata({
@@ -28,7 +25,7 @@ export async function generateMetadata({
     };
   }
 
-  const meta = blocks.find((b) => b.slug === slug);
+  const meta = getBlocks().find((b) => b.slug === slug);
   if (!meta) return {};
   return {
     title: `${meta.name} — Vitality Blocks`,
@@ -69,7 +66,7 @@ export default async function BlockPage({
     );
   }
 
-  const meta = blocks.find((b) => b.slug === slug);
+  const meta = getBlocks().find((b) => b.slug === slug);
   if (!meta) notFound();
 
   return (
