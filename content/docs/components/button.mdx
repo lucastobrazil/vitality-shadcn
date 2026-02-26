@@ -5,9 +5,43 @@ isCustom: true
 registryName: button
 ---
 
+<ComponentPreview name="button/demo" />
+
 ## Installation
 
+<CodeTabs>
+
+<TabsList variant="line">
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
 <InstallCommand name="button" />
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install radix-ui
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="button" title="registry/vitality/ui/button.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
 
 ## Usage
 
@@ -15,6 +49,93 @@ registryName: button
 import { Button } from "@/registry/vitality/ui/button"
 ```
 
-## Preview
+```tsx
+<Button variant="outline">Button</Button>
+```
 
-<ComponentPreview name="button" />
+## Cursor
+
+Tailwind v4 [switched](https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor) from `cursor: pointer` to `cursor: default` for the button component.
+
+If you want to keep the `cursor: pointer` behavior, add the following code to your CSS file:
+
+```css
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+```
+
+## Examples
+
+### Size
+
+Use the `size` prop to change the size of the button.
+
+<ComponentPreview name="button/size" />
+
+### Default
+
+<ComponentPreview name="button/default" />
+
+### Outline
+
+<ComponentPreview name="button/outline" />
+
+### Primary
+
+<ComponentPreview name="button/primary" />
+
+### Ghost
+
+<ComponentPreview name="button/ghost" />
+
+### Destructive
+
+<ComponentPreview name="button/destructive" />
+
+### Link
+
+<ComponentPreview name="button/link" />
+
+### Icon
+
+<ComponentPreview name="button/icon" />
+
+### With Icon
+
+Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the icon for the correct spacing.
+
+<ComponentPreview name="button/with-icon" />
+
+### Rounded
+
+Use the `rounded-full` class to make the button rounded.
+
+<ComponentPreview name="button/rounded" />
+
+### Spinner
+
+Render a `<Spinner />` component inside the button to show a loading state. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the spinner for the correct spacing.
+
+<ComponentPreview name="button/spinner" />
+
+### As Child
+
+You can use the `asChild` prop on `<Button />` to make another component look like a button. Here's an example of a link that looks like a button.
+
+<ComponentPreview name="button/aschild" />
+
+## API Reference
+
+### Button
+
+The `Button` component is a wrapper around the `button` element that adds a variety of styles and functionality.
+
+| Prop      | Type                                                                                 | Default     |
+| --------- | ------------------------------------------------------------------------------------ | ----------- |
+| `variant` | `"default" \| "primary" \| "outline" \| "ghost" \| "destructive" \| "link"`        | `"default"` |
+| `size`    | `"default" \| "xs" \| "sm" \| "lg" \| "icon" \| "icon-xs" \| "icon-sm" \| "icon-lg"` | `"default"` |
+| `asChild` | `boolean`                                                                            | `false`     |
