@@ -2,13 +2,16 @@ import fs from "fs"
 import path from "path"
 import { highlight } from "./shiki"
 import { CodeBlock } from "./code-block"
+import { CopyButton } from "./copy-button"
 
 export async function ComponentSource({
   name,
   title,
+  collapsible = true,
 }: {
   name: string
   title?: string
+  collapsible?: boolean
 }) {
   const filePath = path.join(
     process.cwd(),
@@ -27,14 +30,29 @@ export async function ComponentSource({
   const code = fs.readFileSync(filePath, "utf-8")
   const html = await highlight(code)
 
-  return (
-    <div className="my-4">
+  const figure = (
+    <figure data-rehype-pretty-code-figure="" className="[&>pre]:max-h-96">
       {title && (
-        <div className="flex items-center rounded-t-lg border border-b-0 bg-muted/30 px-4 py-2 text-xs font-medium text-muted-foreground">
+        <figcaption
+          data-rehype-pretty-code-title=""
+          className="text-[var(--code-foreground)] flex items-center gap-2"
+          data-language="tsx"
+        >
           {title}
-        </div>
+        </figcaption>
       )}
-      <CodeBlock html={html} code={code} />
-    </div>
+      <CopyButton value={code} />
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+    </figure>
+  )
+
+  if (!collapsible) {
+    return <div className="relative">{figure}</div>
+  }
+
+  return (
+    <CodeBlock>
+      {figure}
+    </CodeBlock>
   )
 }

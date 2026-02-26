@@ -10,7 +10,7 @@ export type DemoMeta = {
   hasDemo: boolean
 }
 
-const CONTENT_DIR = path.join(process.cwd(), "content/docs")
+const CONTENT_DIR = path.join(process.cwd(), "src/app/content/docs")
 const DEMOS_DIR = path.join(process.cwd(), "src/app/_demos")
 
 function parseFrontmatter(raw: string): Record<string, string> {

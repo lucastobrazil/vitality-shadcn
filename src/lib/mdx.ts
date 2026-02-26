@@ -1,8 +1,9 @@
 import fs from "fs"
 import path from "path"
 import { compileMDX } from "next-mdx-remote/rsc"
-import rehypeShiki from "@shikijs/rehype"
+import rehypePrettyCode from "rehype-pretty-code"
 import type { ReactElement } from "react"
+import { transformers } from "@/app/_components/shiki"
 
 export type MdxFrontmatter = {
   title: string
@@ -35,7 +36,7 @@ export function extractTocHeadings(source: string): TocItem[] {
   return items
 }
 
-const CONTENT_DIR = path.join(process.cwd(), "content/docs")
+const CONTENT_DIR = path.join(process.cwd(), "src/app/content/docs")
 
 function mdxPath(type: "components" | "blocks", slug: string) {
   return path.join(CONTENT_DIR, type, `${slug}.mdx`)
@@ -69,12 +70,13 @@ export async function compileMdxPage(
       mdxOptions: {
         rehypePlugins: [
           [
-            rehypeShiki as any,
+            rehypePrettyCode as any,
             {
-              themes: {
-                light: "github-light",
+              theme: {
                 dark: "github-dark",
+                light: "github-light-default",
               },
+              transformers,
             },
           ],
         ],

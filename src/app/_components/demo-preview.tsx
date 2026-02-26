@@ -2,6 +2,7 @@ import fs from "fs"
 import path from "path"
 import { highlight } from "./shiki"
 import { CodeBlock } from "./code-block"
+import { CopyButton } from "./copy-button"
 import { InstallCommand } from "./install-command"
 import { LivePreview } from "./live-preview"
 import type { DemoMeta } from "@/lib/registry"
@@ -36,7 +37,12 @@ export async function DemoPreview({ meta }: { meta: DemoMeta }) {
       </div>
       <div>
         <h3 className="mb-2 text-sm font-medium">Code</h3>
-        <CodeBlock html={html} code={code} />
+        <CodeBlock>
+          <figure data-rehype-pretty-code-figure="" className="[&>pre]:max-h-96">
+            <CopyButton value={code} />
+            <div dangerouslySetInnerHTML={{ __html: html }} />
+          </figure>
+        </CodeBlock>
       </div>
       <div>
         <h3 className="mb-2 text-sm font-medium">Install</h3>

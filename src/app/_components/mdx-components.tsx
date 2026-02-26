@@ -2,10 +2,16 @@ import fs from "fs";
 import path from "path";
 import { highlight } from "./shiki";
 import { CodeBlock } from "./code-block";
+import { CopyButton } from "./copy-button";
 import { InstallCommand as InstallCommandBase } from "./install-command";
 import { LivePreview } from "./live-preview";
 import { Steps, Step } from "./steps";
-import { CodeTabs, CodeTabsList, CodeTabsTrigger, CodeTabsContent } from "./code-tabs";
+import {
+  CodeTabs,
+  CodeTabsList,
+  CodeTabsTrigger,
+  CodeTabsContent,
+} from "./code-tabs";
 import { ComponentSource } from "./component-source";
 import { MdxCallout } from "./mdx-callout";
 import {
@@ -13,10 +19,13 @@ import {
   TabsTrigger,
   TabsContent,
 } from "@/registry/vitality/ui/tabs";
+import { Kbd } from "@/registry/vitality/ui/kbd";
 
 // --- Custom MDX components ---
 
-function resolveDemoPath(name: string): { filePath: string; slug: string } | null {
+function resolveDemoPath(
+  name: string,
+): { filePath: string; slug: string } | null {
   const demosBase = path.join(process.cwd(), "src/app/_demos");
 
   // Direct file: _demos/button.tsx or _demos/button/size.tsx
@@ -55,7 +64,12 @@ async function ComponentPreview({ name }: { name: string }) {
       <div className="rounded-lg border p-6">
         <LivePreview slug={resolved.slug} />
       </div>
-      <CodeBlock html={html} code={code} />
+      <CodeBlock>
+        <figure data-rehype-pretty-code-figure="" className="[&>pre]:max-h-96">
+          <CopyButton value={code} />
+          <div dangerouslySetInnerHTML={{ __html: html }} />
+        </figure>
+      </CodeBlock>
     </div>
   );
 }
@@ -187,10 +201,15 @@ function Td({ children, ...props }: React.ComponentProps<"td">) {
   );
 }
 
-function InlineCode({ children, ...props }: React.ComponentProps<"code">) {
+function InlineCode({ children, ...props }: React.ComponentProps<"code"> & Record<string, unknown>) {
+  // Block code rendered by rehype-pretty-code — pass through without inline styles
+  if ("data-line-numbers" in props || "data-language" in props) {
+    return <code {...props}>{children}</code>;
+  }
+
   return (
     <code
-      className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm"
+      className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm break-words outline-none"
       {...props}
     >
       {children}
@@ -222,4 +241,5 @@ export const mdxComponents: Record<string, React.ComponentType<any>> = {
   th: Th,
   td: Td,
   code: InlineCode,
+  Kbd,
 };

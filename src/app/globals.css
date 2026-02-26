@@ -55,6 +55,12 @@
   --radius-4xl: var(--radius-large);
   --radius-full: var(--radius-rounded);
 
+  /* Code block colors */
+  --color-code: var(--code);
+  --color-code-foreground: var(--code-foreground);
+  --color-code-highlight: var(--code-highlight);
+  --color-code-number: var(--code-number);
+
   /* Semantic font sizes */
   --font-size-caption: 0.75rem;
   --font-size-body: 0.875rem;
@@ -198,44 +204,110 @@
   margin-top: 0;
 }
 
-/* rehype-pretty-code (shiki) code blocks in MDX */
+/* rehype-pretty-code — code blocks */
 [data-rehype-pretty-code-figure] {
-  @apply my-4;
+  background-color: var(--color-code);
+  color: var(--color-code-foreground);
+  border-radius: var(--radius-xl);
+  border-width: 0px;
+  border-color: var(--border);
+  margin-top: calc(var(--spacing) * 6);
+  overflow: hidden;
+  font-size: var(--text-sm);
+  outline: none;
+  position: relative;
+
+  &:has([data-rehype-pretty-code-title]) [data-slot="copy-button"] {
+    top: calc(var(--spacing) * 1.5) !important;
+  }
 }
 
-[data-rehype-pretty-code-figure] pre {
-  @apply overflow-x-auto rounded-lg border p-4;
+[data-rehype-pretty-code-title] {
+  border-bottom: color-mix(in oklab, var(--border) 30%, transparent);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  padding-block: calc(var(--spacing) * 2.5);
+  padding-inline: calc(var(--spacing) * 4);
+  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  color: var(--color-code-foreground);
 }
 
-[data-rehype-pretty-code-figure] code {
-  @apply text-sm leading-relaxed;
+[data-line-numbers] {
+  display: grid;
+  min-width: 100%;
+  white-space: pre;
+  border: 0;
   background: transparent;
   padding: 0;
-  border-radius: 0;
+  counter-reset: line;
+  box-decoration-break: clone;
 }
 
-[data-rehype-pretty-code-figure] [data-line] {
-  @apply px-4 -mx-4;
+[data-line-numbers] [data-line]::before {
+  font-size: var(--text-sm);
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: calc(var(--spacing) * 16);
+  padding-right: calc(var(--spacing) * 6);
+  text-align: right;
+  color: var(--color-code-number);
+  background-color: var(--color-code);
+  position: sticky;
+  left: 0;
 }
 
-[data-rehype-pretty-code-figure] [data-highlighted-line] {
-  @apply bg-muted/50;
+[data-line-numbers] [data-highlighted-line][data-line]::before {
+  background-color: var(--color-code-highlight);
 }
 
-/* Dual theme toggling — light/dark */
-[data-rehype-pretty-code-figure] pre [data-theme="github-dark"],
-[data-rehype-pretty-code-figure] code [data-theme="github-dark"] {
-  display: none;
+[data-line] {
+  padding-top: calc(var(--spacing) * 0.5);
+  padding-bottom: calc(var(--spacing) * 0.5);
+  min-height: calc(var(--spacing) * 1);
+  width: 100%;
+  display: inline-block;
 }
 
-.dark [data-rehype-pretty-code-figure] pre [data-theme="github-light"],
-.dark [data-rehype-pretty-code-figure] code [data-theme="github-light"] {
-  display: none;
+[data-line] span {
+  color: var(--shiki-light);
 }
 
-.dark [data-rehype-pretty-code-figure] pre [data-theme="github-dark"],
-.dark [data-rehype-pretty-code-figure] code [data-theme="github-dark"] {
-  display: initial;
+@variant dark {
+  [data-line] span {
+    color: var(--shiki-dark) !important;
+  }
+}
+
+[data-highlighted-line],
+[data-highlighted-chars] {
+  position: relative;
+  background-color: var(--color-code-highlight);
+}
+
+[data-highlighted-line] {
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    content: "";
+    background-color: color-mix(
+      in oklab,
+      var(--muted-foreground) 50%,
+      transparent
+    );
+  }
+}
+
+[data-highlighted-chars] {
+  border-radius: var(--radius-sm);
+  padding-inline: 0.3rem;
+  padding-block: 0.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
 }
 
 /* Steps counter for manual installation guides */

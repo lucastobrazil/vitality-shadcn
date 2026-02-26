@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   AlertDialog,
@@ -10,8 +10,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/registry/vitality/ui/alert-dialog"
-import { Button } from "@/registry/vitality/ui/button"
+} from "@/registry/vitality/ui/alert-dialog";
+import { Button } from "@/registry/vitality/ui/button";
 
 export default function AlertDialogDemo() {
   return (
@@ -33,5 +33,5 @@ export default function AlertDialogDemo() {
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  )
+  );
 }

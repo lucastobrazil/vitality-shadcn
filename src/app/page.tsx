@@ -3,6 +3,7 @@ import path from "path";
 import Link from "next/link";
 import { highlight } from "./_components/shiki";
 import { CodeBlock } from "./_components/code-block";
+import { CopyButton } from "./_components/copy-button";
 import { InstallCommand } from "./_components/install-command";
 
 export default async function GettingStarted() {
@@ -69,7 +70,12 @@ export default async function GettingStarted() {
             in your terminal. This will instruct the LLM to build with Vitality
             components.
           </p>
-          <CodeBlock html={metaPromptHtml} code={metaPromptCode} />
+          <CodeBlock>
+            <figure data-rehype-pretty-code-figure="">
+              <CopyButton value={metaPromptCode} />
+              <div dangerouslySetInnerHTML={{ __html: metaPromptHtml }} />
+            </figure>
+          </CodeBlock>
         </section>
 
         <section>
@@ -80,7 +86,12 @@ export default async function GettingStarted() {
             Now that the LLM knows to build with these components, you can start
             prompting it to build your app!
           </p>
-          <CodeBlock html={samplePrompt} code={samplePrompt} />
+          <CodeBlock>
+            <figure data-rehype-pretty-code-figure="">
+              <CopyButton value={samplePrompt} />
+              <div dangerouslySetInnerHTML={{ __html: samplePrompt }} />
+            </figure>
+          </CodeBlock>
         </section>
 
         <section>
@@ -113,7 +124,12 @@ export default async function GettingStarted() {
             scale, and semantic typography variables for both light and dark
             modes.
           </p>
-          <CodeBlock html={cssHtml} code={cssCode} />
+          <CodeBlock>
+            <figure data-rehype-pretty-code-figure="">
+              <CopyButton value={cssCode} />
+              <div dangerouslySetInnerHTML={{ __html: cssHtml }} />
+            </figure>
+          </CodeBlock>
         </section>
 
         {/* Step 3 */}
