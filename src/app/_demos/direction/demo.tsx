@@ -12,7 +12,7 @@ export default function DirectionDemo() {
     <div className="space-y-6">
       <div>
         <p className="mb-2 text-sm font-medium">LTR (default)</p>
-        <DirectionProvider direction="ltr">
+        <DirectionProvider dir="ltr">
           <div className="rounded-md border p-4">
             <DirectionDisplay />
           </div>
@@ -20,7 +20,7 @@ export default function DirectionDemo() {
       </div>
       <div>
         <p className="mb-2 text-sm font-medium">RTL</p>
-        <DirectionProvider direction="rtl">
+        <DirectionProvider dir="rtl">
           <div className="rounded-md border p-4">
             <DirectionDisplay />
           </div>

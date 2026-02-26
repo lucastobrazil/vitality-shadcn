@@ -1,34 +1,144 @@
 ---
 title: Dropdown Menu
-description: Displays a menu to the user triggered by a button.
+description: Displays a menu to the user — such as a set of actions or functions — triggered by a button.
 registryName: dropdown-menu
 ---
 
+<ComponentPreview name="dropdown-menu/demo" />
+
 ## Installation
 
+<CodeTabs>
+
+<TabsList variant="line">
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
 <InstallCommand name="dropdown-menu" />
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install radix-ui
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="dropdown-menu" title="registry/vitality/ui/dropdown-menu.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
 
 ## Usage
 
 ```tsx
+import { Button } from "@/registry/vitality/ui/button"
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuGroup,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubTrigger,
-  DropdownMenuSubContent,
-  DropdownMenuCheckboxItem,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "@/registry/vitality/ui/dropdown-menu"
 ```
 
-## Preview
+```tsx
+<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="outline">Open</Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuGroup>
+      <DropdownMenuLabel>My Account</DropdownMenuLabel>
+      <DropdownMenuItem>Profile</DropdownMenuItem>
+      <DropdownMenuItem>Billing</DropdownMenuItem>
+    </DropdownMenuGroup>
+    <DropdownMenuGroup>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem>Team</DropdownMenuItem>
+      <DropdownMenuItem>Subscription</DropdownMenuItem>
+    </DropdownMenuGroup>
+  </DropdownMenuContent>
+</DropdownMenu>
+```
 
-<ComponentPreview name="dropdown-menu" />
+## Examples
+
+### Basic
+
+A basic dropdown menu with labels and separators.
+
+<ComponentPreview name="dropdown-menu/basic" />
+
+### Submenu
+
+Use `DropdownMenuSub` to nest secondary actions.
+
+<ComponentPreview name="dropdown-menu/submenu" />
+
+### Shortcuts
+
+Add `DropdownMenuShortcut` to show keyboard hints.
+
+<ComponentPreview name="dropdown-menu/shortcuts" />
+
+### Icons
+
+Combine icons with labels for quick scanning.
+
+<ComponentPreview name="dropdown-menu/icons" />
+
+### Checkboxes
+
+Use `DropdownMenuCheckboxItem` for toggles.
+
+<ComponentPreview name="dropdown-menu/checkboxes" />
+
+### Checkboxes Icons
+
+Add icons to checkbox items.
+
+<ComponentPreview name="dropdown-menu/checkboxes-icons" />
+
+### Radio Group
+
+Use `DropdownMenuRadioGroup` for exclusive choices.
+
+<ComponentPreview name="dropdown-menu/radio-group" />
+
+### Radio Icons
+
+Show radio options with icons.
+
+<ComponentPreview name="dropdown-menu/radio-icons" />
+
+### Destructive
+
+Use `variant="destructive"` for irreversible actions.
+
+<ComponentPreview name="dropdown-menu/destructive" />
+
+### Avatar
+
+An account switcher dropdown triggered by an avatar.
+
+<ComponentPreview name="dropdown-menu/avatar" />
+
+## API Reference
+
+See the [Radix UI documentation](https://www.radix-ui.com/docs/primitives/components/dropdown-menu) for the full API reference.

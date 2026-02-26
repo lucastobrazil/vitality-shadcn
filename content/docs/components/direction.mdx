@@ -1,19 +1,75 @@
 ---
 title: Direction
-description: A provider for setting and reading text direction (LTR/RTL).
+description: A provider component that sets the text direction for your application.
 registryName: direction
 ---
 
+The `DirectionProvider` component is used to set the text direction (`ltr` or `rtl`) for your application. This is essential for supporting right-to-left languages like Arabic, Hebrew, and Persian.
+
+<ComponentPreview name="direction/demo" />
+
 ## Installation
 
+<CodeTabs>
+
+<TabsList variant="line">
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
 <InstallCommand name="direction" />
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install radix-ui
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="direction" title="registry/vitality/ui/direction.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
 
 ## Usage
 
 ```tsx
-import { DirectionProvider, useDirection } from "@/registry/vitality/ui/direction"
+import { DirectionProvider } from "@/registry/vitality/ui/direction"
 ```
 
-## Preview
+```tsx
+<html dir="rtl">
+  <body>
+    <DirectionProvider direction="rtl">
+      {/* Your app content */}
+    </DirectionProvider>
+  </body>
+</html>
+```
 
-<ComponentPreview name="direction" />
+## useDirection
+
+The `useDirection` hook is used to get the current direction of the application.
+
+```tsx
+import { useDirection } from "@/registry/vitality/ui/direction"
+
+function MyComponent() {
+  const direction = useDirection()
+  return <div>Current direction: {direction}</div>
+}
+```
