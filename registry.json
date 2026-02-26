@@ -39,13 +39,13 @@
       ]
     },
     {
-      "name": "alert",
+      "name": "callout",
       "type": "registry:ui",
       "dependencies": ["class-variance-authority"],
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/vitality/ui/alert.tsx",
+          "path": "registry/vitality/ui/callout.tsx",
           "type": "registry:ui"
         }
       ]
