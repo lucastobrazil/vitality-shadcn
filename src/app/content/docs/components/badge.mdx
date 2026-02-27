@@ -1,7 +1,7 @@
 ---
 title: Badge
 description: Displays a badge or a component that looks like a badge.
-isCustom: true
+source: shadcn-customised
 registryName: badge
 ---
 
@@ -17,7 +17,9 @@ registryName: badge
 </TabsList>
 <TabsContent value="cli">
 
-<InstallCommand name="badge" />
+```bash
+npx shadcn@latest add https://vitality-shad.vercel.app/r/badge.json
+```
 
 </TabsContent>
 
@@ -40,11 +42,11 @@ registryName: badge
 ## Usage
 
 ```tsx
-import { Badge } from "@/registry/vitality/ui/badge"
-```
+import { Badge } from "@/registry/vitality/ui/badge";
 
-```tsx
-<Badge variant="default | primary | neutral | destructive | success | warning | info | brand">Badge</Badge>
+<Badge variant="default | primary | neutral | destructive | success | warning | info | brand">
+  Badge
+</Badge>;
 ```
 
 ## Examples

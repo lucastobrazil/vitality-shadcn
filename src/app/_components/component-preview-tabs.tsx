@@ -27,7 +27,7 @@ export function ComponentPreviewTabs({
     <div className={cn("mt-4 mb-12 rounded-xl border", className)}>
       <div
         className={cn(
-          "flex h-72 items-center justify-center p-6",
+          "flex min-h-72 items-center justify-center p-6",
           align === "start" && "items-start",
           align === "end" && "items-end",
           previewClassName,

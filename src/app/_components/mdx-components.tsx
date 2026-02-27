@@ -3,7 +3,6 @@ import fs from "fs";
 import path from "path";
 import { CodeBlock } from "./code-block";
 import { CopyButton } from "./copy-button";
-import { InstallCommand as InstallCommandBase } from "./install-command";
 import { LivePreview } from "./live-preview";
 import { Steps, Step } from "./steps";
 import { CodeTabs } from "./code-tabs";
@@ -72,10 +71,6 @@ async function ComponentPreview({
       }
     />
   );
-}
-
-function MdxInstallCommand({ name }: { name: string }) {
-  return <InstallCommandBase name={name} />;
 }
 
 // --- Code figure override ---
@@ -289,7 +284,6 @@ function InlineCode({
 
 export const mdxComponents: Record<string, React.ComponentType<any>> = {
   ComponentPreview,
-  InstallCommand: MdxInstallCommand,
   ComponentSource,
   CodeTabs,
   TabsList,

@@ -6,7 +6,7 @@ export type DemoMeta = {
   name: string
   description: string
   registryName: string
-  isCustom: boolean
+  source: "shadcn" | "shadcn-customised" | "vitality"
   hasDemo: boolean
 }
 
@@ -43,7 +43,7 @@ function readMetas(type: "components" | "blocks"): DemoMeta[] {
         name: fm.title || slug,
         description: fm.description || "",
         registryName: fm.registryName || slug,
-        isCustom: fm.isCustom === "true",
+        source: ((fm.source === "shadcn-customised" || fm.source === "vitality") ? fm.source : "shadcn") as DemoMeta["source"],
         hasDemo:
           fs.existsSync(path.join(DEMOS_DIR, `${slug}.tsx`)) ||
           fs.existsSync(path.join(DEMOS_DIR, slug, "demo.tsx")),

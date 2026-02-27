@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Button } from "@/registry/vitality/ui/button"
+import { Button } from "@/registry/vitality/ui/button";
 import {
   Empty,
   EmptyContent,
@@ -8,8 +8,8 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/registry/vitality/ui/empty"
-import { FolderCodeIcon, ArrowUpRightIcon } from "lucide-react"
+} from "@/registry/vitality/ui/empty";
+import { FolderCodeIcon, ArrowUpRightIcon } from "lucide-react";
 
 export default function EmptyDemo() {
   return (
@@ -25,8 +25,8 @@ export default function EmptyDemo() {
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent className="flex-row justify-center gap-2">
-        <Button>Create Project</Button>
-        <Button variant="outline">Import Project</Button>
+        <Button variant="primary">Create Project</Button>
+        <Button>Import Project</Button>
       </EmptyContent>
       <Button
         variant="link"
@@ -39,5 +39,5 @@ export default function EmptyDemo() {
         </a>
       </Button>
     </Empty>
-  )
+  );
 }

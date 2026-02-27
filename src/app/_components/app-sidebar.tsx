@@ -1,133 +1,196 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { FilterIcon } from "lucide-react";
 import type { DemoMeta } from "@/lib/registry";
-import { ThemeToggle } from "./theme-toggle";
-import { ScrollArea } from "@/registry/vitality/ui/scroll-area";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/registry/vitality/ui/select";
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@/registry/vitality/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "@/registry/vitality/ui/dropdown-menu";
+import { Button } from "@/registry/vitality/ui/button";
 import {
   Sidebar,
   SidebarContent,
-  SidebarHeader,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
   useSidebar,
 } from "@/registry/vitality/ui/sidebar";
 
-type Filter = "all" | "custom" | "standard";
+type Filter = "all" | "shadcn" | "shadcn-customised" | "vitality";
 
-export function AppSidebar({ components, blocks }: { components: DemoMeta[]; blocks: DemoMeta[] }) {
+function SidebarNav({
+  components,
+  blocks,
+  onNavigate,
+}: {
+  components: DemoMeta[];
+  blocks: DemoMeta[];
+  onNavigate?: () => void;
+}) {
   const pathname = usePathname();
   const [filter, setFilter] = useState<Filter>("all");
-  const { isMobile, setOpenMobile } = useSidebar();
+
+  const customisedCount = components.filter((c) => c.source === "shadcn-customised").length;
+  const vitalityCount = components.filter((c) => c.source === "vitality").length;
+  const shadcnCount = components.length - customisedCount - vitalityCount;
 
   const filtered = components.filter((c) => {
-    if (filter === "custom") return c.isCustom;
-    if (filter === "standard") return !c.isCustom;
-    return true;
+    if (filter === "all") return true;
+    return c.source === filter;
   });
 
   return (
-    <Sidebar>
-      <SidebarHeader className="p-4 pb-2">
-        <div className="flex items-center justify-between">
-          <Link href="/">
-            <Image
-              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/logo.svg`}
-              alt="Vitality"
-              width={138}
-              height={47}
-              className="w-auto dark:grayscale dark:invert"
-              priority
-            />
-          </Link>
-          <ThemeToggle />
-        </div>
-        <Select value={filter} onValueChange={(v: Filter) => setFilter(v)}>
-          <SelectTrigger className="h-7 text-xs">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Components</SelectItem>
-            <SelectItem value="custom">Custom Only</SelectItem>
-            <SelectItem value="standard">Standard Only</SelectItem>
-          </SelectContent>
-        </Select>
-      </SidebarHeader>
-      <SidebarContent>
-        <ScrollArea className="flex-1">
-          <nav className="flex flex-col gap-0.5 px-2 pb-4">
-            <Link
-              href="/"
-              onClick={() => isMobile && setOpenMobile(false)}
-              className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors mt-2 ${
-                pathname === "/"
-                  ? "bg-accent text-accent-foreground font-medium"
-                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
-              }`}
-            >
-              Getting Started
-            </Link>
-            <a
-              href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/storybook`}
-              onClick={() => isMobile && setOpenMobile(false)}
-              className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors text-muted-foreground hover:bg-muted hover:text-foreground"
-            >
-              Angular Storybook
-            </a>
-            <p className="px-2 pt-4 pb-1 text-xs font-semibold text-muted-foreground tracking-wider uppercase">
-              Blocks
-            </p>
-            {blocks.map((b) => {
-              const isActive = pathname === `/blocks/${b.slug}`;
-              return (
-                <Link
-                  key={b.slug}
-                  href={`/blocks/${b.slug}`}
-                  onClick={() => isMobile && setOpenMobile(false)}
-                  className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors ${
-                    isActive
-                      ? "bg-accent text-accent-foreground font-medium"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                  }`}
+    <>
+      <SidebarContent className="no-scrollbar overflow-x-hidden">
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname === "/"}
+                  className="text-[0.8rem] font-medium"
                 >
-                  {b.name}
-                </Link>
-              );
-            })}
-            <p className="px-2 pt-4 pb-1 text-xs font-semibold text-muted-foreground tracking-wider uppercase">
-              Components
-            </p>
-            {filtered.map((c) => {
-              const isActive = pathname === `/components/${c.slug}`;
-              return (
-                <Link
-                  key={c.slug}
-                  href={`/components/${c.slug}`}
-                  onClick={() => isMobile && setOpenMobile(false)}
-                  className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors ${
-                    isActive
-                      ? "bg-accent text-accent-foreground font-medium"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                  }`}
+                  <Link href="/" onClick={onNavigate}>
+                    Getting Started
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel className="text-muted-foreground font-medium">
+            Blocks
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu className="gap-0.5">
+              {blocks.map((b) => (
+                <SidebarMenuItem key={b.slug}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={pathname === `/blocks/${b.slug}`}
+                    className="text-[0.8rem] font-medium"
+                  >
+                    <Link href={`/blocks/${b.slug}`} onClick={onNavigate}>
+                      {b.name}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel className="text-muted-foreground font-medium">
+            Components
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon-xs"
+                  className={filter !== "all" ? "text-primary" : "text-muted-foreground"}
                 >
-                  {c.name}
-                  {c.isCustom && (
-                    <span className="size-1.5 rounded-full bg-secondary shrink-0" />
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
-        </ScrollArea>
+                  <FilterIcon className="size-3" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start">
+                <DropdownMenuRadioGroup value={filter} onValueChange={(v) => setFilter(v as Filter)}>
+                  <DropdownMenuRadioItem value="all">All ({components.length})</DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="shadcn">Standard ({shadcnCount})</DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="shadcn-customised">Customised ({customisedCount})</DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="vitality">Custom Vitality ({vitalityCount})</DropdownMenuRadioItem>
+                </DropdownMenuRadioGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu className="gap-0.5">
+              {filtered.map((c) => (
+                <SidebarMenuItem key={c.slug}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={pathname === `/components/${c.slug}`}
+                    className="text-[0.8rem] font-medium"
+                  >
+                    <Link
+                      href={`/components/${c.slug}`}
+                      onClick={onNavigate}
+                    >
+                      {c.name}
+                      {c.source === "vitality" && (
+                        <span className="size-1.5 rounded-full bg-primary shrink-0" />
+                      )}
+                      {c.source === "shadcn-customised" && (
+                        <span className="size-1.5 rounded-full bg-secondary shrink-0" />
+                      )}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <div className="from-background via-background/80 to-background/0 pointer-events-none sticky -bottom-1 z-10 h-16 shrink-0 bg-gradient-to-t" />
       </SidebarContent>
-    </Sidebar>
+    </>
+  );
+}
+
+export function AppSidebar({
+  components,
+  blocks,
+}: {
+  components: DemoMeta[];
+  blocks: DemoMeta[];
+}) {
+  const { openMobile, setOpenMobile } = useSidebar();
+
+  return (
+    <>
+      {/* Desktop — inline sticky sidebar, below header */}
+      <Sidebar
+        collapsible="none"
+        className="sticky top-14 hidden h-[calc(100svh-3.5rem)] bg-transparent lg:flex"
+      >
+        <SidebarNav components={components} blocks={blocks} />
+      </Sidebar>
+
+      {/* Mobile — sheet sidebar */}
+      <Sheet open={openMobile} onOpenChange={setOpenMobile}>
+        <SheetContent
+          side="left"
+          className="bg-sidebar text-sidebar-foreground w-72 p-0 [&>button]:hidden"
+        >
+          <SheetHeader className="sr-only">
+            <SheetTitle>Navigation</SheetTitle>
+            <SheetDescription>Site navigation</SheetDescription>
+          </SheetHeader>
+          <div className="flex h-full flex-col">
+            <SidebarNav
+              components={components}
+              blocks={blocks}
+              onNavigate={() => setOpenMobile(false)}
+            />
+          </div>
+        </SheetContent>
+      </Sheet>
+    </>
   );
 }

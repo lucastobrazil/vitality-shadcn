@@ -9,7 +9,7 @@ import { transformers } from "@/app/_components/shiki"
 export type MdxFrontmatter = {
   title: string
   description: string
-  isCustom?: boolean
+  source?: "shadcn" | "shadcn-customised" | "vitality"
   registryName?: string
 }
 
@@ -75,7 +75,7 @@ export async function compileMdxPage(
             rehypePrettyCode as any,
             {
               theme: {
-                dark: "github-dark",
+                dark: "github-dark-default",
                 light: "github-light-default",
               },
               transformers,

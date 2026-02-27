@@ -16,7 +16,9 @@ registryName: empty
 </TabsList>
 <TabsContent value="cli">
 
-<InstallCommand name="empty" />
+```bash
+npx shadcn@latest add https://vitality-shad.vercel.app/r/empty.json
+```
 
 </TabsContent>
 
@@ -46,7 +48,7 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/registry/vitality/ui/empty"
+} from "@/registry/vitality/ui/empty";
 ```
 
 ```tsx
@@ -95,6 +97,12 @@ Use the `EmptyMedia` component to display an avatar group in the empty state.
 You can add an `InputGroup` component to the `EmptyContent` component.
 
 <ComponentPreview name="empty/input-group" />
+
+### Vector Graphics
+
+You can add an `InputGroup` component to the `EmptyContent` component.
+
+<ComponentPreview name="empty/vector-graphic" />
 
 ## API Reference
 

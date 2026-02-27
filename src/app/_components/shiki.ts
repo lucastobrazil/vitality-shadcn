@@ -10,8 +10,11 @@ export const transformers = [
     code(node: any) {
       if (node.tagName === "code") {
         const raw = this.source
+        const meta = (this.options?.meta as any)?.__raw as string | undefined
         node.properties["__raw__"] = raw
-        node.properties["data-line-numbers"] = ""
+        if (!meta?.includes("hideLineNumbers")) {
+          node.properties["data-line-numbers"] = ""
+        }
 
         if (raw.startsWith("npm install")) {
           node.properties["__npm__"] = raw
@@ -54,8 +57,8 @@ export async function highlight(
   return codeToHtml(code, {
     lang,
     themes: {
-      dark: "github-dark",
-      light: "github-light",
+      dark: "github-dark-default",
+      light: "github-light-default",
     },
     transformers,
   })

@@ -47,8 +47,11 @@ export function CommandBar({ components, blocks }: { components: DemoMeta[]; blo
                 setOpen(false)
               }}
             >
-              {c.isCustom && (
+              {c.source === "vitality" && (
                 <span className="size-1.5 rounded-full bg-primary shrink-0" />
+              )}
+              {c.source === "shadcn-customised" && (
+                <span className="size-1.5 rounded-full bg-secondary shrink-0" />
               )}
               {c.name}
             </CommandItem>
