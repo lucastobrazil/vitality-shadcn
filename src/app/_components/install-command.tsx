@@ -18,7 +18,7 @@ export function InstallCommand({ name }: { name: string }) {
   };
 
   return (
-    <div className="flex items-center gap-2 rounded-lg border bg-muted/30 px-4 py-3">
+    <div className="flex items-center gap-2 rounded-xl bg-[var(--code)] px-4 py-3 text-[var(--code-foreground)]">
       <code className="flex-1 truncate text-sm font-mono">{command}</code>
       <Button variant="ghost" size="icon-xs" onClick={copy}>
         {copied ? (

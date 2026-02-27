@@ -1,58 +1,50 @@
-"use client";
+"use client"
 
-import { useState } from "react";
+import { useState } from "react"
+import { cn } from "@/lib/utils"
+import { Button } from "@/registry/vitality/ui/button"
+import { Separator } from "@/registry/vitality/ui/separator"
 import {
-  CopyIcon,
-  CheckIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-} from "lucide-react";
-import { Button } from "@/registry/vitality/ui/button";
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/registry/vitality/ui/collapsible"
 
-export function CodeBlock({ html, code }: { html: string; code: string }) {
-  const [expanded, setExpanded] = useState(false);
-  const [copied, setCopied] = useState(false);
-
-  const copy = async () => {
-    await navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+export function CodeBlock({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof Collapsible>) {
+  const [isOpened, setIsOpened] = useState(false)
 
   return (
-    <div className="relative rounded-lg border bg-muted/30">
-      <div className="flex items-center justify-between border-b px-4 py-2">
-        <span className="text-xs font-medium text-muted-foreground">Code</span>
-        <div className="flex items-center gap-1">
-          <Button variant="ghost" size="icon-xs" onClick={copy}>
-            {copied ? (
-              <CheckIcon className="size-3" />
-            ) : (
-              <CopyIcon className="size-3" />
-            )}
-          </Button>
+    <Collapsible
+      open={isOpened}
+      onOpenChange={setIsOpened}
+      className={cn("group/collapsible md:-mx-1 relative", className)}
+      {...props}
+    >
+      <CollapsibleTrigger asChild>
+        <div className="absolute top-1.5 right-9 z-10 flex items-center gap-1.5">
           <Button
             variant="ghost"
-            size="icon-xs"
-            onClick={() => setExpanded(!expanded)}
+            size="sm"
+            className="text-muted-foreground h-7 rounded-md px-2"
           >
-            {expanded ? (
-              <ChevronUpIcon className="size-3" />
-            ) : (
-              <ChevronDownIcon className="size-3" />
-            )}
+            {isOpened ? "Collapse" : "Expand"}
           </Button>
+          <Separator orientation="vertical" className="h-4" />
         </div>
-      </div>
-      <div className={`overflow-hidden ${expanded ? "" : "max-h-64"} relative`}>
-        <div
-          className="overflow-x-auto p-4 text-sm [&_pre]:!bg-transparent [&_code]:!bg-transparent"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-        {!expanded && (
-          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-muted/80 to-transparent" />
-        )}
-      </div>
-    </div>
-  );
+      </CollapsibleTrigger>
+      <CollapsibleContent
+        forceMount
+        className="relative mt-6 overflow-hidden data-[state=closed]:max-h-64 data-[state=closed]:[content-visibility:auto] [&>figure]:mt-0"
+      >
+        {children}
+      </CollapsibleContent>
+      <CollapsibleTrigger className="from-code/70 to-code text-muted-foreground absolute inset-x-0 -bottom-2 flex h-20 items-center justify-center rounded-b-lg bg-gradient-to-b text-sm group-data-[state=open]/collapsible:hidden">
+        {isOpened ? "Collapse" : "Expand"}
+      </CollapsibleTrigger>
+    </Collapsible>
+  )
 }

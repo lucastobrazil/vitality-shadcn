@@ -1,0 +1,70 @@
+---
+title: Tooltip
+description: A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+registryName: tooltip
+---
+
+<ComponentPreview name="tooltip/demo" />
+
+## Installation
+
+```bash
+npx shadcn@latest add https://vitality-shad.vercel.app/r/tooltip.json
+```
+
+Add the `TooltipProvider` to the root of your app:
+
+```tsx title="app/layout.tsx"
+import { TooltipProvider } from "@/registry/vitality/ui/tooltip"
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <TooltipProvider>{children}</TooltipProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+## Usage
+
+```tsx
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/registry/vitality/ui/tooltip"
+```
+
+```tsx
+<Tooltip>
+  <TooltipTrigger>Hover</TooltipTrigger>
+  <TooltipContent>
+    <p>Add to library</p>
+  </TooltipContent>
+</Tooltip>
+```
+
+## Examples
+
+### Side
+
+Use the `side` prop to change the position of the tooltip.
+
+<ComponentPreview name="tooltip/sides" />
+
+### With Keyboard Shortcut
+
+<ComponentPreview name="tooltip/keyboard" />
+
+### Disabled Button
+
+Show a tooltip on a disabled button by wrapping it with a span.
+
+<ComponentPreview name="tooltip/disabled" />
+
+## API Reference
+
+See the [Radix Tooltip](https://www.radix-ui.com/docs/primitives/components/tooltip#api-reference) documentation.

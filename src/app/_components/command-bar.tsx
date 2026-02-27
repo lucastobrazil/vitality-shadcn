@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
-import { components, blocks } from "../registry"
+import type { DemoMeta } from "@/lib/registry"
 import {
   CommandDialog,
   CommandEmpty,
@@ -13,7 +13,7 @@ import {
   CommandList,
 } from "@/registry/vitality/ui/command"
 
-export function CommandBar() {
+export function CommandBar({ components, blocks }: { components: DemoMeta[]; blocks: DemoMeta[] }) {
   const [open, setOpen] = useState(false)
   const router = useRouter()
   const { setTheme, resolvedTheme } = useTheme()
@@ -47,8 +47,11 @@ export function CommandBar() {
                 setOpen(false)
               }}
             >
-              {c.isCustom && (
+              {c.source === "vitality" && (
                 <span className="size-1.5 rounded-full bg-primary shrink-0" />
+              )}
+              {c.source === "shadcn-customised" && (
+                <span className="size-1.5 rounded-full bg-secondary shrink-0" />
               )}
               {c.name}
             </CommandItem>

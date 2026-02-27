@@ -1,0 +1,57 @@
+---
+title: Slider
+description: An input where the user selects a value from within a given range.
+registryName: slider
+---
+
+<ComponentPreview name="slider/demo" />
+
+## Installation
+
+```bash
+npx shadcn@latest add https://vitality-shad.vercel.app/r/slider.json
+```
+
+## Usage
+
+```tsx
+import { Slider } from "@/registry/vitality/ui/slider"
+```
+
+```tsx
+<Slider defaultValue={[33]} max={100} step={1} />
+```
+
+## Examples
+
+### Range
+
+Use an array with two values for a range slider.
+
+<ComponentPreview name="slider/range" />
+
+### Multiple Thumbs
+
+Use an array with multiple values for multiple thumbs.
+
+<ComponentPreview name="slider/multiple" />
+
+### Vertical
+
+Use `orientation="vertical"` for a vertical slider.
+
+<ComponentPreview name="slider/vertical" />
+
+### Controlled
+
+<ComponentPreview name="slider/controlled" />
+
+### Disabled
+
+Use the `disabled` prop to disable the slider.
+
+<ComponentPreview name="slider/disabled" />
+
+## API Reference
+
+See the [Radix UI Slider](https://www.radix-ui.com/docs/primitives/components/slider#api-reference) documentation.

@@ -1,10 +1,8 @@
-import fs from "fs"
-import path from "path"
-import { highlight } from "./shiki"
-import { CodeBlock } from "./code-block"
+import { ComponentPreviewTabs } from "./component-preview-tabs"
+import { ComponentSource } from "./component-source"
 import { InstallCommand } from "./install-command"
 import { LivePreview } from "./live-preview"
-import type { DemoMeta } from "../registry"
+import type { DemoMeta } from "@/lib/registry"
 
 export async function DemoPreview({ meta }: { meta: DemoMeta }) {
   if (!meta.hasDemo) {
@@ -21,23 +19,17 @@ export async function DemoPreview({ meta }: { meta: DemoMeta }) {
     )
   }
 
-  const demoPath = path.join(process.cwd(), "src/app/_demos", `${meta.slug}.tsx`)
-  const raw = fs.readFileSync(demoPath, "utf-8")
-  const code = raw.replace(/^"use client"\n?\n?/, "")
-  const html = await highlight(code)
+  const relativeSrc = `src/app/_demos/${meta.slug}.tsx`
 
   return (
     <div className="space-y-6">
-      <div>
-        <h3 className="mb-2 text-sm font-medium">Preview</h3>
-        <div className="rounded-lg border p-6">
-          <LivePreview slug={meta.slug} />
-        </div>
-      </div>
-      <div>
-        <h3 className="mb-2 text-sm font-medium">Code</h3>
-        <CodeBlock html={html} code={code} />
-      </div>
+      <ComponentPreviewTabs
+        component={<LivePreview slug={meta.slug} />}
+        source={<ComponentSource src={relativeSrc} collapsible={false} />}
+        sourcePreview={
+          <ComponentSource src={relativeSrc} collapsible={false} maxLines={3} />
+        }
+      />
       <div>
         <h3 className="mb-2 text-sm font-medium">Install</h3>
         <InstallCommand name={meta.registryName} />

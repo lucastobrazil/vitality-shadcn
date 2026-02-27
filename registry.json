@@ -39,13 +39,13 @@
       ]
     },
     {
-      "name": "alert",
+      "name": "callout",
       "type": "registry:ui",
       "dependencies": ["class-variance-authority"],
       "registryDependencies": [],
       "files": [
         {
-          "path": "registry/vitality/ui/alert.tsx",
+          "path": "registry/vitality/ui/callout.tsx",
           "type": "registry:ui"
         }
       ]
@@ -608,10 +608,106 @@
     {
       "name": "input-group",
       "type": "registry:ui",
-      "registryDependencies": [],
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["button", "input", "textarea"],
       "files": [
         {
           "path": "registry/vitality/ui/input-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "direction",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/direction.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "native-select",
+      "type": "registry:ui",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/native-select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "registryDependencies": ["button", "separator"],
+      "files": [
+        {
+          "path": "registry/vitality/ui/button-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["label", "separator"],
+      "files": [
+        {
+          "path": "registry/vitality/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "item",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "registryDependencies": ["separator"],
+      "files": [
+        {
+          "path": "registry/vitality/ui/item.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["button", "input-group"],
+      "files": [
+        {
+          "path": "registry/vitality/ui/combobox.tsx",
           "type": "registry:ui"
         }
       ]
