@@ -4,7 +4,7 @@ import { Header } from "@/registry/vitality/blocks/header";
 
 export default function HeaderDemo() {
   return (
-    <div className="space-y-6">
+    <div className="w-full flex flex-col gap-8">
       <div>
         <p className="mb-2 text-sm font-medium">Default</p>
         <div className="rounded-lg border overflow-hidden">

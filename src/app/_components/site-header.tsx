@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { SearchIcon } from "lucide-react";
+import { ExternalLink, SearchIcon } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { SidebarTrigger } from "@/registry/vitality/ui/sidebar";
 import { Separator } from "@/registry/vitality/ui/separator";
@@ -25,17 +25,19 @@ export function SiteHeader() {
             alt="Vitality"
             width={110}
             height={38}
-            className="w-auto dark:grayscale dark:invert"
+            className="w-auto dark:grayscale dark:invert  pt-3"
             priority
           />
         </Link>
-        <a
-          href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/storybook`}
-          className="text-muted-foreground hover:text-foreground hidden text-sm font-medium transition-colors lg:block"
-        >
-          Angular Storybook
-        </a>
         <div className="ml-auto flex items-center gap-2">
+          <a
+            href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/storybook`}
+            target="_blank"
+            className="text-muted-foreground hover:text-primary hidden text-sm font-medium transition-colors lg:flex gap-1 baseline"
+          >
+            Angular Storybook
+            <ExternalLink size={16} />
+          </a>
           <button
             type="button"
             onClick={openCommandBar}

@@ -138,7 +138,6 @@ function Header({
               <Input
                 type="search"
                 placeholder={searchPlaceholder}
-                size={8}
                 className="border-none focus-visible:ring-0 max-w-fit px-1 focus:max-w-[380px] bg-transparent"
                 onChange={(e) => onSearch?.(e.target.value)}
               />
