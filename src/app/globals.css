@@ -55,6 +55,9 @@
   --radius-4xl: var(--radius-large);
   --radius-full: var(--radius-rounded);
 
+  /* Brand colors */
+  --color-magentus-violet: var(--magentus-violet);
+
   /* Code block colors */
   --color-code: var(--code);
   --color-code-foreground: var(--code-foreground);
@@ -129,6 +132,7 @@
   --header-foreground: oklch(0.145 0 0);
   --footer: oklch(1 0 0);
   --footer-foreground: oklch(0.145 0 0);
+  --magentus-violet: #440047;
   --code: lab(97.68% -0.0000298023 0.0000119209);
   --code-foreground: oklch(0.708 0 0);
   --code-highlight: oklch(0.94 0 0);
@@ -182,6 +186,7 @@
   --header-foreground: oklch(0.985 0 0);
   --footer: oklch(0.145 0 0);
   --footer-foreground: oklch(0.985 0 0);
+  --magentus-violet: #A570A9;
   --code: oklch(0.2 0 0);
   --code-foreground: oklch(0.708 0 0);
   --code-highlight: oklch(0.27 0 0);
