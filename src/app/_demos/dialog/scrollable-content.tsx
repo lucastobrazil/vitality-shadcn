@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Button } from "@/registry/vitality/ui/button"
+import { Button } from "@/registry/vitality/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -8,13 +8,13 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/registry/vitality/ui/dialog"
+} from "@/registry/vitality/ui/dialog";
 
 export default function DialogScrollableContent() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Scrollable Content</Button>
+        <Button>Scrollable Content</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -38,5 +38,5 @@ export default function DialogScrollableContent() {
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

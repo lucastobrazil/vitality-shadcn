@@ -128,7 +128,7 @@ function Header({
       )}
       {...props}
     >
-      <div className="container flex items-center gap-4 h-[48px] px-3 w-full">
+      <div className="flex items-center gap-4 h-[48px] px-3 w-full">
         {logo && <div className="flex items-center shrink-0">{logo}</div>}
         {/* Search - centered */}
         <div className="relative flex-1 flex justify-center">

@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Button } from "@/registry/vitality/ui/button"
+import { Button } from "@/registry/vitality/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -10,10 +10,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/registry/vitality/ui/dialog"
-import { Field, FieldGroup } from "@/registry/vitality/ui/field"
-import { Input } from "@/registry/vitality/ui/input"
-import { Label } from "@/registry/vitality/ui/label"
+} from "@/registry/vitality/ui/dialog";
+import { Field, FieldGroup } from "@/registry/vitality/ui/field";
+import { Input } from "@/registry/vitality/ui/input";
+import { Label } from "@/registry/vitality/ui/label";
 
 export default function DialogDemo() {
   return (
@@ -42,12 +42,14 @@ export default function DialogDemo() {
           </FieldGroup>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button>Cancel</Button>
             </DialogClose>
-            <Button type="submit">Save changes</Button>
+            <Button variant="primary" type="submit">
+              Save changes
+            </Button>
           </DialogFooter>
         </DialogContent>
       </form>
     </Dialog>
-  )
+  );
 }

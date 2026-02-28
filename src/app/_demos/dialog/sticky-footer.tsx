@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Button } from "@/registry/vitality/ui/button"
+import { Button } from "@/registry/vitality/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -10,7 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/registry/vitality/ui/dialog"
+} from "@/registry/vitality/ui/dialog";
 
 export default function DialogStickyFooter() {
   return (
@@ -41,10 +41,10 @@ export default function DialogStickyFooter() {
         </div>
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="outline">Close</Button>
+            <Button>Close</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
