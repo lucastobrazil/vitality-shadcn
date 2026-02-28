@@ -106,7 +106,7 @@ const defaultUser = {
 function Header({
   className,
   logo = <GentuLogo />,
-  searchPlaceholder = "Search",
+  searchPlaceholder = "00000",
   onSearch,
   actions,
   user = defaultUser,
@@ -128,17 +128,18 @@ function Header({
       )}
       {...props}
     >
-      <div className="container flex items-center gap-4 h-[48px] px-3">
+      <div className="container flex items-center gap-4 h-[48px] px-3 w-full">
         {logo && <div className="flex items-center shrink-0">{logo}</div>}
         {/* Search - centered */}
         <div className="relative flex-1 flex justify-center">
           <div className="relative w-full max-w-[380px]">
-            <div className="bg-muted focus-visible:bg-background focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] border rounded-xl text-center gap-sm flex justify-center items-center px-1 h-[38px]">
+            <div className="bg-muted hover:bg-muted/70 hover:text-foreground/80 focus-visible:bg-background focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[2px] border rounded-xl text-center gap-sm flex justify-center items-center px-1 h-[38px]">
               <Search className="text-muted-foreground pointer-events-none" />
               <Input
-                type="search"
+                type="text"
                 placeholder={searchPlaceholder}
-                className="border-none focus-visible:ring-0 max-w-fit px-1 focus:max-w-[380px] bg-transparent"
+                size={searchPlaceholder.length}
+                className="border-none focus-visible:ring-0 w-auto px-1 focus-within:w-full! bg-transparent"
                 onChange={(e) => onSearch?.(e.target.value)}
               />
             </div>
