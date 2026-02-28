@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { Button } from "@/registry/vitality/ui/button"
-import { Checkbox } from "@/registry/vitality/ui/checkbox"
+import { Button } from "@/registry/vitality/ui/button";
+import { Checkbox } from "@/registry/vitality/ui/checkbox";
 import {
   Field,
   FieldDescription,
@@ -10,8 +10,8 @@ import {
   FieldLegend,
   FieldSeparator,
   FieldSet,
-} from "@/registry/vitality/ui/field"
-import { Input } from "@/registry/vitality/ui/input"
+} from "@/registry/vitality/ui/field";
+import { Input } from "@/registry/vitality/ui/input";
 
 export default function FieldDemo() {
   return (
@@ -25,9 +25,7 @@ export default function FieldDemo() {
             </FieldDescription>
             <FieldGroup>
               <Field>
-                <FieldLabel htmlFor="field-card-name">
-                  Name on Card
-                </FieldLabel>
+                <FieldLabel htmlFor="field-card-name">Name on Card</FieldLabel>
                 <Input
                   id="field-card-name"
                   placeholder="Evil Rabbit"
@@ -35,9 +33,7 @@ export default function FieldDemo() {
                 />
               </Field>
               <Field>
-                <FieldLabel htmlFor="field-card-number">
-                  Card Number
-                </FieldLabel>
+                <FieldLabel htmlFor="field-card-number">Card Number</FieldLabel>
                 <Input
                   id="field-card-number"
                   placeholder="1234 5678 9012 3456"
@@ -82,13 +78,13 @@ export default function FieldDemo() {
             </FieldGroup>
           </FieldSet>
           <Field orientation="horizontal">
-            <Button type="submit">Submit</Button>
-            <Button variant="outline" type="button">
-              Cancel
+            <Button type="button">Cancel</Button>
+            <Button type="submit" variant="primary">
+              Submit
             </Button>
           </Field>
         </FieldGroup>
       </form>
     </div>
-  )
+  );
 }

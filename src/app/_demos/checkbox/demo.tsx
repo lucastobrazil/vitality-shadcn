@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Checkbox } from "@/registry/vitality/ui/checkbox"
+import { Checkbox } from "@/registry/vitality/ui/checkbox";
 import {
   Field,
   FieldContent,
@@ -8,15 +8,16 @@ import {
   FieldGroup,
   FieldLabel,
   FieldTitle,
-} from "@/registry/vitality/ui/field"
-import { Label } from "@/registry/vitality/ui/label"
+} from "@/registry/vitality/ui/field";
 
 export default function CheckboxDemo() {
   return (
     <FieldGroup className="max-w-sm">
       <Field orientation="horizontal">
         <Checkbox id="terms-checkbox" name="terms-checkbox" />
-        <Label htmlFor="terms-checkbox">Accept terms and conditions</Label>
+        <FieldLabel htmlFor="terms-checkbox">
+          Accept terms and conditions
+        </FieldLabel>
       </Field>
       <Field orientation="horizontal">
         <Checkbox
@@ -49,5 +50,5 @@ export default function CheckboxDemo() {
         </Field>
       </FieldLabel>
     </FieldGroup>
-  )
+  );
 }
