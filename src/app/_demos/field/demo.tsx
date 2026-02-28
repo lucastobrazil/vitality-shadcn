@@ -68,10 +68,7 @@ export default function FieldDemo() {
             <FieldGroup>
               <Field orientation="horizontal">
                 <Checkbox id="field-same-shipping" defaultChecked />
-                <FieldLabel
-                  htmlFor="field-same-shipping"
-                  className="font-normal"
-                >
+                <FieldLabel htmlFor="field-same-shipping">
                   Same as shipping address
                 </FieldLabel>
               </Field>
