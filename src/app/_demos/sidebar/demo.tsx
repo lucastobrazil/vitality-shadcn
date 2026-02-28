@@ -482,7 +482,7 @@ export default function AppSidebar({
 }: React.ComponentProps<typeof Sidebar>) {
   return (
     <SidebarProvider>
-      <Sidebar collapsible="icon" {...props}>
+      <Sidebar className="relative" collapsible="icon" {...props}>
         <SidebarHeader>
           <TeamSwitcher teams={data.teams} />
         </SidebarHeader>
