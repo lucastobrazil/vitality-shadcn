@@ -1,284 +1,262 @@
 # Codebase Structure
 
-**Analysis Date:** 2026-02-25
+**Analysis Date:** 2026-03-04
 
 ## Directory Layout
 
 ```
-shaddo-dayoff/
-├── .github/
-│   └── workflows/
-│       └── deploy.yml              # GitHub Pages CI/CD pipeline
-├── .planning/
-│   └── codebase/                   # SAUCE codebase analysis docs
-├── packages/
-│   └── cli/                        # (Empty/unused CLI package)
-├── public/
-│   ├── r/                          # Generated React registry JSON (gitignored)
-│   │   ├── {component}.json        # Per-component JSON manifests
-│   │   ├── cli/components/         # Angular CLI component JSONs
-│   │   └── ng/                     # Angular registry JSONs
-│   ├── logo.svg                    # Vitality logo
-│   └── ...                         # Static assets
-├── registry/
+vitality-shadcn/
+├── .github/workflows/       # CI/CD (GitHub Pages deploy)
+├── .planning/codebase/      # SAUCE analysis documents
+├── public/                  # Static assets (SVGs, .nojekyll)
+│   └── r/                   # Generated registry JSON (built, not committed)
+├── registry/                # React component registry (distributable)
 │   └── vitality/
-│       ├── blocks/                 # React block components (header, side-nav)
-│       ├── hooks/                  # React hooks (use-mobile)
-│       ├── lib/                    # Shared utilities (utils.ts)
-│       └── ui/                     # React UI components (one .tsx per component)
-├── registry-ng/
-│   ├── .storybook/                 # Angular Storybook configuration
-│   │   ├── main.ts                 # Storybook config (stories glob, addons, webpack)
-│   │   ├── preview.ts              # Theme decorators, autodocs
-│   │   ├── tsconfig.json           # Angular-specific TS paths
-│   │   ├── manager.ts              # Storybook manager customization
-│   │   ├── docs-page.ts            # Custom docs page component
-│   │   ├── main.entry.ts           # Angular build entry point
-│   │   └── index.html              # Storybook HTML shell
+│       ├── blocks/          # Block-level React components (header, side-nav)
+│       ├── hooks/           # Distributable React hooks
+│       ├── lib/             # Distributable shared utilities (utils.ts)
+│       └── ui/              # All React UI components (one .tsx per component)
+├── registry-ng/             # Angular component registry (distributable)
+│   ├── .storybook/          # Storybook config (main.ts, preview.ts, tsconfig)
+│   │   ├── docs/            # Storybook MDX docs
+│   │   └── public/          # Storybook static assets
 │   └── vitality/
-│       ├── lib/                    # Angular shared utilities
-│       │   ├── utils.ts            # cn() + Angular-specific helpers
-│       │   ├── core.ts             # Barrel export for directives
-│       │   ├── id.directive.ts     # Unique ID generation directive
-│       │   ├── number.ts           # Number utilities
-│       │   └── string-template-outlet.directive.ts  # Template outlet directive
-│       └── ui/                     # Angular UI components (one dir per component)
-│           ├── {component}/
-│           │   ├── {component}.component.ts   # Component class
-│           │   ├── {component}.variants.ts    # CVA variant definitions
-│           │   ├── {component}.stories.ts     # Storybook stories
-│           │   └── index.ts                   # Barrel export (some components)
-│           └── ...
-├── src/
-│   ├── app/
-│   │   ├── _components/            # Doc site internal components
-│   │   │   ├── app-sidebar.tsx     # Main sidebar navigation
-│   │   │   ├── code-block.tsx      # Expandable syntax-highlighted code block
-│   │   │   ├── command-bar.tsx     # Cmd+K command palette
-│   │   │   ├── demo-preview.tsx    # Component demo renderer (server)
-│   │   │   ├── install-command.tsx # Copy-to-clipboard install command
-│   │   │   ├── live-preview.tsx    # Dynamic component preview (client)
-│   │   │   ├── mobile-header.tsx   # Mobile sidebar trigger
-│   │   │   ├── shiki.ts           # Syntax highlighting setup
-│   │   │   └── theme-toggle.tsx   # Light/dark mode toggle
-│   │   ├── _demos/                 # Live demo components (one per UI component)
-│   │   │   ├── accordion.tsx
-│   │   │   ├── badge.tsx
-│   │   │   ├── button.tsx
-│   │   │   └── ...                # ~50 demo files
-│   │   ├── blocks/
-│   │   │   └── [slug]/
-│   │   │       └── page.tsx       # Dynamic block documentation page
-│   │   ├── components/
-│   │   │   └── [slug]/
-│   │   │       └── page.tsx       # Dynamic component documentation page
-│   │   ├── globals.css            # Tailwind v4 theme (CSS variables, light/dark)
-│   │   ├── layout.tsx             # Root layout (providers, sidebar, content)
-│   │   ├── metaprompt-setup.md    # LLM setup instructions (displayed on home)
-│   │   ├── page.tsx               # Home page ("Getting Started")
-│   │   ├── providers.tsx          # ThemeProvider wrapper
-│   │   └── registry.ts           # Component/block metadata array
-│   ├── hooks/
-│   │   └── use-mobile.ts         # Mobile breakpoint hook
-│   └── lib/
-│       └── utils.ts              # cn() utility for doc site
-├── angular.json                   # Angular workspace config for Storybook
-├── components.json                # shadcn/ui configuration
-├── eslint.config.mjs              # ESLint configuration
-├── next.config.ts                 # Next.js config (static export)
-├── package.json                   # Root package manifest
-├── postcss.config.mjs             # PostCSS config (Tailwind v4)
-├── registry.json                  # React registry manifest (component list)
-├── tsconfig.json                  # TypeScript config (Next.js)
-├── COMPONENT-ALIGNMENT.md         # Component alignment documentation
-└── SCAFFOLD.md                    # Scaffolding documentation
+│       ├── lib/             # Angular shared utilities (utils.ts, core.ts, directives)
+│       └── ui/              # Angular UI components (one folder per component)
+│           └── <component>/ # Contains .component.ts, .variants.ts, .stories.ts, index.ts
+├── src/                     # Next.js documentation site source
+│   ├── app/                 # Next.js App Router
+│   │   ├── _components/     # Site-level components (sidebar, header, MDX renderers)
+│   │   ├── _demos/          # Live preview demo files
+│   │   │   └── <component>/ # Per-component demos (demo.tsx, variant.tsx, etc.)
+│   │   ├── blocks/[slug]/   # Dynamic route: block documentation pages
+│   │   ├── components/[slug]/ # Dynamic route: component documentation pages
+│   │   └── content/docs/    # MDX documentation content
+│   │       ├── blocks/      # Per-block MDX files
+│   │       ├── components/  # Per-component MDX files
+│   │       └── getting-started.mdx
+│   ├── hooks/               # Site-level React hooks
+│   └── lib/                 # Site-level utilities (registry reader, MDX compiler)
+├── angular.json             # Angular workspace config (for Storybook)
+├── components.json          # shadcn CLI config (vitality style)
+├── next.config.ts           # Next.js config (static export)
+├── registry.json            # shadcn registry manifest (all distributable items)
+├── tsconfig.json            # TypeScript config (excludes registry-ng)
+├── eslint.config.mjs        # ESLint config
+├── postcss.config.mjs       # PostCSS config (Tailwind)
+└── package.json             # Dependencies, scripts
 ```
 
 ## Directory Purposes
 
-**`registry/vitality/`:**
-- Purpose: Source-of-truth React UI components for the shadcn registry
-- Contains: Single `.tsx` files per component, blocks, hooks, and utility functions
-- Key files: `registry/vitality/ui/button.tsx`, `registry/vitality/ui/badge.tsx`, `registry/vitality/blocks/header.tsx`, `registry/vitality/lib/utils.ts`
+**`registry/vitality/ui/`:**
+- Purpose: All distributable React UI components for the Vitality theme
+- Contains: One `.tsx` file per component (e.g., `button.tsx`, `badge.tsx`, `dialog.tsx`)
+- Key files: `button.tsx`, `sidebar.tsx`, `form.tsx`, `combobox.tsx`
+- Pattern: Each file exports the component function(s) and optionally a CVA variants object
 
-**`registry-ng/vitality/`:**
-- Purpose: Angular port of the component library (parallel to React registry)
-- Contains: Multi-file components (component + variants + stories), shared directives/utilities
-- Key files: `registry-ng/vitality/ui/button/button.component.ts`, `registry-ng/vitality/lib/utils.ts`, `registry-ng/vitality/lib/core.ts`
+**`registry/vitality/blocks/`:**
+- Purpose: Higher-level distributable React layout blocks
+- Contains: `header.tsx`, `side-nav.tsx`
+- Pattern: Compose multiple registry UI components into app-level patterns
 
-**`src/app/`:**
-- Purpose: Next.js App Router documentation site
-- Contains: Pages, layouts, internal components, demo files
-- Key files: `src/app/layout.tsx`, `src/app/page.tsx`, `src/app/registry.ts`
+**`registry/vitality/lib/`:**
+- Purpose: Shared utilities distributed with registry components
+- Contains: `utils.ts` (the `cn()` class merging function)
+
+**`registry/vitality/hooks/`:**
+- Purpose: Distributable React hooks
+- Contains: `use-mobile.ts`
+
+**`registry-ng/vitality/ui/`:**
+- Purpose: All distributable Angular UI components mirroring Vitality React designs
+- Contains: One folder per component with standardized file structure
+- Key files per component: `<name>.component.ts`, `<name>.variants.ts`, `<name>.stories.ts`, `index.ts`
+- Some complex components have sub-components (e.g., `calendar/calendar-grid.component.ts`, `command/command-input.component.ts`)
+
+**`registry-ng/vitality/lib/`:**
+- Purpose: Angular shared utilities and directives
+- Contains: `utils.ts`, `core.ts` (re-exports directives), `id.directive.ts`, `string-template-outlet.directive.ts`, `number.ts`
+
+**`registry-ng/.storybook/`:**
+- Purpose: Storybook 10 configuration for Angular component development and documentation
+- Contains: `main.ts` (webpack config with Tailwind PostCSS), `tsconfig.json` (path aliases), `docs/` (MDX docs), `public/` (static assets)
 
 **`src/app/_components/`:**
 - Purpose: Internal components used only by the documentation site (not distributed)
-- Contains: Sidebar, code blocks, command palette, previews
-- Key files: `src/app/_components/demo-preview.tsx`, `src/app/_components/live-preview.tsx`, `src/app/_components/app-sidebar.tsx`
+- Contains: Site chrome (sidebar, header, theme toggle), MDX rendering infrastructure, code display
+- Key files: `mdx-components.tsx` (MDX component map), `component-source.tsx` (source viewer), `live-preview.tsx` (dynamic demo loader), `app-sidebar.tsx` (navigation), `site-header.tsx`, `command-bar.tsx`
 
 **`src/app/_demos/`:**
-- Purpose: Live interactive demos for each UI component
-- Contains: One `"use client"` React component per UI component, default-exported
-- Key files: `src/app/_demos/button.tsx`, `src/app/_demos/badge.tsx`
+- Purpose: Live demo files rendered in component documentation pages
+- Contains: Either single `.tsx` files or folders with multiple demo variants
+- Pattern: Folders named after component slugs containing `demo.tsx` (primary) and variant files (`size.tsx`, `icon.tsx`, etc.)
+- All demo files are `"use client"` components that import from `@/registry/vitality/ui/*`
 
-**`public/r/`:**
-- Purpose: Generated JSON registry manifests consumed by shadcn CLI
-- Contains: Per-component JSON files with source code and dependency metadata
-- Generated: Yes (by `npm run registry:build` and `npm run registry:build:ng`)
-- Committed: No (gitignored)
+**`src/app/content/docs/`:**
+- Purpose: MDX documentation content compiled at build time
+- Contains: `components/` (one `.mdx` per component), `blocks/` (one `.mdx` per block), `getting-started.mdx`
+- Pattern: Each MDX file has YAML frontmatter with `title`, `description`, `source`, `registryName`
 
-**`registry-ng/.storybook/`:**
-- Purpose: Storybook 10.x configuration for Angular components
-- Contains: Webpack config, preview decorators, theme setup, docs customization
-- Key files: `registry-ng/.storybook/main.ts`, `registry-ng/.storybook/preview.ts`, `registry-ng/.storybook/tsconfig.json`
+**`src/app/components/[slug]/`:**
+- Purpose: Dynamic Next.js route for component documentation pages
+- Contains: `page.tsx` with `generateStaticParams()` for SSG
+
+**`src/app/blocks/[slug]/`:**
+- Purpose: Dynamic Next.js route for block documentation pages
+- Contains: `page.tsx` with `generateStaticParams()` for SSG
+
+**`src/lib/`:**
+- Purpose: Site-level utility modules (not distributed)
+- Contains: `utils.ts` (cn helper), `registry.ts` (reads component metadata from MDX frontmatter), `mdx.ts` (MDX compilation with shiki highlighting)
+
+**`src/hooks/`:**
+- Purpose: Site-level React hooks (not distributed)
+- Contains: `use-mobile.ts`
 
 ## Key File Locations
 
 **Entry Points:**
-- `src/app/layout.tsx`: Root layout with providers, sidebar, and content wrapper
-- `src/app/page.tsx`: Home page (Getting Started guide)
+- `src/app/layout.tsx`: Root layout (ThemeProvider, SidebarProvider, header, sidebar, command bar)
+- `src/app/page.tsx`: Home page (renders getting-started.mdx)
 - `src/app/components/[slug]/page.tsx`: Component documentation pages
 - `src/app/blocks/[slug]/page.tsx`: Block documentation pages
-- `registry-ng/.storybook/main.ts`: Angular Storybook entry
 
 **Configuration:**
-- `package.json`: Dependencies, scripts (dev, build, registry:build, storybook)
+- `next.config.ts`: Next.js config (static export, base path from env)
 - `tsconfig.json`: TypeScript config with `@/*` and `@/registry/*` path aliases
-- `registry-ng/.storybook/tsconfig.json`: Angular TS config with `@/lib/*` and `@/ui/*` aliases
-- `angular.json`: Angular workspace config (Storybook builder targets)
-- `components.json`: shadcn/ui style config (vitality style, path aliases)
-- `registry.json`: React component registry manifest (all 50+ items)
-- `next.config.ts`: Static export, base path, unoptimized images
-- `postcss.config.mjs`: Tailwind v4 via `@tailwindcss/postcss`
-
-**Core Logic:**
-- `src/app/registry.ts`: Component metadata definitions (drives all navigation and pages)
-- `src/app/_components/live-preview.tsx`: Dynamic import map for all demos
-- `src/app/_components/demo-preview.tsx`: Server-side code reading + syntax highlighting
-- `src/app/_components/shiki.ts`: Shiki highlighter singleton
+- `components.json`: shadcn CLI config (vitality style, aliases, Tailwind CSS path)
+- `registry.json`: Full registry manifest listing all distributable items
+- `angular.json`: Angular workspace config for registry-ng Storybook
+- `postcss.config.mjs`: PostCSS with `@tailwindcss/postcss`
+- `eslint.config.mjs`: ESLint config
+- `.prettierrc`: Prettier config
 
 **Styling:**
-- `src/app/globals.css`: Tailwind v4 theme with CSS custom properties
+- `src/app/globals.css`: All CSS custom properties (light + dark theme tokens), Tailwind imports, code block styles, base layer styles
+
+**Core Logic:**
+- `src/lib/registry.ts`: Reads MDX frontmatter to build component metadata arrays
+- `src/lib/mdx.ts`: MDX compilation with rehype-pretty-code, TOC extraction, path validation
+- `src/app/_components/mdx-components.tsx`: Full MDX component map (ComponentPreview, headings, tables, code)
+- `src/app/_components/live-preview.tsx`: Dynamic import of demo components
+- `src/app/_components/component-source.tsx`: Server-side source code reading and highlighting
 
 **Deployment:**
-- `.github/workflows/deploy.yml`: Build + deploy pipeline to GitHub Pages
+- `.github/workflows/deploy.yml`: GitHub Actions workflow for GitHub Pages deployment
 
 ## Naming Conventions
 
 **Files (React registry):**
-- Pattern: `kebab-case.tsx` (single file per component)
-- Examples: `button.tsx`, `alert-dialog.tsx`, `toggle-group.tsx`, `status-badge.tsx`
+- `kebab-case.tsx`: One file per component (e.g., `button.tsx`, `alert-dialog.tsx`, `toggle-group.tsx`)
+- Compound components exported from a single file (e.g., `dialog.tsx` exports `Dialog`, `DialogContent`, `DialogTitle`, etc.)
 
 **Files (Angular registry):**
-- Pattern: `kebab-case/kebab-case.{component,variants,stories,service}.ts`
-- Examples: `button/button.component.ts`, `button/button.variants.ts`, `dialog/dialog.service.ts`
+- `kebab-case.component.ts`: Component definition
+- `kebab-case.variants.ts`: CVA variant definitions (shared with React)
+- `kebab-case.stories.ts`: Storybook stories
+- `index.ts`: Barrel file re-exporting component and variants
 
-**Files (Doc site):**
-- Pattern: `kebab-case.tsx` for components, `page.tsx` for routes
-- Internal components prefixed with underscore directory: `_components/`, `_demos/`
+**Files (Documentation demos):**
+- `demo.tsx`: Primary demo for a component (shown on the component page)
+- `<variant>.tsx`: Specific variant demos (e.g., `size.tsx`, `icon.tsx`, `destructive.tsx`)
+- Folder name matches the component slug from MDX
+
+**Files (MDX content):**
+- `<component-slug>.mdx`: One MDX file per component, frontmatter-driven
+
+**React Components:**
+- PascalCase function components: `Button`, `AlertDialog`, `CommandInput`
+- CVA variants: `const buttonVariants = cva(...)`, exported alongside component
+
+**Angular Components:**
+- Class name: `Zard<Name>Component` (e.g., `ZardButtonComponent`, `ZardAlertDialogComponent`)
+- Selector: `z-<name>` or `<element>[z-<name>]` (e.g., `z-button`, `button[z-button]`)
+- Variant inputs: `z`-prefixed (e.g., `zVariant`, `zSize`, `zShape`)
+- Variant types: `Zard<Name><Prop>Variants` (e.g., `ZardButtonVariantVariants`)
 
 **Directories:**
-- Pattern: `kebab-case` for all directories
-- Angular components: one directory per component matching component name
-
-**React Component Exports:**
-- Pattern: PascalCase named exports (e.g., `Button`, `Badge`, `AlertDialog`)
-- Variant exports: camelCase (e.g., `buttonVariants`, `badgeVariants`)
-
-**Angular Component Classes:**
-- Pattern: `Zard{Name}Component` (e.g., `ZardButtonComponent`, `ZardBadgeComponent`)
-- Variant types: `Zard{Name}{Prop}Variants` (e.g., `ZardButtonVariantVariants`)
-- Services: `Zard{Name}Service` (e.g., `ZardDialogService`)
-- Directives: `Zard{Name}Directive` (e.g., `ZardTooltipDirective`)
-
-**Angular Selectors:**
-- Components: `z-{name}` (e.g., `z-button`, `z-badge`, `z-icon`)
-- Attribute selectors: `button[z-button]`, `a[z-button]` for semantic elements
-- Directives: `[zTooltip]`, `[zardId]`
-- Export names: `z{Name}` (e.g., `zButton`, `zBadge`, `zTooltip`)
-
-**Angular Inputs:**
-- Pattern: Prefixed with `z` (e.g., `zVariant`, `zSize`, `zShape`, `zLoading`, `zDisabled`)
+- `kebab-case/` for component folders in Angular (`button/`, `alert-dialog/`)
+- `kebab-case/` for demo folders (`button/`, `alert-dialog/`)
+- `_`-prefixed for Next.js private directories (`_components/`, `_demos/`)
 
 ## Where to Add New Code
 
 **New React UI Component:**
-1. Create component file: `registry/vitality/ui/{component-name}.tsx`
-2. Follow CVA pattern: define `{name}Variants` with `cva()`, export component + variants
-3. Add entry to `registry.json` with name, type, dependencies, files
-4. Create demo: `src/app/_demos/{component-name}.tsx` (must be `"use client"`, default export)
-5. Add to demos map: `src/app/_components/live-preview.tsx`
-6. Add metadata to: `src/app/registry.ts` (components or blocks array)
-7. Run `npm run registry:build` to generate JSON
+1. Create `registry/vitality/ui/<component-name>.tsx` following the CVA + function component pattern
+2. Add entry to `registry.json` with name, type, dependencies, registryDependencies, files
+3. Create demo(s) in `src/app/_demos/<component-name>/demo.tsx` (and variant files)
+4. Create MDX docs in `src/app/content/docs/components/<component-name>.mdx` with frontmatter
+5. Run `npm run registry:build` to generate distributable JSON
 
 **New Angular UI Component:**
-1. Create directory: `registry-ng/vitality/ui/{component-name}/`
-2. Create variants file: `{component-name}.variants.ts` with CVA definitions using `z`-prefixed props
-3. Create component file: `{component-name}.component.ts` using Angular signals pattern
-4. Create stories file: `{component-name}.stories.ts` for Storybook documentation
-5. Optionally create `index.ts` barrel export
-6. Run `npm run registry:build:ng` to generate JSON
+1. Create folder `registry-ng/vitality/ui/<component-name>/`
+2. Add `<component-name>.variants.ts` (CVA definitions with `z`-prefixed variant names)
+3. Add `<component-name>.component.ts` (Angular component using signal inputs)
+4. Add `<component-name>.stories.ts` (Storybook stories)
+5. Add `index.ts` barrel file
+6. Run `npm run registry:build:ng` to generate distributable JSON
 
-**New React Block:**
-1. Create block file: `registry/vitality/blocks/{block-name}.tsx`
-2. Add entry to `registry.json` with `type: "registry:block"`
-3. Create demo: `src/app/_demos/{block-name}.tsx`
-4. Add to demos map: `src/app/_components/live-preview.tsx`
-5. Add metadata to blocks array in: `src/app/registry.ts`
+**New Block:**
+1. Create `registry/vitality/blocks/<block-name>.tsx`
+2. Add entry to `registry.json` with type `"registry:block"`
+3. Create demo in `src/app/_demos/<block-name>/demo.tsx`
+4. Create MDX docs in `src/app/content/docs/blocks/<block-name>.mdx`
 
-**New Documentation Page:**
-- Add a new directory under `src/app/{route-name}/` with `page.tsx`
+**New Documentation-Only Component (site internal):**
+- Place in `src/app/_components/<component-name>.tsx`
+- These are NOT distributed; they only run on the docs site
 
-**New Shared Utility (React):**
-- Add to `registry/vitality/lib/utils.ts` or create new file in `registry/vitality/lib/`
-- Add to `registry.json` as `type: "registry:lib"`
+**New Hook (distributable):**
+- Place in `registry/vitality/hooks/<hook-name>.ts`
+- Add entry to `registry.json` with type `"registry:hook"`
 
-**New Shared Utility (Angular):**
-- Add to `registry-ng/vitality/lib/` directory
-- Export from `registry-ng/vitality/lib/core.ts` if it's a directive
+**New Shared Utility (distributable):**
+- Place in `registry/vitality/lib/<util-name>.ts`
+- Add entry to `registry.json` with type `"registry:lib"`
 
-**New Hook (React):**
-- Add to `registry/vitality/hooks/`
-- Add to `registry.json` as `type: "registry:hook"`
+**New Site Utility (docs only):**
+- Place in `src/lib/<util-name>.ts`
 
 ## Special Directories
 
-**`out/`:**
-- Purpose: Next.js static export output
-- Generated: Yes (by `npm run build`)
-- Committed: No (gitignored)
-- Note: Storybook is copied into `out/storybook/` during CI
-
 **`public/r/`:**
-- Purpose: Registry JSON manifests
-- Generated: Yes (by `npm run registry:build` and `npm run registry:build:ng`)
-- Committed: No (gitignored)
+- Purpose: Generated registry JSON files consumed by `npx shadcn add`
+- Generated: Yes, by `npm run registry:build` and `npm run registry:build:ng`
+- Committed: No (generated at build time in CI)
 
 **`.next/`:**
-- Purpose: Next.js build cache
+- Purpose: Next.js build cache and output
 - Generated: Yes
-- Committed: No (gitignored)
+- Committed: No
+
+**`out/`:**
+- Purpose: Static export output (Next.js + Storybook combined)
+- Generated: Yes, by CI pipeline
+- Committed: No
 
 **`storybook-static/`:**
-- Purpose: Built Storybook output
-- Generated: Yes (by `npm run storybook:build`)
-- Committed: No (gitignored)
-
-**`.angular/`:**
-- Purpose: Angular build cache
+- Purpose: Built Storybook output, copied to `out/storybook` during deploy
 - Generated: Yes
-- Committed: No (gitignored)
+- Committed: No
 
 **`node_modules/`:**
 - Purpose: npm dependencies
 - Generated: Yes
-- Committed: No (gitignored)
+- Committed: No
 
-**`packages/cli/`:**
-- Purpose: Previously contained a CLI tool (now removed/empty)
+**`src/app/_demos/`:**
+- Purpose: Demo files loaded via dynamic import for live previews
+- Generated: No (hand-authored)
+- Committed: Yes
+- Note: The `_` prefix makes this a Next.js private folder (not a route segment)
+
+**`src/app/_components/`:**
+- Purpose: Site-internal components used by the docs application
 - Generated: No
-- Committed: Yes but inactive
+- Committed: Yes
+- Note: The `_` prefix makes this a Next.js private folder (not a route segment)
 
 ---
 
-*Structure analysis: 2026-02-25*
+*Structure analysis: 2026-03-04*

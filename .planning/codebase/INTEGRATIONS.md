@@ -1,37 +1,29 @@
 # External Integrations
 
-**Analysis Date:** 2026-02-25
+**Analysis Date:** 2026-03-04
 
 ## APIs & External Services
 
-**shadcn Registry Protocol:**
-- The project IS a self-hosted shadcn/ui component registry. It produces JSON files at `/public/r/*.json` consumed by `npx shadcn@latest add <url>`.
-- React registry built via: `shadcn build` (reads `registry.json`)
-- Angular registry built via: `npx shadcn-ng@latest build --cwd=registry-ng --output=../public/r/ng`
-- Registry manifest (React): `registry.json`
-- Registry manifest (Angular): `registry-ng/registry.json`
-- Registry URL configured via `NEXT_PUBLIC_REGISTRY_URL` env var (defaults to `https://vitality-shad.vercel.app`)
-
-**No external API calls at runtime.** This is a purely static documentation site with no backend, no fetch calls to third-party services, and no server-side API routes.
+**None.** This is a self-contained, statically-exported documentation site and component registry. There are no external API calls, no backend services, no database connections, and no third-party SaaS integrations in the application code.
 
 ## Data Storage
 
 **Databases:**
-- None - Fully static site with no database
+- None. All data is file-system-based at build time.
 
 **File Storage:**
 - Local filesystem only
-- Component source code read from disk at build time via `fs.readFileSync()` in `src/app/_components/demo-preview.tsx` and `src/app/page.tsx`
-- Static assets in `public/` (SVG logos, icons)
-- Built registry JSON output in `public/r/`
+- Component source files read at build time from `registry/vitality/ui/*.tsx`
+- MDX documentation files read at build time from `src/app/content/docs/`
+- Demo components loaded from `src/app/_demos/`
 
 **Caching:**
-- None - Static site, all caching handled by browser/CDN
+- None (static site, browser caching via standard HTTP headers)
 
 ## Authentication & Identity
 
 **Auth Provider:**
-- None - Public documentation site with no authentication
+- None. No authentication required. This is a public documentation site.
 
 ## Monitoring & Observability
 
@@ -39,50 +31,50 @@
 - None
 
 **Logs:**
-- None (static site)
-
-**Analytics:**
-- Not detected
+- None (static site, no server-side logging)
 
 ## CI/CD & Deployment
 
 **Hosting:**
 - GitHub Pages (static hosting)
-- Deployment workflow: `.github/workflows/deploy.yml`
-- Triggered on: push to `main` branch + manual `workflow_dispatch`
+- Also deployed to Vercel (referenced in `registry.json` homepage: `https://vitality-shad.vercel.app`)
 
 **CI Pipeline:**
-- GitHub Actions
+- GitHub Actions (`.github/workflows/deploy.yml`)
+- Triggers: push to `main` branch, manual `workflow_dispatch`
 - Runner: `ubuntu-latest`
-- Node version: 20 (with npm cache)
 - Build steps:
-  1. `npm ci` - Install dependencies
-  2. `npm run registry:build` - Build React registry JSON files
-  3. `npm run registry:build:ng` - Build Angular registry JSON files
-  4. `npm run build` - Build Next.js static site (with `NEXT_PUBLIC_BASE_PATH` and `NEXT_PUBLIC_REGISTRY_URL`)
-  5. `npm run storybook:build` - Build Storybook static site
-  6. Copy `storybook-static/` into `out/storybook/`
-  7. Upload `out/` as GitHub Pages artifact
-  8. Deploy via `actions/deploy-pages@v4`
+  1. Checkout code
+  2. Setup Node 20 with npm cache
+  3. Configure GitHub Pages
+  4. `npm ci` - install dependencies
+  5. `npm run registry:build` - build React shadcn registry
+  6. `npm run registry:build:ng` - build Angular registry
+  7. `npm run build` - build Next.js static export
+  8. `npm run storybook:build` - build Angular Storybook
+  9. Copy Storybook to `out/storybook`
+  10. Upload artifact and deploy to GitHub Pages
 
-**Deployment Permissions:**
+**Concurrency:**
+- Group: `pages`
+- Cancel in-progress: false
+
+**Permissions:**
 - `contents: read`
 - `pages: write`
 - `id-token: write`
-- Concurrency group: `pages` (cancel-in-progress: false)
 
 ## Environment Configuration
 
-**Required env vars (CI only):**
-- `NEXT_PUBLIC_BASE_PATH` - Auto-set from `actions/configure-pages` output (`steps.pages.outputs.base_path`)
-- `NEXT_PUBLIC_REGISTRY_URL` - Constructed from pages origin + base_path
+**Required env vars:**
+- None required for local development (all have defaults)
 
-**Optional env vars (development):**
-- `NEXT_PUBLIC_BASE_PATH` - Defaults to `""` (empty string) when not set
-- `NEXT_PUBLIC_REGISTRY_URL` - Defaults to `"https://vitality-shad.vercel.app"` when not set (see `src/app/_components/install-command.tsx`)
+**Optional env vars:**
+- `NEXT_PUBLIC_BASE_PATH` - Set by GitHub Actions from `actions/configure-pages` output. Defaults to `""`. Used in `next.config.ts` for `basePath` and in `src/app/_components/site-header.tsx` for Storybook link.
+- `NEXT_PUBLIC_REGISTRY_URL` - Set by GitHub Actions. Defaults to `"https://vitality-shad.vercel.app"`. Used in `src/app/_components/install-command.tsx` to generate `npx shadcn add` commands, and in `registry-ng/.storybook/main.ts` via webpack DefinePlugin.
 
 **Secrets location:**
-- No secrets required - Entirely public, static site with no API keys
+- No secrets required. All env vars are public (NEXT_PUBLIC_ prefix).
 
 ## Webhooks & Callbacks
 
@@ -92,30 +84,36 @@
 **Outgoing:**
 - None
 
-## Third-Party Library Integrations (Not APIs)
+## Registry Distribution
 
-These are not external service integrations but notable in-process library integrations:
+**React Registry:**
+- Built by `shadcn build` from `registry.json`
+- Components distributed as JSON files at `/r/{component-name}.json`
+- Consumers install via: `npx shadcn@latest add https://vitality-shad.vercel.app/r/{name}.json`
+- Registry schema: `https://ui.shadcn.com/schema/registry.json`
 
-**Shiki (Syntax Highlighting):**
-- Used server-side at build time for code highlighting
-- Config: `src/app/_components/shiki.ts`
-- Themes: `github-light`, `github-dark`
-- Languages: `tsx`, `css`, `bash`
-- Singleton highlighter pattern (created once, reused)
+**Angular Registry:**
+- Built by `shadcn-ng build` from `registry-ng/registry.json`
+- Output to `public/r/ng/`
+- Registry schema: `https://ui.adrianub.dev/schema/registry.json`
 
-**Embla Carousel:**
-- React: `embla-carousel-react` ^8.6.0 with autoplay and class names plugins
-- Angular: `embla-carousel-angular` ^21.0.0 with `embla-carousel-autoplay`, `embla-carousel-class-names`, `embla-carousel-wheel-gestures`
-- Plugin service: `registry-ng/vitality/ui/carousel/carousel-plugins.service.ts`
+## Third-Party UI Libraries (Build-time Dependencies, Not Runtime Services)
 
-**Recharts:**
-- Chart components in `registry/vitality/ui/chart.tsx`
-- Used for data visualization demos
+These are npm packages, not external service integrations. Listed here for completeness:
 
-**Lucide Icons:**
-- React: `lucide-react` ^0.563.0 - Direct icon imports
-- Angular: `lucide-angular` ^0.564.0 - Wrapped in custom `ZardIconComponent` at `registry-ng/vitality/ui/icon/icon.component.ts`
+**Radix UI** - Accessible React primitives
+- Package: `radix-ui` ^1.4.3
+- No API calls, no external network requests
+
+**Shiki** - Syntax highlighting
+- Package: `shiki` ^3.22.0
+- All processing happens at build time via `src/app/_components/shiki.ts`
+- Themes: `github-dark-default`, `github-light-default`
+
+**Embla Carousel** - Carousel functionality
+- Packages: `embla-carousel-react` ^8.6.0, `embla-carousel-angular` ^21.0.0
+- Client-side only, no external calls
 
 ---
 
-*Integration audit: 2026-02-25*
+*Integration audit: 2026-03-04*

@@ -1,253 +1,156 @@
 # Testing Patterns
 
-**Analysis Date:** 2026-02-25
+**Analysis Date:** 2026-03-04
 
 ## Test Framework
 
 **Runner:**
-- No unit/integration test framework is configured
-- No `jest.config.*`, `vitest.config.*`, `karma.conf.*`, `cypress.config.*`, or `playwright.config.*` files exist
-- No `.test.*` or `.spec.*` files exist anywhere in the codebase
+- No test framework is installed or configured in this project
+- No test runner config files detected (no `jest.config.*`, `vitest.config.*`, `cypress.config.*`, `playwright.config.*`)
+- No test scripts in `package.json`
 
-**Visual Testing:**
-- Storybook 10.x is used as the sole testing/verification tool
-- Framework: `@storybook/angular` ^10.2.8
-- Config: `registry-ng/.storybook/main.ts`
-- Preview: `registry-ng/.storybook/preview.ts`
-- Only Angular components have Storybook stories; React components have no automated testing
+**Assertion Library:**
+- Not applicable
 
 **Run Commands:**
 ```bash
-npm run storybook            # Start Storybook dev server (port 6006)
-npm run storybook:build      # Build static Storybook site to storybook-static/
-npm run lint                 # ESLint (Next.js config only, does not cover Angular)
+# No test commands available
+# The only quality check available:
+npm run lint              # ESLint with Next.js rules
+npm run build             # Type-checking via TypeScript (strict mode)
 ```
 
-## Storybook Story Organization
+## Test File Organization
 
 **Location:**
-- Co-located with Angular components: `registry-ng/vitality/ui/{component}/{component}.stories.ts`
-- Every Angular UI component has a corresponding `.stories.ts` file (46 story files total)
+- No test files exist in the project source code
+- No `__tests__` directories, no `*.test.*` files, no `*.spec.*` files outside of `node_modules/`
 
-**Naming:**
-- Files: `{component-name}.stories.ts` (kebab-case, matching component directory)
-- Exception: menu has two story files: `menu.stories.ts` and `context-menu.stories.ts`
+**Current state:** This is a component registry / documentation site. Testing is entirely absent from the codebase.
 
-**Coverage:** All 44+ Angular components in `registry-ng/vitality/ui/` have story files
+## Quality Assurance (What Exists Instead)
 
-## Story Structure
+In the absence of automated tests, quality is maintained through:
 
-**Standard Pattern (simple components):**
+1. **TypeScript Strict Mode** (`tsconfig.json` has `"strict": true`):
+   - Catches type errors at build time
+   - All components are strongly typed via `React.ComponentProps<>` patterns
 
+2. **ESLint** (`eslint.config.mjs`):
+   - `eslint-config-next/core-web-vitals` for Next.js best practices
+   - `eslint-config-next/typescript` for TypeScript-specific rules
+
+3. **Static Site Export** (`next.config.ts` has `output: "export"`):
+   - `npm run build` validates all pages render at build time
+   - `generateStaticParams()` ensures all dynamic routes are pre-rendered
+
+4. **Visual Verification via Demos**:
+   - Each component has demo files in `src/app/_demos/[component]/`
+   - Demos serve as manual visual regression tests
+   - The docs site itself (`npm run dev`) serves as the primary verification tool
+
+5. **Storybook (Angular Registry Only)**:
+   - Angular components in `registry-ng/` have Storybook configuration
+   - Run via `npm run storybook` (uses `@storybook/angular`)
+   - React components do NOT have Storybook stories
+
+## If Adding Tests
+
+**Recommended setup for this project:**
+- **Vitest** would be the natural choice (Vite-compatible, works well with Next.js)
+- **@testing-library/react** for component testing
+- **Playwright** for E2E visual regression testing of the docs site
+
+**Where test files should go:**
+- Co-locate tests with source: `registry/vitality/ui/button.test.tsx` alongside `registry/vitality/ui/button.tsx`
+- Integration tests: `src/__tests__/` directory
+- E2E tests: `e2e/` directory at project root
+
+**What to test first (highest value):**
+- `registry/vitality/lib/utils.ts` - Unit test the `cn()` utility
+- `src/lib/registry.ts` - Unit test `getComponents()`, `getBlocks()`, frontmatter parsing
+- `src/lib/mdx.ts` - Unit test `extractTocHeadings()`, `slugify()`, path traversal protection
+- UI components with logic (not just styling): `registry/vitality/ui/sidebar.tsx` (context, state management), `registry/vitality/ui/form.tsx` (form state wiring), `registry/vitality/ui/chart.tsx` (config processing)
+
+**Suggested test pattern matching codebase conventions:**
 ```typescript
-import type { Meta, StoryObj } from "@storybook/angular";
-import { moduleMetadata } from "@storybook/angular";
-import { ZardBadgeComponent } from "./badge.component";
+// registry/vitality/lib/utils.test.ts
+import { describe, it, expect } from "vitest"
+import { cn } from "./utils"
 
-const meta: Meta<ZardBadgeComponent> = {
-  title: "UI/Badge",                           // Always "UI/{ComponentName}"
-  component: ZardBadgeComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [ZardBadgeComponent],           // Import the component
-    }),
-  ],
-  argTypes: {
-    zVariant: {                                // Map inputs to Storybook controls
-      control: "select",
-      options: ["default", "neutral"],
-    },
-  },
-};
+describe("cn", () => {
+  it("merges class names", () => {
+    expect(cn("px-2", "py-1")).toBe("px-2 py-1")
+  })
 
-export default meta;
-type Story = StoryObj<ZardBadgeComponent>;
+  it("resolves tailwind conflicts", () => {
+    expect(cn("px-2", "px-4")).toBe("px-4")
+  })
 
-// Default story with args
-export const Default: Story = {
-  render: (args) => ({
-    props: args,
-    template: `<z-badge [zVariant]="zVariant">Badge</z-badge>`,
-  }),
-  args: {
-    zVariant: "default",
-  },
-};
-
-// Variant showcase story (no args, shows all variants)
-export const Variants: Story = {
-  render: () => ({
-    template: `
-      <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-        <z-badge zVariant="default">Default</z-badge>
-        <z-badge zVariant="neutral">Neutral</z-badge>
-      </div>
-    `,
-  }),
-};
-```
-
-**Pattern for service-based components (Dialog, Sheet):**
-
-```typescript
-import type { Meta, StoryObj } from "@storybook/angular";
-import { moduleMetadata } from "@storybook/angular";
-import { Component, inject } from "@angular/core";
-
-import { ZardDialogService } from "./dialog.service";
-import { ZardButtonComponent } from "@/ui/button/button.component";
-
-// Create a wrapper component for interactive stories
-@Component({
-  selector: "story-dialog-default",
-  standalone: true,
-  imports: [ZardButtonComponent],
-  template: `<button z-button (click)="open()">Open Dialog</button>`,
+  it("handles conditional classes", () => {
+    expect(cn("base", false && "hidden", "extra")).toBe("base extra")
+  })
 })
-class StoryDialogDefaultComponent {
-  private readonly dialogService = inject(ZardDialogService);
-
-  open() {
-    this.dialogService.create({
-      zTitle: "Edit Profile",
-      zDescription: "Make changes to your profile here.",
-      zContent: "<p>Your profile content goes here.</p>",
-      zOkText: "Save changes",
-      zCancelText: "Cancel",
-    });
-  }
-}
-
-const meta: Meta<StoryDialogDefaultComponent> = {
-  title: "UI/Dialog",
-  component: StoryDialogDefaultComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [StoryDialogDefaultComponent],
-    }),
-  ],
-};
-
-export default meta;
-type Story = StoryObj<StoryDialogDefaultComponent>;
-
-export const Default: Story = {};
 ```
 
-## Story Conventions
+```typescript
+// src/lib/mdx.test.ts
+import { describe, it, expect } from "vitest"
+import { extractTocHeadings } from "./mdx"
 
-**Story naming:**
-- `Default` - Primary story with configurable args
-- `Variants` - Shows all visual variants side-by-side
-- `Sizes` - Shows all size options
-- `Loading` - Shows loading states
-- `Disabled` - Shows disabled states
-- Named by feature/state in PascalCase
-
-**Layout pattern for variant showcases:**
-```html
-<div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-  <!-- variants here -->
-</div>
+describe("extractTocHeadings", () => {
+  it("extracts h2 and h3 headings", () => {
+    const source = "## Getting Started\n\nSome text\n\n### Installation"
+    const toc = extractTocHeadings(source)
+    expect(toc).toEqual([
+      { title: "Getting Started", url: "#getting-started", depth: 2 },
+      { title: "Installation", url: "#installation", depth: 3 },
+    ])
+  })
+})
 ```
 
-**argTypes mapping:** Map `z`-prefixed Angular inputs to Storybook controls using `control: "select"` with explicit `options` arrays.
+## Mocking
 
-**moduleMetadata:** Always import the component-under-test and any dependencies via the `moduleMetadata` decorator.
+**Framework:** Not applicable (no tests exist)
 
-## Storybook Configuration
-
-**Main config (`registry-ng/.storybook/main.ts`):**
-- Stories glob: `../vitality/ui/**/*.stories.ts`
-- Docs pages: `./docs/**/*.mdx`
-- Uses `tsconfig-paths-webpack-plugin` for `@/lib/*` and `@/ui/*` path aliases
-- `@storybook/addon-styling-webpack` handles Tailwind CSS via PostCSS
-- Custom webpack rule excludes Angular component styles (`?ngResource`) from addon CSS processing
-
-**Preview config (`registry-ng/.storybook/preview.ts`):**
-- Dark mode via `withThemeByClassName` (class-based, matches Next.js theme approach)
-- Auto-generated docs via `tags: ['autodocs']`
-- Custom docs page component
-
-**TSConfig (`registry-ng/.storybook/tsconfig.json`):**
-- Strict mode, ES2022 target
-- Path aliases: `@/lib/*` -> `vitality/lib/*`, `@/ui/*` -> `vitality/ui/*`
-- Includes all `../vitality/**/*.ts` files
-
-## React Component Testing
-
-**Current state:** No testing exists for React components.
-
-**Visual verification:** React components are demonstrated via the Next.js demo site:
-- Demo pages at `src/app/_demos/{slug}.tsx`
-- Live previews rendered in `src/app/components/[slug]/page.tsx`
-- Manual visual inspection only
-
-## Linting
-
-**ESLint:**
-- Config: `eslint.config.mjs`
-- Extends: `eslint-config-next/core-web-vitals`, `eslint-config-next/typescript`
-- Scope: Next.js/React files only (ignores `.next/`, `out/`, `build/`)
-- Does NOT lint Angular files in `registry-ng/`
-
-**Run:**
-```bash
-npm run lint
-```
+**If adding mocking, recommended patterns:**
+- Mock `fs` module for `src/lib/registry.ts` and `src/lib/mdx.ts` tests
+- Use `vi.mock()` (Vitest) for module mocking
+- No external APIs to mock; this is a static site
 
 ## Coverage
 
-**Requirements:** None enforced. No coverage tooling configured.
+**Requirements:** None enforced
 
-## What to Mock (if tests are added)
-
-**Angular components:**
-- `@angular/cdk/overlay` - Mock `Overlay`, `OverlayPositionBuilder`, `OverlayRef` for components using overlays (Dialog, Dropdown, Select, Tooltip, Popover, Sheet)
-- `PLATFORM_ID` - Mock as `'browser'` or `'server'` to test SSR safety
-- `ElementRef` - Mock `nativeElement` for components that read DOM properties
-
-**React components:**
-- `next/navigation` - Mock `usePathname` for sidebar active state
-- `next-themes` - Mock `ThemeProvider` for theme toggle
-- `window.matchMedia` - Mock for `useIsMobile` hook
-- `document.cookie` - Mock for sidebar state persistence
+**Current coverage:** 0% (no tests exist)
 
 ## Test Types
 
 **Unit Tests:**
-- Not implemented. If added, focus on:
-  - CVA variant functions (pure functions, easy to test)
-  - `cn()` utility
-  - Angular services (DialogService, SheetService)
-  - ControlValueAccessor implementations
+- Not present. Would target: utility functions, parsing logic, heading extraction
 
 **Integration Tests:**
-- Not implemented. If added, focus on:
-  - Angular overlay lifecycle (open/close/dispose)
-  - Keyboard navigation (dropdown, select, accordion)
-  - Form integration (ControlValueAccessor)
+- Not present. Would target: MDX compilation pipeline, registry metadata generation
 
 **E2E Tests:**
-- Not implemented
+- Not present. Would target: component demo rendering, navigation, dark mode toggle
 
 **Visual Regression:**
-- Storybook could support visual regression via addons (not currently configured)
+- Not present. The demo pages at `src/app/_demos/` could serve as baseline screenshots for visual regression testing with Playwright
 
-## Adding Tests
+## Storybook (Angular Only)
 
-**If adding Angular unit tests:**
-1. Install: `@angular/testing`, `karma` or `jest` with `jest-preset-angular`
-2. Place test files co-located: `registry-ng/vitality/ui/{component}/{component}.component.spec.ts`
-3. Name: `{component-name}.component.spec.ts`
-4. Use `TestBed` for component tests
-5. Follow the signal-based input pattern (use `componentRef.setInput('zVariant', 'primary')`)
+**Configuration:** `angular.json` defines Storybook targets for `registry-ng` project
 
-**If adding React tests:**
-1. Install: `vitest`, `@testing-library/react`, `@testing-library/jest-dom`
-2. Place test files co-located: `registry/vitality/ui/{component}.test.tsx`
-3. Test variant output, className merging, asChild behavior
+**Run Commands:**
+```bash
+npm run storybook           # Start Storybook dev server
+npm run storybook:build     # Build static Storybook
+```
+
+**Note:** Storybook is configured exclusively for the Angular component registry (`registry-ng/`). The React component registry (`registry/vitality/`) does not use Storybook.
 
 ---
 
-*Testing analysis: 2026-02-25*
+*Testing analysis: 2026-03-04*
