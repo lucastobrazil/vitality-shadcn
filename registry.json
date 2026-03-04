@@ -1,0 +1,740 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "vitality-shad",
+  "homepage": "https://vitality-shad.vercel.app",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/vitality/lib/utils.ts",
+          "type": "registry:lib",
+          "target": "lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "use-mobile",
+      "type": "registry:hook",
+      "files": [
+        {
+          "path": "registry/vitality/hooks/use-mobile.ts",
+          "type": "registry:hook",
+          "target": "hooks/use-mobile.ts"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui", "lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "callout",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/callout.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/vitality/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/aspect-ratio.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "dependencies": ["lucide-react", "radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "dependencies": ["lucide-react", "react-day-picker"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/vitality/ui/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "dependencies": ["embla-carousel-react", "lucide-react"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/vitality/ui/carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "chart",
+      "type": "registry:ui",
+      "dependencies": ["recharts"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui", "lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "dependencies": ["cmdk", "lucide-react"],
+      "registryDependencies": ["dialog"],
+      "files": [
+        {
+          "path": "registry/vitality/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui", "lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/context-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui", "lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "dependencies": ["vaul"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/drawer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui", "lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui", "react-hook-form"],
+      "registryDependencies": ["label"],
+      "files": [
+        {
+          "path": "registry/vitality/ui/form.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/hover-card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "dependencies": ["input-otp", "lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/input-otp.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui", "lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/menubar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority", "lucide-react", "radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/navigation-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/vitality/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/progress.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui", "lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "dependencies": ["react-resizable-panels", "lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/resizable.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/scroll-area.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui", "lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui", "lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority", "lucide-react", "radix-ui"],
+      "registryDependencies": [
+        "button",
+        "input",
+        "separator",
+        "sheet",
+        "skeleton",
+        "tooltip",
+        "use-mobile"
+      ],
+      "files": [
+        {
+          "path": "registry/vitality/ui/sidebar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/slider.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "dependencies": ["lucide-react", "next-themes", "sonner"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/sonner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/toggle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "registryDependencies": ["toggle"],
+      "files": [
+        {
+          "path": "registry/vitality/ui/toggle-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "status-badge",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/status-badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["button", "input", "textarea"],
+      "files": [
+        {
+          "path": "registry/vitality/ui/input-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "direction",
+      "type": "registry:ui",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/direction.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "native-select",
+      "type": "registry:ui",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/native-select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "registryDependencies": ["button", "separator"],
+      "files": [
+        {
+          "path": "registry/vitality/ui/button-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["label", "separator"],
+      "files": [
+        {
+          "path": "registry/vitality/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "item",
+      "type": "registry:ui",
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "registryDependencies": ["separator"],
+      "files": [
+        {
+          "path": "registry/vitality/ui/item.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["button", "input-group"],
+      "files": [
+        {
+          "path": "registry/vitality/ui/combobox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "header",
+      "type": "registry:block",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["input", "avatar", "dropdown-menu", "button"],
+      "files": [
+        {
+          "path": "registry/vitality/blocks/header.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "side-nav",
+      "type": "registry:block",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["button", "tooltip"],
+      "files": [
+        {
+          "path": "registry/vitality/blocks/side-nav.tsx",
+          "type": "registry:block"
+        }
+      ]
+    }
+  ]
+}

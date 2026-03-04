@@ -1,0 +1,122 @@
+---
+title: Context Menu
+description: Displays a menu of actions triggered by a right click.
+registryName: context-menu
+---
+
+<ComponentPreview name="context-menu/demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList variant="line">
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add https://vitality-shad.vercel.app/r/context-menu.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install radix-ui
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="context-menu" title="registry/vitality/ui/context-menu.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from "@/registry/vitality/ui/context-menu"
+```
+
+```tsx
+<ContextMenu>
+  <ContextMenuTrigger>Right click here</ContextMenuTrigger>
+  <ContextMenuContent>
+    <ContextMenuItem>Profile</ContextMenuItem>
+    <ContextMenuItem>Billing</ContextMenuItem>
+    <ContextMenuItem>Team</ContextMenuItem>
+    <ContextMenuItem>Subscription</ContextMenuItem>
+  </ContextMenuContent>
+</ContextMenu>
+```
+
+## Examples
+
+### Basic
+
+A simple context menu with a few actions.
+
+<ComponentPreview name="context-menu/basic" />
+
+### Submenu
+
+Use `ContextMenuSub` to nest secondary actions.
+
+<ComponentPreview name="context-menu/submenu" />
+
+### Shortcuts
+
+Add `ContextMenuShortcut` to show keyboard hints.
+
+<ComponentPreview name="context-menu/shortcuts" />
+
+### Groups
+
+Group related actions and separate them with dividers.
+
+<ComponentPreview name="context-menu/groups" />
+
+### Icons
+
+Combine icons with labels for quick scanning.
+
+<ComponentPreview name="context-menu/icons" />
+
+### Checkboxes
+
+Use `ContextMenuCheckboxItem` for toggles.
+
+<ComponentPreview name="context-menu/checkboxes" />
+
+### Radio
+
+Use `ContextMenuRadioItem` for exclusive choices.
+
+<ComponentPreview name="context-menu/radio" />
+
+### Destructive
+
+Use `variant="destructive"` to style the menu item as destructive.
+
+<ComponentPreview name="context-menu/destructive" />
+
+## API Reference
+
+See the [Radix UI](https://www.radix-ui.com/docs/primitives/components/context-menu#api-reference) documentation for more information.

@@ -1,0 +1,56 @@
+---
+title: Callout
+description: Displays a callout for important information.
+source: vitality
+registryName: callout
+---
+
+This component replaces the shadcn/ui Alert component with added severity variants and size options.
+
+## Installation
+
+```bash hideLineNumbers
+npx shadcn@latest add https://vitality-shad.vercel.app/r/callout.json
+```
+
+## Usage
+
+```tsx
+import {
+  Callout,
+  CalloutTitle,
+  CalloutDescription,
+  CalloutAction,
+} from "@/registry/vitality/ui/callout"
+```
+
+## Severity Variants
+
+The `severity` prop controls the colour scheme. Defaults to `muted`.
+
+<ComponentPreview name="callout/demo" />
+
+## Compact
+
+The `compact` size renders an inline, background-less callout suited for field-level hints. Uses description only — no title.
+
+<ComponentPreview name="callout/compact" />
+
+## Block Compact
+
+The `blockCompact` size displays title and description inline with a coloured background, useful for tighter layouts.
+
+<ComponentPreview name="callout/block-compact" />
+
+## With Action
+
+Use `CalloutAction` to place a control (e.g. a dismiss button) in the top-right corner.
+
+<ComponentPreview name="callout/with-action" />
+
+## API Reference
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `severity` | `"muted" \| "destructive" \| "warning" \| "success" \| "info" \| "brand"` | `"muted"` | Colour scheme of the callout |
+| `size` | `"default" \| "compact" \| "blockCompact"` | `"default"` | Controls padding, layout, and background |

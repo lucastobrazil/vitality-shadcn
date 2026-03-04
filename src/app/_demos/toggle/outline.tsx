@@ -1,0 +1,19 @@
+"use client"
+
+import { Toggle } from "@/registry/vitality/ui/toggle"
+import { BoldIcon, ItalicIcon } from "lucide-react"
+
+export default function ToggleOutline() {
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <Toggle variant="outline" aria-label="Toggle italic">
+        <ItalicIcon />
+        Italic
+      </Toggle>
+      <Toggle variant="outline" aria-label="Toggle bold">
+        <BoldIcon />
+        Bold
+      </Toggle>
+    </div>
+  )
+}

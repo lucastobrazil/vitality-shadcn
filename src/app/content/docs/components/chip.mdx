@@ -1,0 +1,75 @@
+---
+title: Chip
+description: Represent an entity with descriptive information
+source: vitality
+registryName: chip
+---
+
+<ComponentPreview name="chip/demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList variant="line">
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash hideLineNumbers
+npx shadcn@latest add https://vitality-shad.vercel.app/r/chip.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="chip" title="registry/vitality/ui/chip.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { chip as Chip } from "@/registry/vitality/ui/chip";
+
+<Chip>Label</Chip>;
+```
+
+## Examples
+
+### With Icon
+
+Icons are automatically sized to `size-3` inside a chip.
+
+<ComponentPreview name="chip/icon" />
+
+### Mixed content
+
+<ComponentPreview name="chip/mixed" />
+
+### Link
+
+Use the `asChild` prop to render a chip as a link. Link chips show a hover state.
+
+<ComponentPreview name="chip/link" />
+
+## API Reference
+
+### Chip
+
+| Prop        | Type      | Default | Description                           |
+| ----------- | --------- | ------- | ------------------------------------- |
+| `asChild`   | `boolean` | `false` | Render as child element (e.g. a link) |
+| `className` | `string`  | -       | Additional classes                    |

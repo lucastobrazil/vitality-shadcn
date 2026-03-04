@@ -1,0 +1,46 @@
+---
+title: Getting Started
+description: Set up the Vitality theme and start adding components to your project.
+---
+
+## How to use this
+
+This site is the documentation and component registry for the Vitality design system. Use the sidebar to browse **blocks** (pre-built layouts like headers and navigation) and **components** (individual UI primitives like buttons and inputs). Each page includes a live preview, the source code, and a one-line install command you can paste into your terminal. Press <Kbd>⌘K</Kbd> to quickly search for anything. Vitality is built on top of [shadcn/ui](https://ui.shadcn.com/docs) — read their docs for more on the underlying architecture and patterns.
+
+## LLM-Based "Automatic" Setup
+
+### 1. Set up the prompt
+
+If you're using Claude Code or another LLM that can execute code, you can set up your project by running the following command in your terminal. This will instruct the LLM to build with Vitality components.
+
+<ComponentSource src="src/app/metaprompt-setup.md" collapsible={false} />
+
+### 2. Prompt the system to build
+
+Now that the LLM knows to build with these components, you can start prompting it to build your app!
+
+```bash
+Build an app that lets users create and manage tasks
+```
+
+## Manual Setup
+
+### 1. Set up a new App
+
+Start with a Next.js + Tailwind CSS v4 project. If you don't have one yet, follow the [shadcn/ui installation guide](https://ui.shadcn.com/docs/installation/next) first.
+
+### 2. Add the Vitality theme
+
+Replace the contents of your `globals.css` with the following. This sets up the Vitality colour tokens, radius scale, and semantic typography variables for both light and dark modes.
+
+<ComponentSource src="src/app/globals.css" collapsible={false} />
+
+### 3. Add components
+
+Install individual components from the registry using the shadcn CLI. For example, to add the [Button](/components/button):
+
+```bash
+npx shadcn@latest add https://vitality-shad.vercel.app/r/button.json
+```
+
+Browse all available [components](/components/accordion) and [blocks](/blocks/header) in the sidebar, or press <Kbd>⌘K</Kbd> to search.

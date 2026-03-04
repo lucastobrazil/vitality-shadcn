@@ -1,0 +1,44 @@
+"use client"
+
+import * as React from "react"
+import { Check, X } from "lucide-react"
+import { Switch as SwitchPrimitive } from "radix-ui"
+
+import { cn } from "@/lib/utils"
+
+function Switch({
+  className,
+  checked,
+  ...props
+}: React.ComponentProps<typeof SwitchPrimitive.Root>) {
+  return (
+    <SwitchPrimitive.Root
+      data-slot="switch"
+      checked={checked}
+      className={cn(
+        "peer inline-flex h-[1.25rem] w-9 relative px-0.5 shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50",
+        "data-[state=checked]:bg-primary data-[state=unchecked]:bg-foreground/50 dark:data-[state=unchecked]:bg-foreground/30",
+        "data-[state=checked]:justify-start data-[state=unchecked]:justify-end",
+        "[&_svg:not([class*='size-'])]:size-3 [&_svg:not([class*='text-'])]:text-primary-foreground",
+        className
+      )}
+      {...props}
+    >
+      <SwitchPrimitive.Thumb
+        data-slot="switch-thumb"
+        className={cn(
+          "bg-background pointer-events-none block size-4 rounded-full ring-0 transition-transform",
+          "data-[state=checked]:translate-x-[calc(100%+1px)] data-[state=unchecked]:translate-x-0",
+          "absolute left-[1px]"
+        )}
+      />
+      {checked ? (
+        <Check className="size-3 text-primary-foreground" />
+      ) : (
+        <X className="size-3 text-primary-foreground" />
+      )}
+    </SwitchPrimitive.Root>
+  )
+}
+
+export { Switch }
