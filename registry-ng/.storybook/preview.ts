@@ -10,7 +10,7 @@ const preview: Preview = {
     }),
   ],
   //👇 Enables auto-generated documentation for all stories
-tags: ['autodocs'],
+  tags: ['autodocs'],
   parameters: {
     docs: {
       extractArgTypes: () => null,
