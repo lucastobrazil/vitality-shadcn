@@ -37,10 +37,14 @@ export function extractTocHeadings(source: string): TocItem[] {
   return items
 }
 
-const CONTENT_DIR = path.join(process.cwd(), "src/app/content/docs")
+const CONTENT_DIR = path.resolve(process.cwd(), "src/app/content/docs")
 
 function mdxPath(type: "components" | "blocks", slug: string) {
-  return path.join(CONTENT_DIR, type, `${slug}.mdx`)
+  const resolved = path.resolve(CONTENT_DIR, type, `${slug}.mdx`)
+  if (!resolved.startsWith(CONTENT_DIR + path.sep)) {
+    throw new Error("Invalid slug")
+  }
+  return resolved
 }
 
 export function mdxFileExists(type: "components" | "blocks", slug: string) {

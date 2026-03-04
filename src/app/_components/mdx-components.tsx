@@ -21,18 +21,18 @@ import { Kbd } from "@/registry/vitality/ui/kbd";
 function resolveDemoPath(
   name: string,
 ): { filePath: string; slug: string } | null {
-  const demosBase = path.join(process.cwd(), "src/app/_demos");
+  const demosBase = path.resolve(process.cwd(), "src/app/_demos");
 
   // Direct file: _demos/button.tsx or _demos/button/size.tsx
-  const directPath = path.join(demosBase, `${name}.tsx`);
-  if (fs.existsSync(directPath)) {
+  const directPath = path.resolve(demosBase, `${name}.tsx`);
+  if (directPath.startsWith(demosBase + path.sep) && fs.existsSync(directPath)) {
     return { filePath: directPath, slug: name };
   }
 
   // Folder fallback: _demos/button/demo.tsx when name="button"
   if (!name.includes("/")) {
-    const folderPath = path.join(demosBase, name, "demo.tsx");
-    if (fs.existsSync(folderPath)) {
+    const folderPath = path.resolve(demosBase, name, "demo.tsx");
+    if (folderPath.startsWith(demosBase + path.sep) && fs.existsSync(folderPath)) {
       return { filePath: folderPath, slug: `${name}/demo` };
     }
   }

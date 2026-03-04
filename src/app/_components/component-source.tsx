@@ -18,15 +18,24 @@ export async function ComponentSource({
   maxLines?: number
 }) {
   let filePath: string
+  const projectRoot = process.cwd()
 
   if (src) {
-    filePath = path.join(process.cwd(), src)
+    filePath = path.resolve(projectRoot, src)
   } else if (name) {
-    filePath = path.join(process.cwd(), "registry/vitality/ui", `${name}.tsx`)
+    filePath = path.resolve(projectRoot, "registry/vitality/ui", `${name}.tsx`)
   } else {
     return (
       <div className="rounded-lg border bg-muted/30 p-8 text-center text-sm text-muted-foreground">
         No source specified.
+      </div>
+    )
+  }
+
+  if (!filePath.startsWith(projectRoot + path.sep)) {
+    return (
+      <div className="rounded-lg border bg-muted/30 p-8 text-center text-sm text-muted-foreground">
+        Invalid source path.
       </div>
     )
   }
