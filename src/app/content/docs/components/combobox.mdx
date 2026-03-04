@@ -1,0 +1,103 @@
+---
+title: Combobox
+description: Autocomplete input with a list of suggestions.
+registryName: combobox
+---
+
+<ComponentPreview name="combobox/demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList variant="line">
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add https://vitality-shad.vercel.app/r/combobox.json
+```
+
+</TabsContent>
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @base-ui/react
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="combobox" title="registry/vitality/ui/combobox.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import {
+  Combobox,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+} from "@/registry/vitality/ui/combobox"
+```
+
+```tsx
+const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"]
+
+export function ExampleCombobox() {
+  return (
+    <Combobox items={frameworks}>
+      <ComboboxInput placeholder="Select a framework" />
+      <ComboboxContent>
+        <ComboboxEmpty>No items found.</ComboboxEmpty>
+        <ComboboxList>
+          {(item) => (
+            <ComboboxItem key={item} value={item}>
+              {item}
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  )
+}
+```
+
+## Examples
+
+### Basic
+
+A simple combobox with a list of frameworks.
+
+<ComponentPreview name="combobox/basic" />
+
+### Multiple
+
+A combobox with multiple selection using `multiple` and `ComboboxChips`.
+
+<ComponentPreview name="combobox/multiple" />
+
+### Clear Button
+
+Use the `showClear` prop to show a clear button.
+
+<ComponentPreview name="combobox/clear" />
+
+## API Reference
+
+See the [Base UI](https://base-ui.com/react/components/combobox#api-reference) documentation for more information.

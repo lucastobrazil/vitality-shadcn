@@ -1,0 +1,41 @@
+import type { BooleanInput } from '@angular/cdk/coercion';
+import {
+  booleanAttribute,
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  ViewEncapsulation,
+} from '@angular/core';
+
+import type { ClassValue } from 'clsx';
+
+import { menuLabelVariants } from './menu.variants';
+import { cn } from '@/lib/utils';
+
+@Component({
+  selector: 'z-menu-label, [z-menu-label]',
+  template: `
+    <ng-content />
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+  host: {
+    '[class]': 'classes()',
+    '[attr.data-inset]': 'inset() || null',
+  },
+  exportAs: 'zMenuLabel',
+})
+export class ZardMenuLabelComponent {
+  readonly class = input<ClassValue>('');
+  readonly inset = input<boolean, BooleanInput>(false, { transform: booleanAttribute });
+
+  protected readonly classes = computed(() =>
+    cn(
+      menuLabelVariants({
+        inset: this.inset(),
+      }),
+      this.class(),
+    ),
+  );
+}

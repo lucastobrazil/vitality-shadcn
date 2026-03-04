@@ -1,0 +1,72 @@
+---
+title: Date Range Picker
+description: A date range picker built by composing Popover, Calendar, and Button.
+source: vitality
+registryName: date-range-picker
+---
+
+<ComponentPreview name="date-range-picker/demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList variant="line">
+  <TabsTrigger value="cli">Command</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash hideLineNumbers
+npx shadcn@latest add https://vitality-shad.vercel.app/r/date-range-picker.json
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps className="mb-0 pt-2">
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="date-range-picker" title="registry/vitality/ui/date-range-picker.tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx
+import { DateRangePicker } from "@/registry/vitality/ui/date-range-picker"
+```
+
+```tsx
+<DateRangePicker />
+```
+
+### Controlled
+
+```tsx
+import type { DateRange } from "react-day-picker"
+
+const [range, setRange] = useState<DateRange | undefined>()
+
+<DateRangePicker value={range} onChange={setRange} />
+```
+
+## API Reference
+
+### DateRangePicker
+
+| Prop             | Type                                        | Default              | Description                            |
+| ---------------- | ------------------------------------------- | -------------------- | -------------------------------------- |
+| `value`          | `DateRange \| undefined`                    | -                    | Controlled selected date range         |
+| `onChange`       | `(range: DateRange \| undefined) => void`   | -                    | Callback when range changes            |
+| `placeholder`    | `string`                                    | `"Pick a date range"`| Text shown when no range is selected   |
+| `numberOfMonths` | `number`                                    | `2`                  | Number of months to display            |
+| `className`      | `string`                                    | -                    | Additional classes for the trigger     |

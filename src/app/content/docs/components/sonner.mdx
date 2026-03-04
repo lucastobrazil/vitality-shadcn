@@ -1,0 +1,65 @@
+---
+title: Sonner
+description: An opinionated toast component for React.
+registryName: sonner
+---
+
+<ComponentPreview name="sonner/demo" />
+
+## About
+
+Sonner is built and maintained by [emilkowalski](https://twitter.com/emilkowalski).
+
+## Installation
+
+```bash
+npx shadcn@latest add https://vitality-shad.vercel.app/r/sonner.json
+```
+
+Add the `Toaster` component to your root layout:
+
+```tsx title="app/layout.tsx"
+import { Toaster } from "@/registry/vitality/ui/sonner"
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <head />
+      <body>
+        <main>{children}</main>
+        <Toaster />
+      </body>
+    </html>
+  )
+}
+```
+
+## Usage
+
+```tsx
+import { toast } from "sonner"
+```
+
+```tsx
+toast("Event has been created.")
+```
+
+## Examples
+
+### Types
+
+<ComponentPreview name="sonner/types" />
+
+### Description
+
+<ComponentPreview name="sonner/description" />
+
+### Position
+
+Use the `position` prop to change the position of the toast.
+
+<ComponentPreview name="sonner/position" />
+
+## API Reference
+
+See the [Sonner API Reference](https://sonner.emilkowal.ski/getting-started) for more information.
