@@ -9,6 +9,7 @@ import { CodeTabs } from "./code-tabs";
 import { ComponentSource } from "./component-source";
 import { ComponentPreviewTabs } from "./component-preview-tabs";
 import { MdxCallout } from "./mdx-callout";
+import { InstallCommand } from "./install-command";
 import {
   TabsList,
   TabsTrigger,
@@ -307,4 +308,5 @@ export const mdxComponents: Record<string, React.ComponentType<any>> = {
   code: InlineCode,
   figure: MdxFigure,
   Kbd,
+  InstallCommand,
 };
