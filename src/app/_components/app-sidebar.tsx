@@ -1,25 +1,25 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { FilterIcon } from "lucide-react";
-import type { DemoMeta } from "@/lib/registry";
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useState } from "react"
+import { FilterIcon } from "lucide-react"
+import type { DemoMeta } from "@/lib/registry"
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetDescription,
-} from "@/registry/vitality/ui/sheet";
+} from "@/registry/vitality/ui/sheet"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from "@/registry/vitality/ui/dropdown-menu";
-import { Button } from "@/registry/vitality/ui/button";
+} from "@/registry/vitality/ui/dropdown-menu"
+import { Button } from "@/registry/vitality/ui/button"
 import {
   Sidebar,
   SidebarContent,
@@ -30,34 +30,32 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/registry/vitality/ui/sidebar";
+} from "@/registry/vitality/ui/sidebar"
 
-type Filter = "all" | "shadcn" | "shadcn-customised" | "vitality";
+type Filter = "all" | "shadcn" | "shadcn-customised" | "vitality"
 
 function SidebarNav({
   components,
   blocks,
   onNavigate,
 }: {
-  components: DemoMeta[];
-  blocks: DemoMeta[];
-  onNavigate?: () => void;
+  components: DemoMeta[]
+  blocks: DemoMeta[]
+  onNavigate?: () => void
 }) {
-  const pathname = usePathname();
-  const [filter, setFilter] = useState<Filter>("all");
+  const pathname = usePathname()
+  const [filter, setFilter] = useState<Filter>("all")
 
   const customisedCount = components.filter(
-    (c) => c.source === "shadcn-customised",
-  ).length;
-  const vitalityCount = components.filter(
-    (c) => c.source === "vitality",
-  ).length;
-  const shadcnCount = components.length - customisedCount - vitalityCount;
+    (c) => c.source === "shadcn-customised"
+  ).length
+  const vitalityCount = components.filter((c) => c.source === "vitality").length
+  const shadcnCount = components.length - customisedCount - vitalityCount
 
   const filtered = components.filter((c) => {
-    if (filter === "all") return true;
-    return c.source === filter;
-  });
+    if (filter === "all") return true
+    return c.source === filter
+  })
 
   return (
     <>
@@ -167,17 +165,17 @@ function SidebarNav({
         <div className="from-background via-background/80 to-background/0 pointer-events-none sticky -bottom-1 z-10 h-16 shrink-0 bg-gradient-to-t" />
       </SidebarContent>
     </>
-  );
+  )
 }
 
 export function AppSidebar({
   components,
   blocks,
 }: {
-  components: DemoMeta[];
-  blocks: DemoMeta[];
+  components: DemoMeta[]
+  blocks: DemoMeta[]
 }) {
-  const { openMobile, setOpenMobile } = useSidebar();
+  const { openMobile, setOpenMobile } = useSidebar()
 
   return (
     <>
@@ -209,5 +207,5 @@ export function AppSidebar({
         </SheetContent>
       </Sheet>
     </>
-  );
+  )
 }
