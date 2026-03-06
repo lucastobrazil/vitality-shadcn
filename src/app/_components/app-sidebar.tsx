@@ -46,8 +46,12 @@ function SidebarNav({
   const pathname = usePathname();
   const [filter, setFilter] = useState<Filter>("all");
 
-  const customisedCount = components.filter((c) => c.source === "shadcn-customised").length;
-  const vitalityCount = components.filter((c) => c.source === "vitality").length;
+  const customisedCount = components.filter(
+    (c) => c.source === "shadcn-customised",
+  ).length;
+  const vitalityCount = components.filter(
+    (c) => c.source === "vitality",
+  ).length;
   const shadcnCount = components.length - customisedCount - vitalityCount;
 
   const filtered = components.filter((c) => {
@@ -57,8 +61,11 @@ function SidebarNav({
 
   return (
     <>
-      <SidebarContent className="no-scrollbar overflow-x-hidden">
+      <SidebarContent className="pt-4 no-scrollbar overflow-x-hidden">
         <SidebarGroup>
+          <SidebarGroupLabel className="text-muted-foreground font-medium">
+            Guides
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
@@ -105,17 +112,30 @@ function SidebarNav({
                 <Button
                   variant="ghost"
                   size="icon-xs"
-                  className={filter !== "all" ? "text-primary" : "text-muted-foreground"}
+                  className={
+                    filter !== "all" ? "text-primary" : "text-muted-foreground"
+                  }
                 >
                   <FilterIcon className="size-3" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start">
-                <DropdownMenuRadioGroup value={filter} onValueChange={(v) => setFilter(v as Filter)}>
-                  <DropdownMenuRadioItem value="all">All ({components.length})</DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value="shadcn">Standard ({shadcnCount})</DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value="shadcn-customised">Customised ({customisedCount})</DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value="vitality">Custom Vitality ({vitalityCount})</DropdownMenuRadioItem>
+                <DropdownMenuRadioGroup
+                  value={filter}
+                  onValueChange={(v) => setFilter(v as Filter)}
+                >
+                  <DropdownMenuRadioItem value="all">
+                    All ({components.length})
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="shadcn">
+                    Standard ({shadcnCount})
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="shadcn-customised">
+                    Customised ({customisedCount})
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="vitality">
+                    Custom Vitality ({vitalityCount})
+                  </DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -129,10 +149,7 @@ function SidebarNav({
                     isActive={pathname === `/components/${c.slug}`}
                     className="text-[0.8rem] font-medium"
                   >
-                    <Link
-                      href={`/components/${c.slug}`}
-                      onClick={onNavigate}
-                    >
+                    <Link href={`/components/${c.slug}`} onClick={onNavigate}>
                       {c.name}
                       {c.source === "vitality" && (
                         <span className="size-1.5 rounded-full bg-primary shrink-0" />
