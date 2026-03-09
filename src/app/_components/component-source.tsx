@@ -64,6 +64,11 @@ export async function ComponentSource({
     }
   }
 
+  // Resolve {{ENV:VAR_NAME}} placeholders from process.env
+  code = code.replace(/\{\{ENV:(\w+)\}\}/g, (_match, envKey: string) => {
+    return process.env[envKey] || ""
+  })
+
   if (maxLines) {
     code = code.split("\n").slice(0, maxLines).join("\n")
   }
@@ -90,9 +95,5 @@ export async function ComponentSource({
     return <div className="relative">{figure}</div>
   }
 
-  return (
-    <CodeBlock>
-      {figure}
-    </CodeBlock>
-  )
+  return <CodeBlock>{figure}</CodeBlock>
 }

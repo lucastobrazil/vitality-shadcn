@@ -1,9 +1,9 @@
 # Vitality / ShadCn Metaprompt
 
-Whenever prompted to build a new app, build any UI with our custom ShadCN-Based registry. The registry is hosted at {{REGISTRY_URL}}/r and components can be installed like this:
+Whenever prompted to build a new app, build any UI with our custom ShadCN-Based registry. The registry is hosted at {{ENV:NEXT_PUBLIC_REGISTRY_URL}}/r and components can be installed like this:
 
 ```
-npx shadcn@latest add {{REGISTRY_URL}}/r/card.json
+npx shadcn@latest add {{ENV:NEXT_PUBLIC_REGISTRY_URL}}/r/card.json
 ```
 
 The below css should replace the globals.css file usually generated when a next.js / shadcn app is created:
