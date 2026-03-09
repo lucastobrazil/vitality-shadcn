@@ -1,5 +1,12 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+# Vitality-ShadCN
+
+## 🚀 Deployed via GitHub pages to:
+- **React site** - https://bookish-tribble-p3eklvm.pages.github.io/
+- **Angular Storybook site** - https://bookish-tribble-p3eklvm.pages.github.io/storybook
+
+
 ## Getting Started
 
 First, run the development server:
