@@ -1,5 +1,7 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 
+export const REGISTRY_URL = process.env.NEXT_PUBLIC_REGISTRY_URL || "";
+
 <Meta title="Getting Started" />
 
 # Vitality UI for Angular
@@ -244,15 +246,11 @@ Radius uses a custom system mapping Tailwind's radius scale to `--radius-default
 
 Point the CLI at the Vitality registry URL when adding components:
 
-```bash
-npx @ngzard/ui@latest add https://vitality-shad.vercel.app/r/ng/<component>.json
-```
+<pre><code>{`npx @ngzard/ui@latest add ${REGISTRY_URL}/r/ng/<component>.json`}</code></pre>
 
 For example, to install the Button component:
 
-```bash
-npx @ngzard/ui@latest add https://vitality-shad.vercel.app/r/ng/button.json
-```
+<pre><code>{`npx @ngzard/ui@latest add ${REGISTRY_URL}/r/ng/button.json`}</code></pre>
 
 ### 3. Import and use
 
@@ -290,7 +288,7 @@ Components use `@/ui/` and `@/lib/` path aliases. Add these to your `tsconfig.js
 - **Framework:** Angular 21.1.4 (standalone components, signals)
 - **CSS:** Tailwind CSS v4.1.18 via `@tailwindcss/postcss`
 - **Component library:** zardUI (`@ngzard/ui`) — a shadcn/ui-equivalent registry for Angular
-- **Custom registry:** Components sourced from `https://lucastobrazil.github.io/vitality-shad/r/ng/`
+- **Custom registry:** Components sourced from <code>{REGISTRY_URL}/r/ng/</code>
 - **Variant system:** class-variance-authority (CVA)
 - **Utility merging:** clsx + tailwind-merge
 - **Icons:** lucide-angular
