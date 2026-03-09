@@ -10,12 +10,14 @@ export async function ComponentSource({
   title,
   collapsible = true,
   maxLines,
+  replacements,
 }: {
   name?: string
   src?: string
   title?: string
   collapsible?: boolean
   maxLines?: number
+  replacements?: Record<string, string>
 }) {
   let filePath: string
   const projectRoot = process.cwd()
@@ -53,6 +55,13 @@ export async function ComponentSource({
   // Strip "use client" directive from demo source files
   if (src) {
     code = code.replace(/^"use client";?\n?\n?/, "")
+  }
+
+  // Apply string replacements
+  if (replacements) {
+    for (const [search, replace] of Object.entries(replacements)) {
+      code = code.replaceAll(search, replace)
+    }
   }
 
   if (maxLines) {

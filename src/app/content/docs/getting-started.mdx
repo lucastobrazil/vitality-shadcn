@@ -13,7 +13,7 @@ This site is the documentation and component registry for the Vitality design sy
 
 If you're using Claude Code or another LLM that can execute code, you can set up your project by running the following command in your terminal. This will instruct the LLM to build with Vitality components.
 
-<ComponentSource src="src/app/metaprompt-setup.md" collapsible={false} />
+<ComponentSource src="src/app/metaprompt-setup.md" collapsible={false} replacements={{"{{REGISTRY_URL}}": process.env.NEXT_PUBLIC_REGISTRY_URL || ""}} />
 
 ### 2. Prompt the system to build
 
