@@ -6,6 +6,7 @@ on:
 
 jobs:
   sync:
+    if: github.repository == 'genie-engineering/vitality-shadcn'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
