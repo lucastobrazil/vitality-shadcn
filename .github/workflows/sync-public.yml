@@ -1,0 +1,22 @@
+name: Sync to public repo
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.PUBLIC_REPO_DEPLOY_KEY }}
+
+      - name: Push to public
+        run: |
+          git remote add public git@github.com:lucastobrazil/vitality-shadcn.git
+          git push public main
