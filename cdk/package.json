@@ -21,9 +21,8 @@
     "ts-node": "^10.9.2",
     "typescript": "~5.6.2"
   },
-  "dependencies": {
-    "@genie-engineering/cdk-constructs": "^0.0.6",
-    "@genie-engineering/cdk-lib": "^2.103.5",
+  "dependencies": {    
+    "@genie-engineering/cdk-lib": "^2.200.0",
     "aws-cdk-lib": "2.171.0",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.21"
