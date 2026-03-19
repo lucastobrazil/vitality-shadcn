@@ -12,7 +12,7 @@ describe('CdkStack', () => {
       deploymentJob: '',
       createdBy: 'test',
       version: '0.0.1',
-      prefix: 'prd-vitality-shadcn',
+      prefix: 'prod-vitality-shadcn',
       isProduction: true,
       repository: 'vitality-shadcn',
     },
