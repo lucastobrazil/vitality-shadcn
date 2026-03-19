@@ -98,7 +98,11 @@ jobs:
       - name: Extract CDK outputs
         id: cdk-output
         run: |
-          DIST_ID=$(jq -r 'to_entries[0].value.DistributionId' cdk/cdk-outputs.json)
+          DIST_ID=$(jq -r '[.[]] | .[0].DistributionId' cdk/cdk-outputs.json)
+          if [ -z "$DIST_ID" ] || [ "$DIST_ID" = "null" ]; then
+            echo "::error::Failed to extract distribution ID from CDK outputs"
+            exit 1
+          fi
           echo "distribution-id=$DIST_ID" >> "$GITHUB_OUTPUT"
 
   s3-sync:
