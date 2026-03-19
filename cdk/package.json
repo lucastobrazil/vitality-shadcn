@@ -1,0 +1,30 @@
+{
+  "name": "cdk",
+  "version": "0.1.0",
+  "bin": {
+    "cdk": "bin/cdk.js"
+  },
+  "scripts": {
+    "deploy": "cdk deploy",
+    "lint": "eslint './**/*.ts' --max-warnings 0",
+    "lint:fix": "eslint './**/*.ts' --max-warnings 0 --fix",
+    "test": "jest --passWithNoTests"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "22.5.4",
+    "aws-cdk": "2.171.0",
+    "esbuild": "^0.24.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.6.2"
+  },
+  "dependencies": {
+    "@genie-engineering/cdk-constructs": "^0.0.6",
+    "@genie-engineering/cdk-lib": "^2.103.5",
+    "aws-cdk-lib": "2.171.0",
+    "constructs": "^10.0.0",
+    "source-map-support": "^0.5.21"
+  }
+}
