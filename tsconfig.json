@@ -31,5 +31,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "registry-ng"]
+  "exclude": ["node_modules", "registry-ng", "cdk"]
 }
