@@ -58,11 +58,38 @@ export class CdkStack extends BaseStack {
     const certificate = acm.Certificate.fromCertificateArn(this, 'Certificate', props.certificateArn)
     const s3Origin = origins.S3BucketOrigin.withOriginAccessControl(this.bucket)
 
+    const urlRewriteFunction = new cloudfront.Function(this, 'UrlRewriteFunction', {
+      code: cloudfront.FunctionCode.fromInline(`
+function handler(event) {
+  var request = event.request;
+  var uri = request.uri;
+
+  // If URI ends with '/', append index.html
+  if (uri.endsWith('/')) {
+    request.uri += 'index.html';
+  }
+  // If URI has no file extension, append .html
+  else if (!uri.includes('.')) {
+    request.uri += '.html';
+  }
+
+  return request;
+}
+      `.trim()),
+      runtime: cloudfront.FunctionRuntime.JS_2_0,
+    })
+
     this.distribution = new cloudfront.Distribution(this, 'Distribution', {
       defaultBehavior: {
         origin: s3Origin,
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
+        functionAssociations: [
+          {
+            function: urlRewriteFunction,
+            eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
+          },
+        ],
       },
       domainNames: [props.domainName],
       certificate,
