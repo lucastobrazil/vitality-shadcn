@@ -49,7 +49,7 @@ export function SiteHeader() {
         </Link>
         <div className="ml-auto flex items-center gap-2">
           <a
-            href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/storybook`}
+            href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/storybook/`}
             target="_blank"
             className="text-muted-foreground hover:text-primary hidden text-sm font-medium transition-colors lg:flex gap-1 baseline"
           >
