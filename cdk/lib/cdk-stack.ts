@@ -10,6 +10,7 @@ import { Construct } from 'constructs'
 interface CdkStackProps extends cdk.StackProps {
   bucketName: string
   cloudflareIpSetArn: string
+  cloudflareIpSetV6Arn: string
   domainName: string
   certificateArn: string
 }
@@ -42,8 +43,19 @@ export class CdkStack extends BaseStack {
           priority: 0,
           action: { allow: {} },
           statement: {
-            ipSetReferenceStatement: {
-              arn: props.cloudflareIpSetArn,
+            orStatement: {
+              statements: [
+                {
+                  ipSetReferenceStatement: {
+                    arn: props.cloudflareIpSetArn,
+                  },
+                },
+                {
+                  ipSetReferenceStatement: {
+                    arn: props.cloudflareIpSetV6Arn,
+                  },
+                },
+              ],
             },
           },
           visibilityConfig: {
